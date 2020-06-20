@@ -1,0 +1,53 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+* {
+  box-sizing: border-box;
+}
+.Container {
+  height: 100vh;
+  width: 100vw;
+  background-color: #d3d6db;
+}
+.Header {
+  padding: 10px;
+  width: 100%;
+  color: white;
+  background-color: #3b5699;
+  display: block;
+}
+.Header h3 {
+  margin-left: 10%;
+}
+.Form {
+  width: 80%;
+}
+.FormContainer {
+  width: 500px;
+  margin: 50px auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+}
+.Input {
+  background-color: #f5f8fa;
+  border: 0;
+  border-radius: 2px;
+  border: 1px solid #3b5699;
+}
+.FormControl {
+  margin-top: 10px;
+}
+.FormButton {
+  margin: 20px 0;
+  padding: 10px;
+  width: 100%;
+  background-color: #3b5699;
+  color: white;
+  outline: none;
+}
+.NewAccount {
+  padding: 10px;
+  color: white;
+  background-color: #017b05;
+}

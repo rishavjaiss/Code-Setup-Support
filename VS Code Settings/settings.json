@@ -1,0 +1,26 @@
+{
+  "explorer.confirmDragAndDrop": false,
+  "explorer.confirmDelete": false,
+  "liveServer.settings.donotVerifyTags": true,
+  "liveServer.settings.donotShowInfoMsg": true,
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "terminal.integrated.shell.windows": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+  "git.suggestSmartCommit": false,
+  "workbench.activityBar.visible": true,
+  "editor.formatOnSave": true,
+  "workbench.iconTheme": "material-icon-theme",
+  "editor.fontLigatures": true,
+  "editor.fontFamily": "Operator Mono, Consolas, 'Courier New', monospace",
+  "editor.fontSize": 16,
+  "workbench.sideBar.location": "left",
+  "workbench.colorCustomizations": {},
+  "materialTheme.accent": "Acid Lime",
+  "workbench.colorTheme": "One Dark Pro",
+  "color-highlight.markerType": "dot-before"
+}

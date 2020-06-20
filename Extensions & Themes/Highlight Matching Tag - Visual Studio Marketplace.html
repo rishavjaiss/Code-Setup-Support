@@ -1,0 +1,1323 @@
+
+
+<html lang="en-us">
+
+<head>
+     <meta name="description" content="Extension&#32;for&#32;Visual&#32;Studio&#32;Code&#32;-&#32;Highlights&#32;matching&#32;closing&#32;and&#32;opening&#32;tags" /><meta name="keywords" content="multi-root&#32;ready,underline" /><meta property="og:title" content="Highlight&#32;Matching&#32;Tag&#32;-&#32;Visual&#32;Studio&#32;Marketplace" /><meta property="og:type" content="website" /><meta property="og:url" content="https://marketplace.visualstudio.com/items?itemName=vincaslt.highlight-matching-tag" /><meta property="og:image" content="https://vincaslt.gallerycdn.vsassets.io/extensions/vincaslt/highlight-matching-tag/0.9.9/1586630807350/Microsoft.VisualStudio.Services.Icons.Default" /><meta property="og:description" content="Extension&#32;for&#32;Visual&#32;Studio&#32;Code&#32;-&#32;Highlights&#32;matching&#32;closing&#32;and&#32;opening&#32;tags" /><meta property="twitter:card" content="summary" /><meta property="twitter:site" content="@Code" /><link rel="canonical" href="https://marketplace.visualstudio.com/items?itemName=vincaslt.highlight-matching-tag" />
+    <style>
+        html {
+            overflow-y: scroll;
+        }
+        body {
+            font-family: wf_segoe-ui, Helvetica Neue, Helvetica, Arial, Verdana;
+        	color: rgba( 0, 0, 0, 1);
+        	font-size: 12px;
+        	background-color: rgba(255, 255, 255, 1);
+        	margin: 0;
+        	padding: 0;
+        }
+
+/* L0 header styles start*/
+        .uxservices-header {
+            height: 34px;
+            background-color:black;
+        }
+
+        a.skip-main {
+            left: -999px;
+            position: absolute;
+            top: auto;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            z-index: -999;
+        }
+
+        a.skip-main:focus, a.skip-main:active {
+            color: #0078D4;
+            background-color: #FFFFFF;
+            position: absolute;
+            left: auto;
+            top: auto;
+            width: 122px;
+            height: 33px;
+            overflow: auto;
+            padding-left: 12px;
+            padding-right: 12px;
+            padding-top: 7px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 500;
+            font-family: 'Segoe UI';
+            line-height: 20px;
+            z-index: 999;
+        }
+
+        a.skip-main:hover {
+            color: #005BA1;
+            background-color: #F2F2F2;
+        }
+
+        .uxservices-header div.upperBandContent {
+            background-color:black;
+            color: white;
+            line-height: 17px;
+            width:100%;
+            margin:0 auto;
+            box-sizing:border-box;
+            max-width: 1160px;
+            padding: 0px;
+        }
+
+        .uxservices-header div.upperBandContent .left {
+            padding: 5px 0 0 0;
+        }
+
+        .uxservices-header div.upperBandContent .left .vs-logo-header {
+            height: 31px;
+            padding-top: 5px;
+        }
+
+        .uxservices-header div.upperBandContent .left .marketplacetext-header {
+            vertical-align: 9px;
+            padding-top: 5px;
+        }
+
+        .uxservices-header div.upperBandContent .right {
+            display: inline-block;
+            position: relative;
+            background-color: black;
+            font-size: 11px;
+            padding-top: 10px;
+        }
+
+        .uxservices-header div.upperBandContent .right .signIn {
+            font-weight: 600;
+            float: left;
+        }
+
+        .uxservices-header .marketPlaceLogoLink {
+            white-space: pre;
+            font-size: 16px;
+            line-height: 16px;
+            vertical-align: -4px;
+            display: inline-block;
+            color: white;
+        }
+
+        .uxservices-header .marketPlaceLogoLink.vs-brand-icon {
+            width: 30px;
+            height: 30px;
+            background: url(https://cdn.vsassets.io/v/M170_20200611.2/_content/Header/ImageSprite.png) no-repeat -250px 0 !important;
+        }
+
+        .uxservices-header .right a {
+            font-family: wf_segoe-ui, -apple-system, ".SFNSText-Regular", "San Francisco", "Roboto", "Helvetica Neue", "Lucida Grande", sans-serif;
+            font-size: inherit;
+        }
+
+        .uxservices-header div.upperBandContent .scarabLink {
+            margin-right: 0.23em;
+        }
+
+        #Fragment_SearchBox {
+            display: inline-block;
+            margin-left: 25px;
+            height: 13px;
+        }
+
+        #Fragment_SearchBox .header-search-button {
+            height: 20px;
+            width: 20px;
+            background: url(https://cdn.vsassets.io/v/M170_20200611.2/_content/Header/ImageSprite.png) no-repeat -195px 0 !important;
+            cursor: pointer;
+            border: none;
+            margin-left: 3px;
+            padding: 0px;
+        }
+
+        #Fragment_SearchBox .header-search-button:focus {
+            outline-color: rgb(77, 144, 254);
+            outline-style: auto;
+            outline-width: 5px;
+        }
+
+        #Fragment_SearchBox .header-search-textbox {
+            vertical-align: top;
+            background-color: #6a6a6a;
+            color: #ffffff;
+            padding-left: 2px;
+        }
+
+        
+/* l0 header ends*/
+
+        .tab {
+            overflow: hidden;
+            border-bottom: 1px solid #ccc;
+            background-color: transparent;
+            margin-bottom: 25px;
+        }
+
+/* Style the buttons that are used to open the tab content */
+        .tab button {
+            background-color: transparent;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 0px 16px;
+            font-size: 16px;
+            height: 40px;
+            border-width: 1px;
+            border-style: solid;
+            border-color: transparent
+        }
+
+/* Change background color of buttons on hover */
+        .tab button:hover {
+            color: #106ebe;
+        }
+
+        .tab button.selected {
+            color: #106ebe;
+            border-bottom: 2px solid #106ebe;
+        }
+
+        .tab button:focus, .tab button.selected:focus {
+            border-color: #000000;
+        }
+
+/* Style the tab content */
+        .tabcontent {
+            padding: 6px 12px;
+        }
+
+        .bowtie-icon,
+        i.bowtie-icon {
+        	font-family: "Bowtie";
+        	font-size: 14px;
+        	speak: none;
+        	display: inline-block;
+        	font-style: normal;
+        	font-weight: normal;
+        	font-variant: normal;
+        	text-transform: none;
+        	text-align: center;
+        	text-decoration: none;
+        	line-height: 16px;
+        	-webkit-font-smoothing: antialiased;
+        	-moz-osx-font-smoothing: grayscale;
+        }
+
+        .bowtie-icon:disabled,
+        i.bowtie-icon:disabled {
+        	opacity: 0.5;
+        }
+
+        .bowtie-brand-visualstudio::before {
+	        content: "\E91D";
+        }
+
+        .bowtie-install::before {
+        	content: "\E92C";
+        }
+
+        .bowtie-search::before {
+        	content: "\E986";
+        }
+
+        .bowtie-navigate-external::before {
+        	content: "\E9D0";
+        }
+
+        .bowtie-status-info::before {
+        	content: "\EA08";
+        }
+
+        .bowtie-status-info {
+        	color: rgba(0, 120, 212, 1);
+        	color: var(--communication-background, rgba(0, 120, 212, 1));
+        }
+
+        * {
+        	box-sizing: border-box;
+        	-webkit-box-sizing: border-box;
+        	-moz-box-sizing: border-box;
+        }
+
+        a:not(.ms-Button) {
+        	color: rgba(0, 120, 212, 1);
+        	color: var(--communication-foreground, rgba(0, 120, 212, 1));
+        	text-decoration: none;
+        	cursor: pointer;
+        }
+
+        a:not(.ms-Button):hover {
+        	color: rgba(0, 120, 212, 1);
+        	color: var(--communication-foreground, rgba(0, 120, 212, 1));
+        	text-decoration: underline;
+        }
+
+        a:not(.ms-Button):visited {
+        	color: rgba(0, 120, 212, 1);
+        	color: var(--communication-foreground, rgba(0, 120, 212, 1));
+        }
+
+        a:not(.ms-Button):active {
+        	color: rgba(0, 120, 212, 1);
+        	color: var(--communication-foreground, rgba(0, 120, 212, 1));
+        }
+
+        button {
+        	font-family: "Segoe UI VSS (Regular)", "Segoe UI", "-apple-system", BlinkMacSystemFont, Roboto, "Helvetica Neue", Helvetica, Ubuntu, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        	height: 30px;
+        	border: 1px solid;
+        	border-color: rgba( 200, 200, 200, 1);
+        	border-color: rgba( var(--palette-neutral-20, 200, 200, 200), 1);
+        	background-color: rgba( 248, 248, 248, 1);
+        	background-color: rgba( var(--palette-neutral-2, 248, 248, 248), 1);
+        	color: rgba( 51, 51, 51, 1);
+        	color: rgba( var(--palette-neutral-80, 51, 51, 51), 1);
+        	cursor: pointer;
+        	outline: 0;
+        	padding: 2px 12px 2px 12px;
+        }
+
+        button:hover:not(.ms-Button):not(.bolt-button):not(.link-as-button),
+        button:focus:not(.ms-Button):not(.bolt-button):not(.link-as-button) {
+        	border-color: rgba( 166, 166, 166, 1);
+        	border-color: rgba( var(--palette-neutral-30, 166, 166, 166), 1);
+            border-style: dotted;
+        }
+
+        .pricingTab-loader-container, .qnaTab-loader-container, .rnrTab-loader-container {
+            text-align: center;
+        }
+
+        .pricingTab-loader-container .loader, .qnaTab-loader-container .loader, .rnrTab-loader-container .loader {
+            display: inline-block;
+        }
+
+/* Styles for bread crumb */
+        .bread-crumb-container {
+        	font-size: 13px;
+        	color: #FFFFFF;
+        	height: 45px;
+        	line-height: 45px;
+        }
+
+        .bread-crumb-container .member {
+        	text-decoration: none;
+        }
+
+        .bread-crumb-container .separator {
+        	padding: 0 5px;
+        }
+
+        .bread-crumb-container a:visited {
+        	color: #FFFFFF;
+        }
+
+        .bread-crumb-container a {
+        	color: #FFFFFF;
+        }
+
+        .bread-crumb-container a:hover {
+        	color: #FFFFFF;
+        }
+
+        .item-details-control-root .breadcrumb {
+        	background-color: #232323;
+        	color: #FFFFFF;
+        	height: 45px;
+        	line-height: 45px;
+        	font-size: 13px;
+        	min-width: 1250px;
+        }
+
+        .item-details-control-root .breadcrumb .vsCodeDownloadLinkContainer {
+            float: right;
+            color: inherit;
+        }
+
+/* end of bread crumb styles */
+
+/* Styles for item banner */
+        .ux-section-banner {
+        	padding: 16px 0px;
+        	background-color: #eff1f3;
+        	min-width: 1250px;
+        }
+
+        .item-details-control-root .ux-section-banner {
+        	padding: 32px 0px;
+        	background-color: #eff1f3;
+        }
+
+        .gallery-centered-content {
+        	width: 1160px;
+        	margin-left: auto;
+        	margin-right: auto;
+        	padding-left: 10px;
+        	padding-right: 10px;
+        }
+
+        table {
+        	border-collapse: collapse;
+        	border-spacing: 0;
+        	margin: 0;
+        	padding: 0;
+        	border: 0;
+        }
+
+        .item-details-control-root .item-img {
+        	text-align: center;
+        	vertical-align: top;
+        	width: 132px;
+        }
+
+        .item-details-control-root .item-img img {
+        	max-width: 128px;
+        	position: relative;
+        	visibility: hidden;
+        }
+
+        .item-details-control-root .item-header .item-header-content {
+        	font-size: 14px;
+        	margin-left: 32px;
+        }
+
+        .item-details-control-root .ux-item-name {
+        	font-size: 26px;
+        	font-weight: 600;
+        	display: inline-block;
+        	padding-right: 8px;
+        }
+
+        .item-details-control-root .ux-item-second-row-wrapper {
+        	margin-top: 4px;
+        }
+
+        .item-details-control-root .ux-item-second-row-wrapper>div {
+        	display: inline-block;
+        }
+
+        .item-details-control-root .ux-item-second-row-wrapper>div:nth-child(1) {
+        	margin-right: 10px;
+        }
+
+        .item-details-control-root .ux-item-second-row-wrapper>.ux-item-rating {
+        	margin-left: 10px;
+        	margin-right: 10px;
+        }
+
+        .item-details-control-root .ux-item-second-row-wrapper>.item-price-category {
+        	margin-left: 10px;
+        	margin-right: 10px;
+        }
+
+        .item-details-control-root .item-header h1,
+        .item-details-control-root .item-header h2 {
+        	margin: 0px;
+        	padding: 0px;
+        	display: inline-block;
+        	font-size: 0em;
+        	font-weight: normal;
+        }
+
+        .item-details-control-root .item-header .dark {
+        	color: #FFFFFF;
+        }
+
+        .item-details-control-root .ux-item-rating {
+        	font-size: 14px;
+        }
+        .item-details-control-root .ux-item-publisher {
+        	font-size: 18px;
+        }
+
+        .item-details-control-root .ux-item-publisher-link {
+        	font-size: 18px;
+        	font-weight: 600;
+        }
+
+        .item-details-control-root .ux-item-shortdesc {
+        	margin: 20px 0;
+        	width: 608px;
+        	line-height: 1.5;
+        	overflow: hidden;
+        }
+
+        .item-details-control-root .dark .item-banner-focussable-child-item:focus {
+        	outline: 1px dotted white;
+        }
+
+        .item-details-control-root .item-header .item-header-content.light .installHelpInfo a {
+            color: #000000;
+            text-decoration: underline;
+            border-color: #000000;
+        }
+
+        .item-details-control-root .item-header .item-header-content.dark .installHelpInfo a {
+        	color: #FFFFFF;
+        	text-decoration: underline;
+        }
+
+/* not unpublished */
+        
+            .one-click-install-container {
+                display: flex;
+            }
+
+            .installHelpInfo {
+                margin-left: 10px;
+            }
+
+            .installHelpInfo>a {
+                vertical-align: sub;
+            }
+
+            .textContainer-41 {
+                flex-grow: 1;
+            }
+
+            .flexContainer-40 {
+                display: flex;
+                height: 100%;
+                flex-wrap: nowrap;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .label-43 {
+                margin-top: 0px;
+                margin-right: 4px;
+                margin-bottom: 0px;
+                margin-left: 4px;
+                line-height: 100%;
+                font-weight: 600;
+            }
+        
+            .item-details-control-root .ux-button.install {
+                position: relative;
+                font-family: "Segoe UI", "Segoe UI Web (West European)", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+                -webkit-font-smoothing: antialiased;
+                font-size: 14px;
+                font-weight: 400;
+                box-sizing: border-box;
+                display: inline-block;
+                text-align: center;
+                cursor: pointer;
+                vertical-align: top;
+                padding-top: 0px;
+                padding-right: 16px;
+                padding-bottom: 0px;
+                padding-left: 16px;
+                min-width: 80px;
+                height: 32px;
+                background-color: rgb(244, 244, 244);
+                color: rgb(51, 51, 51);
+                user-select: none;
+                outline: transparent;
+                border-width: 1px;
+                border-style: solid;
+                border-color: transparent;
+                border-image: initial;
+                text-decoration: none;
+                border-radius: 0px;
+            }
+
+            .item-details-control-root .item-header-content .install-button-container .ux-button.install.buttonDisabled {
+                background-color: #AAAAAA;
+                color: #EEEEEE;
+                opacity: 1;
+                border: 1px solid #E6E6E6;
+            }
+
+            .item-details-control-root .item-header-content .install-button-container .ux-button.install.buttonDisabled:hover {
+                cursor: default;
+                opacity: 1;
+            }
+
+            .item-details-control-root .dark .ux-button.install {
+                background-color: #107c10;
+                color: #FFFFFF;
+                min-width: 120px;
+                border: 1px solid #FFFFFF;
+            }
+
+            .item-details-control-root .dark .ux-button.install:hover {
+                background-color: #AAAAAA;
+                opacity: 0.6;
+            }
+
+            .item-details-control-root .light .ux-button.install {
+                background-color: #107c10;
+                color: #FFFFFF;
+                min-width: 120px;
+                border: 1px solid #666666;
+            }
+
+            .item-details-control-root .light .ux-button.install:hover,
+            .item-details-control-root .light .ux-button.install:focus {
+                background-color: #074507;
+            }
+
+            .item-details-control-root .dark .ux-button.install:focus,
+            .item-details-control-root .light .ux-button.install:focus {
+                border: 1px dotted;
+            }
+
+        
+/* End of item banner styles. */
+
+/* Styles for item details overview */
+        .item-details-control-root .ux-section-details {
+        	margin: 24px 0 34px 0px;
+        	font-size: 13px;
+        }
+
+        .item-details-control-root .ux-section-details .itemdetails-section-header {
+        	font-size: 16px;
+        	font-weight: bold;
+        	color: #555;
+        	padding-bottom: 16px;
+        }
+
+        .item-details-control-root .ux-section-details .ux-section-details-table {
+        	width: 100%;
+        	table-layout: fixed;
+        }
+
+        .item-details-control-root .ux-itemdetails-left {
+        	vertical-align: top;
+        	font-size: 14px;
+        	padding-right: 20px;
+        }
+
+        .item-details-control-root .ux-itemdetails-right {
+            width: 34.45%;
+            vertical-align: top;
+            padding: 0 0 0 20px;
+        }
+
+        .item-details-control-root .itemDetails-right {
+            display: none;
+        }
+
+        .item-details-control-root .markdown {
+        	color: #333;
+        	line-height: 1.6;
+        	position: relative;
+        }
+
+        .item-details-control-root .markdown > *:first-child {
+        	margin-top: 0!important;
+        }
+
+        .item-details-control-root .markdown .link-header:target:before {
+        	content: "";
+        	display: block;
+        	height: 250px;
+        	margin: -250px 0 0;
+        }
+
+        .link-as-button {
+        	height: initial;
+        }
+
+        .link-as-button:hover {
+        	text-decoration: underline;
+        }
+
+        /* End of item details overview styles. */
+
+        /* Styles for footer */
+        #ux-footer {
+        	line-height: 1.2em;
+        }
+
+        #ux-footer:after {
+        	content: "";
+        	display: table;
+        	clear: both;
+        }
+
+        #ux-footer a {
+        	color: #595958;
+        }
+
+        #ux-footer a:hover {
+        	color: #3399ff;
+        }
+
+        #ux-footer ul.links {
+        	padding: 0;
+        	line-height: 1.2em;
+        }
+
+        #ux-footer .linkList>ul>li {
+        	list-style-type: none;
+        	background: none;
+        	padding: 4px 0;
+        	margin: 0;
+        }
+
+        #ux-footer #baseFooter {
+        	width: 1160px;
+        	padding: 15px 10px;
+        	margin: 0 auto;
+        }
+
+        #ux-footer #baseFooter:after {
+        	content: "";
+        	display: table;
+        	clear: both;
+        }
+
+        #ux-footer #baseFooter li {
+        	display: inline-block;
+        	list-style-type: none;
+        	margin: 0 15px 0 0;
+        }
+
+        #ux-footer #baseFooter #Fragment_BaseFooterLinks {
+        	text-align: right;
+        }
+
+        #ux-footer #baseFooter #rightBaseFooter {
+        	float: right;
+        	width: 18%;
+        	font-family: wf_segoe-ui, Tahoma, Helvetica, Sans-Serif;
+        	color: #595958;
+        	font-weight: bold;
+        }
+
+        #ux-footer span.microsoftLogo {
+        	display: inline-block;
+        	margin-left: 16px;
+        }
+
+        .microsoftLogo {
+        	background: url(https://cdn.vsassets.io/v/M170_20200611.2/_content/Header/ImageSprite.png) no-repeat -93px 0!important;
+        }
+
+        .microsoftLogo {
+        	width: 70px;
+        	height: 14px;
+        	overflow: hidden;
+        }
+
+        /* End of footer styles. */
+
+        /* Styles for markdown */
+        .markdown img {
+        	max-width: 100%;
+        }
+
+        .markdown h1,
+        .markdown h2 {
+        	line-height: 1.4;
+        	margin-top: 1em;
+        	margin-bottom: 16px;
+        }
+
+        .markdown h1 {
+        	font-size: 1.5em;
+        	line-height: 1.2em;
+        	border-bottom: 1px solid #eee;
+        	margin-top: 2em;
+        	padding-bottom: 10px;
+        }
+
+        .markdown h2 {
+        	font-size: 1.375em;
+        	line-height: 1.2em;
+        	border-bottom: 1px solid #eee;
+        	margin-top: 2em;
+        	padding-bottom: 10px;
+        }
+
+        .markdown h3 {
+        	font-size: 1.25em;
+        }
+
+        .markdown h4 {
+        	font-size: 1.125em;
+        }
+
+        .markdown h5 {
+        	font-size: 1.0em;
+        }
+
+        .markdown blockquote {
+            padding: 0 15px;
+            color: #777;
+            border-left: 4px solid #ddd;
+            margin: 0;
+        }
+
+        .markdown pre {
+            padding: 16px;
+            overflow: auto;
+            font-size: 85%;
+            line-height: 1.45;
+            background-color: #f7f7f7;
+            border-radius: 3px;
+            word-wrap: normal;
+            font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+        }
+
+        .markdown code, .markdown tt {
+        	padding: 0;
+        	background-color: rgba(0, 0, 0, 0.04);
+        	margin: 0;
+        	padding-top: 0.2em;
+        	padding-bottom: 0.2em;
+        	border-radius: 3px;
+        	font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+        }
+
+        .markdown pre > code {
+            background-color: inherit;
+        }
+
+        .markdown table {
+        	display: block;
+        	width: 100%;
+        	overflow: auto;
+        	word-break: normal;
+        	word-break: keep-all;
+        }
+
+        .markdown table th {
+        	font-weight: bold;
+        }
+
+        .markdown table th,
+        .markdown table td {
+        	padding: 6px 13px;
+        	border: 1px solid #ddd;
+        }
+
+        .markdown table tr {
+        	background-color: #fff;
+        	border-top: 1px solid #ccc;
+        }
+
+        .markdown table tr:nth-child(2n) {
+        	background-color: #f8f8f8;
+        }
+
+        /* End of markdown styles. */
+
+        .main-content.item-details-main-content {
+        	min-height: 950px;
+        }
+
+        .item-details-main-content {
+        	background-color: #FFFFFF;
+        }
+
+        .ms-Fabric {
+        	-moz-osx-font-smoothing: grayscale;
+        	-webkit-font-smoothing: antialiased;
+        	color: #333333;
+        	font-family: "Segoe UI Web (West European)", "Segoe UI", -apple-system, BlinkMacSystemFont, "Roboto", "Helvetica Neue", sans-serif;
+        	font-size: 14px;
+        }
+
+        .ms-Fabric button {
+        	font-family: inherit;
+        }
+
+        .ux-section-details-tabs {
+            margin-top: -20px;
+        }
+
+         @font-face {
+        	font-family: wf_segoe-ui;
+        	src: url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.eot");
+        	src: local("Segoe UI Light"), local("Segoe Light"), local("Segoe WP Light"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.eot?#iefix") format("embedded-opentype"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.woff2") format("woff2"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.woff") format("woff"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.ttf") format("truetype");
+        	font-weight: 200;
+        	font-style: normal;
+        	-webkit-font-smoothing: antialiased;
+        }
+
+        @font-face {
+        	font-family: wf_segoe-ui;
+        	src: url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/semilight/latest.eot");
+        	src: local("Segoe UI Semilight"), local("Segoe Semilight"), local("Segoe WP Semilight"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/semilight/latest.eot?#iefix") format("embedded-opentype"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/semilight/latest.woff2") format("woff2"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/semilight/latest.woff") format("woff"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/semilight/latest.ttf") format("truetype");
+        	font-weight: 300;
+        	font-style: normal;
+        }
+
+        @font-face {
+        	font-family: wf_segoe-ui;
+        	src: url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/normal/latest.eot");
+        	src: local("Segoe UI"), local("Segoe"), local("Segoe WP"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/normal/latest.eot?#iefix") format("embedded-opentype"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/normal/latest.woff2") format("woff2"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/normal/latest.woff") format("woff"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/normal/latest.ttf") format("truetype");
+        	font-weight: normal;
+        	font-style: normal;
+        }
+
+        @font-face {
+        	font-family: wf_segoe-ui;
+        	src: url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/Semibold/latest.eot");
+        	src: local("Segoe UI Semibold"), local("Segoe Semibold"), local("Segoe WP Semibold"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/Semibold/latest.eot?#iefix") format("embedded-opentype"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/Semibold/latest.woff2") format("woff2"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/Semibold/latest.woff") format("woff"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/Semibold/latest.ttf") format("truetype");
+        	font-weight: 500;
+        	font-style: normal;
+        }
+
+        @font-face {
+        	font-family: wf_segoe-ui;
+        	src: url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/Semibold/latest.eot");
+        	src: local("Segoe UI Semibold"), local("Segoe Semibold"), local("Segoe WP Semibold"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/Semibold/latest.eot?#iefix") format("embedded-opentype"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/Semibold/latest.woff2") format("woff2"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/Semibold/latest.woff") format("woff"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/Semibold/latest.ttf") format("truetype");
+        	font-weight: 600;
+        	font-style: normal;
+        }
+
+        @font-face {
+        	font-family: wf_segoe-ui;
+        	src: url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/bold/latest.eot");
+        	src: local("Segoe UI Bold"), local("Segoe Bold"), local("Segoe WP Bold"), local("Segoe UI"), local("Segoe"), local("Segoe WP"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/bold/latest.eot?#iefix") format("embedded-opentype"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/bold/latest.woff") format("woff"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/bold/latest.woff2") format("woff2"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/bold/latest.ttf") format("truetype");
+        	font-weight: bold;
+        	font-style: normal;
+        }
+
+        @font-face {
+        	font-family: wf_segoe-ui_light;
+        	src: url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.eot");
+        	src: local("Segoe UI Light"), local("Segoe Light"), local("Segoe WP Light"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.eot?#iefix") format("embedded-opentype"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.woff2") format("woff2"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.woff") format("woff"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.ttf") format("truetype");
+        	font-weight: normal;
+        	font-style: normal;
+        }
+
+        @font-face {
+        	font-family: 'bowtie';
+        	font-style: normal;
+        	font-weight: normal;
+        	src: url(https://cdn.vsassets.io/v/M170_20200611.2/_content/Fonts/Icons/bowtie.eot);
+        	src: url(https://cdn.vsassets.io/v/M170_20200611.2/_content/Fonts/Icons/bowtie.eot?iefix) format("embedded-opentype"), url(https://cdn.vsassets.io/v/M170_20200611.2/_content/Fonts/Icons/bowtie.woff) format("woff"), url(https://cdn.vsassets.io/v/M170_20200611.2/_content/Fonts/Icons/bowtie.svg#bowtie) format("svg");
+        }
+
+        /* top pub. style begin */
+        
+
+        /* top pub. style end */
+
+        /*rating review style begin*/
+        .item-details-control-root .ux-item-review-rating .ux-item-rating-control .rating-control .star {
+            min-width: 16px;
+            min-height: 16px;
+            height: 12px;
+            width: 12px;
+            padding-top: 0px;
+            margin: 0px 2px;
+        }
+
+        .item-details-control-root .ux-item-second-row-wrapper .ux-item-review-rating-wrapper {
+            text-decoration: none;
+            color: inherit;
+            padding-top: 1px;
+            padding-bottom: 3px;
+        }
+
+        .item-details-control-root .ux-item-second-row-wrapper .ux-item-review-rating-wrapper .ux-item-review-rating{
+            display: inline-flex;
+        }
+
+        .item-details-control-root .ux-item-second-row-wrapper .ux-item-review-rating-wrapper .ux-item-review-rating .ux-item-rating-control {
+            margin-left: 10px;
+            top: 2px;
+            position: relative;
+        }
+
+        .item-details-control-root .ux-item-second-row-wrapper .ux-item-review-rating-wrapper .ux-item-review-rating .ux-item-rating-count {
+            margin-left: 5px;
+            font-size: 16px;
+            margin-top: -1px;
+            margin-right: 8px;
+        }
+
+        /*rating review style end*/
+        /*Spinner*/
+        .loader-container {
+            text-align: -webkit-center;
+            text-align: -mozkit-center;
+        }
+
+        .loader {
+            border: 3px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: solid #808080;
+            width: 30px;
+            height: 30px;
+            -webkit-animation: spin 2s linear infinite;
+            animation: spin 2s linear infinite;
+        }
+
+        @-webkit-keyframes spin {
+            0% { -webkit-transform: rotate(0deg); }
+            100% { -webkit-transform: rotate(360deg); }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        </style>
+
+        <script type="text/javascript"  nonce="fokHcd+LmoA9B1APUzjvkg==">
+            function sue(em, s, l, c, eo){var w=window,p="ue";w[p]=w[p]||[];w[p].push({"em":em,"s":s,"l":l,"c":c,"eo":eo});return false;}
+            window.onerror = sue;
+
+        isServerSideRendering = function () {
+            try {
+                return !(document !== undefined);
+            }
+            catch (e) {
+                return true;
+            }
+         };
+
+        redirectToNonSSR = function(area) {
+            var fqn = document.getElementById("FQN").value;
+            var galleryUrl = document.getElementById("galleryUrl").value;
+            window.location.assign(window.location.origin + galleryUrl +"items?itemName=" + fqn + "&ssr=false" + area);
+        }
+        
+        hideAndShowTabs = function(tabToShow) {
+            var currentTab = document.getElementsByClassName("selected-tab");
+            currentTab[0].style.display = "none";
+            currentTab[0].classList.remove("selected-tab");
+
+            var selectedTab =  document.getElementById(tabToShow);
+            selectedTab.classList.add("selected-tab");
+            selectedTab.style.display = "block";
+        }
+
+        if (!isServerSideRendering()) {
+            document.addEventListener('DOMContentLoaded', function() {
+                
+                        document.getElementById("qna").addEventListener("click", function(e) {
+                            redirectToNonSSR("#qna");   
+                        });
+                    
+                        document.getElementById("rnr").addEventListener("click", function(e) {
+                            redirectToNonSSR("#review-details");
+                        });
+                        document.getElementById("review-details").addEventListener("click", function(e) {
+                        redirectToNonSSR("#review-details");
+                        });
+                    
+                    // vscode copy command handlings
+                    let copyCommandInput = document.getElementById("vscode-command-input");
+                    if(copyCommandInput) {
+                        copyCommandInput.addEventListener("click", function(e) {
+                            e.target.select();
+                        });
+                        document.getElementById("copy-to-clipboard-button").addEventListener("click", function(e) {
+                            document.getElementById("vscode-command-input").select();
+                            var successful = document.execCommand('copy');
+                            if(successful) {
+                                var element = document.getElementById("copied-animation");
+                                element.style.display = "block";
+                            }
+                        });
+                    }
+                
+
+                // add handler for search
+                document.getElementById("Fragment_SearchBox").addEventListener("submit", function(e) {
+                    e.preventDefault();
+                    var queryText = document.getElementById("header-search-textbox").value;
+                    var galleryUrl = document.getElementById("galleryUrl").value;
+                    var searchTarget = document.getElementById("searchTarget").value;
+                    window.location = window.location.origin + galleryUrl +"search?term=" + queryText + "&target=" + searchTarget;
+                });
+                let acqBtn = document.getElementsByClassName("install-button-container");
+                if (acqBtn && acqBtn[0]) {
+                    acqBtn[0].onclick = function(event) {var w=window,p="ciEvents";w[p]=w[p]||[];w[p].push({"acquisition": true, "event": event});};
+                }
+
+                
+
+           });
+        }
+    </script>
+    <title>
+        Highlight Matching Tag - Visual Studio Marketplace
+    </title>
+
+</head>
+<a href="#start-of-content" class="skip-main">Skip to content</a>
+<body class="platform gallery gallery-page-item-details">
+    <div class="uxservices-header" role="banner">
+        <div class="upperBandContent">
+            <a href="/" title="|   Marketplace" class="left" >
+                <img class="vs-logo-header" aria-label="Visual Studio logo" src="https://cdn.vsassets.io/v/M170_20200611.2/_content/Header/vs-logo.png"/>
+                <div id="marketPlaceLogoLink" class="marketPlaceLogoLink marketplacetext-header" aria-label="Marketplace logo">|   Marketplace</div>
+            </a>
+            <div class="right" style="float: right;">
+                
+                    <div class="signIn">
+                        
+                            <a href="https://app.vssps.visualstudio.com/_signin?realm=marketplace.visualstudio.com&amp;reply_to=https%3A%2F%2Fmarketplace.visualstudio.com%2Fitems%3FitemName%3Dvincaslt.highlight-matching-tag&amp;redirect=1&amp;context=eyJodCI6MywiaGlkIjoiMjY2M2IxM2YtNTBlMy1hNjU1LWExNTktMjJmNmY0NzI1ZmFiIiwicXMiOnt9LCJyciI6IiIsInZoIjoiIiwiY3YiOiIiLCJjcyI6IiJ90&amp;workflowId=marketplace&amp;wt.mc_id=o~msft~marketplace~signIn#ctx=eyJTaWduSW5Db29raWVEb21haW5zIjpbImh0dHBzOi8vbG9naW4ud2luZG93cy5uZXQiLCJodHRwczovL2xvZ2luLm1pY3Jvc29mdG9ubGluZS5jb20iXX01" class="scarabLink" style="margin-left:23px;padding-top:1px;color:#fff;font-weight:400;">
+                                Sign in
+                            </a>
+                        
+                    </div>
+                
+                <form id="Fragment_SearchBox" class="header-search" aria-label="search" role="search" data-fragmentname="SearchBox">
+                    <input id="header-search-textbox" class="header-search-textbox" aria-label="search" max-length="200" type="text" autocomplete="off">
+                    <button id="header-search-button" class="header-search-button" aria-label="search" type="submit"></button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="skiptarget" id="start-of-content"></div>
+    <div id="react_0HM0DV5RVRUBA"><div data-reactroot=""><div class="item-details-control-root"><div class="breadcrumb"><div class="gallery-centered-content"><span class="bread-crumb-container"><a class="member" href="/vscode">Visual Studio Code</a><span class="separator">&gt;</span><a class="member" href="/search?sortBy=Installs&amp;category=Other&amp;target=VSCode">Other</a><span class="separator">&gt;</span><span class="member">Highlight Matching Tag</span></span><span class="vsCodeDownloadLinkContainer"><span>New to Visual Studio Code?</span> <a class="vsCodeDownloadLink" href="https://go.microsoft.com/fwlink?linkid=846418&amp;pub=vincaslt&amp;ext=highlight-matching-tag&amp;utm_source=vsmp&amp;utm_campaign=mpdetails" target="_blank" rel="noreferrer noopener" aria-label="Get Visual Studio Code Now">Get it now.</a></span></div></div><div class="main-content item-details-main-content" id="vss_1"><div class="item-details-control-root"><div class="ux-item-details"><div class="ux-section-banner" id="section-banner"><div class="ux-section-core gallery-centered-content"><table role="presentation"><tbody><tr><td class="item-img" id="vss_2"><img class="image-display" alt="" src="https://vincaslt.gallerycdn.vsassets.io/extensions/vincaslt/highlight-matching-tag/0.9.9/1586630807350/Microsoft.VisualStudio.Services.Icons.Default" style="top:0.5px;visibility:visible"/></td><td class="item-header"><div class="item-header-content light"><h1><span class="ux-item-name">Highlight Matching Tag</span></h1><div class="ux-item-second-row-wrapper"><div class="ux-item-publisher"><h2 role="presentation"><a class="ux-item-publisher-link item-banner-focussable-child-item" href="publishers/vincaslt" aria-label="More from vincaslt publisher" style="color:#000000">vincaslt</a></h2></div><span class="divider"> | </span><div class="ux-item-rating"><div class="bowtie-icon bowtie-install"></div><span class="installs-text" title="The number of unique installations, not including updates."> 464,087 installs</span></div><a id="review-details" href="#review-details" class="ux-item-review-rating-wrapper" aria-label="Average rating: 3.5 out of 5. Navigate to user reviews."><span class="ux-item-review-rating" title="Average rating: 3.5 out of 5"><span class="divider"> | </span><span class="ux-item-rating-control"><span class="rating-control"><img class="star full-star" alt="" aria-label="1 star" src="https://cdn.vsassets.io/v/M170_20200611.2/_content/FullStar.svg"/><img class="star full-star" alt="" aria-label="2 star" src="https://cdn.vsassets.io/v/M170_20200611.2/_content/FullStar.svg"/><img class="star full-star" alt="" aria-label="3 star" src="https://cdn.vsassets.io/v/M170_20200611.2/_content/FullStar.svg"/><img class="star half-star" alt="" src="https://cdn.vsassets.io/v/M170_20200611.2/_content/HalfStarDark.svg"/><img class="star empty-star" alt="" src="https://cdn.vsassets.io/v/M170_20200611.2/_content/EmptyStarDark.svg"/></span></span><span class="ux-item-rating-count"> (<span>79</span>)</span></span></a><span class="divider"> | </span><span class="item-price-category">Free</span></div><div class="ux-item-shortdesc">Highlights matching closing and opening tags</div><div class="ux-item-action"><div class="installButtonContainer"><div class="one-click-install-container"><div><div class="ms-Fabric"><span class="ux-oneclick-install-button-container"><a href="vscode:extension/vincaslt.highlight-matching-tag" class="ms-Button ux-button install ms-Button--default root-39"><div class="ms-Button-flexContainer flexContainer-40"><div class="ms-Button-textContainer textContainer-41"><div class="ms-Button-label label-43" id="id__0">Install</div></div></div></a></span></div></div><span class="installHelpInfo"><a href="https://aka.ms/vscode_extn_install" target="_blank" rel="noreferrer noopener" class="light">Trouble Installing?<i class="bowtie-icon bowtie-navigate-external"></i></a></span></div></div><div style="display:none"><input type="text" id="FQN" readonly="" value="vincaslt.highlight-matching-tag"/><input type="text" id="galleryUrl" readonly="" value="/"/><input type="text" id="searchTarget" readonly="" value="VSCode"/></div></div></div></td></tr></tbody></table></div></div><div class="gallery-centered-content"><div class="ux-section-details"><div class="ms-Fabric ux-section-details-tabs"><div class="gallery-centered-content"><div class="tab"><button id="overview" class="selected">Overview</button><button id="qna">Q &amp; A</button><button id="rnr">Rating &amp; Review</button></div><div class="tabcontent"><div id="overviewTab" class="overview selected-tab"><div class="details-tab itemdetails"><table class="ux-section-details-table" role="presentation"><tbody><tr><td class="ux-itemdetails-left"><div class="itemDetails"><div class="markdown"><p align=center>
+  <img src="https://images2.imgbox.com/c6/c3/sLkQluHb_o.png">
+</p>
+<p align=center>
+<a title="Average rating" href="https://marketplace.visualstudio.com/items?itemName=vincaslt.highlight-matching-tag#review-details">
+<img src="https://vsmarketplacebadge.apphb.com/rating-star/vincaslt.highlight-matching-tag.svg?style=for-the-badge&amp;colorA=facf37&amp;colorB=ebb521">
+</a>
+<a title="Unique downloads" href="https://marketplace.visualstudio.com/items?itemName=vincaslt.highlight-matching-tag">
+<img src="https://vsmarketplacebadge.apphb.com/downloads-short/vincaslt.highlight-matching-tag.svg?style=for-the-badge&amp;colorA=a537fa&amp;colorB=872aeb">
+</a>
+<br>
+<a title="Become a VSCode expert" href="https://a.paddle.com/v2/click/16413/111559?link=1227">
+<img src="https://img.shields.io/badge/Supported%20by-VSCode%20Power%20User%20Course%20%e2%86%92-gray.svg?colorA=655BE1&amp;colorB=4F44D6&amp;style=for-the-badge">
+</a>
+</p>
+<h1 id=vscode-highlight-matching-tag>VSCode Highlight Matching Tag</h1>
+<p><em>GitHub repository:</em> <a href="https://github.com/vincaslt/vscode-highlight-matching-tag" target=_blank rel="noreferrer noopener">https://github.com/vincaslt/vscode-highlight-matching-tag</a></p>
+<p>This extension highlights matching opening and/or closing tags. Optionally it also shows path to tag in the status bar.
+Even though VSCode has some basic tag matching, it's just that - basic. This extension will try to match tags anywhere: from tag attributes, inside of strings, any files, while also providing extensive styling options to customize how tags are highlighted.</p>
+<p>Officially supported markup: <strong>HTML</strong> and <strong>JSX</strong>. Other flavors (XML, Vue, Angular, PHP) should work, but there are no guarantees. Feel free to report the issues on them anyway.</p>
+<h2 id=features>Features</h2>
+<p><img src="https://images2.imgbox.com/71/2a/zIA1XCzK_o.gif" alt=demo></p>
+<p><img src="https://images2.imgbox.com/bc/0d/PzVAkYdU_o.png" alt=breadcrumbs></p>
+<h2 id=extension-settings>Extension Settings</h2>
+<p>You can override any default <a href="https://code.visualstudio.com/docs/getstarted/settings" target=_blank rel="noreferrer noopener">settings</a> with your own values. The plugin supports <a href="https://code.visualstudio.com/docs/editor/multi-root-workspaces" target=_blank rel="noreferrer noopener">workspace settings</a> as well as global user settings.</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>highlight-matching-tag.enabled</code></td>
+<td><code>true</code></td>
+<td>Enables/disables the highlighting and status bar</td>
+</tr>
+<tr>
+<td><code>highlight-matching-tag.showPath</code></td>
+<td><code>true</code></td>
+<td>Enables/disables showing path to tag in status bar (e.g. <code>div &gt; p &gt; a</code>)</td>
+</tr>
+<tr>
+<td><code>highlight-matching-tag.showRuler</code></td>
+<td><code>true</code></td>
+<td>Enables/disables showing highlighted tag pair in ruler section</td>
+</tr>
+<tr>
+<td><code>highlight-matching-tag.highlightSelfClosing</code></td>
+<td><code>false</code></td>
+<td>Should self-closing tags be highlighted too (can be useful for multiline self-closing tags)</td>
+</tr>
+<tr>
+<td><code>highlight-matching-tag.highlightFromContent</code></td>
+<td><code>false</code></td>
+<td>Whether to highlight matching tag from inside the tag content</td>
+</tr>
+<tr>
+<td><code>highlight-matching-tag.highlightFromName</code></td>
+<td><code>true</code></td>
+<td>Whether to highlight matching tag from the tag name</td>
+</tr>
+<tr>
+<td><code>highlight-matching-tag.highlightFromAttributes</code></td>
+<td><code>true</code></td>
+<td>Whether to highlight matching tag from the tag attributes</td>
+</tr>
+<tr>
+<td><code>highlight-matching-tag.noDefaultEmptyElements</code></td>
+<td><code>false</code></td>
+<td>Don't use default HTML empty elements</td>
+</tr>
+<tr>
+<td><code>highlight-matching-tag.customEmptyElements</code></td>
+<td><code>null</code></td>
+<td>Custom <a href="#empty-elements" rel="noreferrer noopener">empty elements</a> in addition to the default HTML empty elements</td>
+</tr>
+<tr>
+<td><code>highlight-matching-tag.styles</code></td>
+<td><code>{ opening: { name: { underline: 'yellow' } } }</code></td>
+<td>Custom styling configuration, see <a href="#styling-options" rel="noreferrer noopener">Styling Options</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id=styling-options>Styling Options</h2>
+<p>By default, the tag pair's names are underlined with a yellow line. The setting looks like this:</p>
+<pre><code class=language-json>&quot;highlight-matching-tag.styles&quot;: {
+  &quot;opening&quot;: {
+    &quot;name&quot;: {
+      &quot;underline&quot;: &quot;yellow&quot;
+    }
+  }
+}
+</code></pre>
+<h3 id=custom-styling>Custom styling</h3>
+<p>Version 0.8.0 of this extension introduces new styling options, but old custom settings can be automatically migrated after update.</p>
+<p>Now you can change highlighting styles by providing your own style in User Settings (JSON) as <code>highlight-matching-tag.styles</code>. The setting accepts an object with two fields:</p>
+<ul>
+<li><code>opening</code> - opening tag styles when highlighting (or both, if closing style is not provided)</li>
+<li><code>closing</code> - closing tag styles, optional</li>
+</ul>
+<p>Each of the above are <strong><em>Style</em></strong> objects that can have any combination of fields defining styles for parts of the tag:</p>
+<ul>
+<li><code>name</code> - decoration for name part of tag</li>
+<li><code>left</code> - decoration for left side of tag (character &lt;)</li>
+<li><code>right</code> - decoration for right side of tag (character &gt;)</li>
+<li><code>full</code> - decoration for the whole tag (including &lt; and &gt;)</li>
+</ul>
+<p>Each of the above are <strong><em>Decoration</em></strong> objects that define tag's style with optional fields:</p>
+<ul>
+<li><code>highlight</code> - background color (e.g. &quot;#666666&quot;)</li>
+<li><code>underline</code> - underline color</li>
+<li><code>surround</code> - surrounding border's color</li>
+<li><code>custom</code> - custom css rules for styling (<a href="https://code.visualstudio.com/docs/extensionAPI/vscode-api#DecorationRenderOptions" target=_blank rel="noreferrer noopener"><code>vscode.DecorationRenderOptions</code></a>). This is basically an object with camelCase CSS rules. It also can accept different styles for light or dark color themes.</li>
+</ul>
+<p>Colors used in gutter are the same as the ones used for highligting/underlining, or yellow by default for custom rules. You can change them by setting: <code>overviewRulerColor</code> decoration option to the color that you want.</p>
+<h3 id=styling-examples>Styling Examples</h3>
+<p>This is the old version's style, with the new styling options:</p>
+<pre><code class=language-json>&quot;highlight-matching-tag.styles&quot;: {
+  &quot;opening&quot;: {
+    &quot;left&quot;: {
+      &quot;custom&quot;: {
+        &quot;borderWidth&quot;: &quot;0 0 0 1px&quot;,
+        &quot;borderStyle&quot;: &quot;dotted&quot;,
+        &quot;borderColor&quot;: &quot;white&quot;,
+        &quot;borderRadius&quot;: &quot;5px&quot;,
+        &quot;overviewRulerColor&quot;: &quot;white&quot;
+      }
+    },
+    &quot;right&quot;: {
+      &quot;custom&quot;: {
+        &quot;borderWidth&quot;: &quot;0 1px 0 0&quot;,
+        &quot;borderStyle&quot;: &quot;dotted&quot;,
+        &quot;borderColor&quot;: &quot;white&quot;,
+        &quot;borderRadius&quot;: &quot;5px&quot;,
+        &quot;overviewRulerColor&quot;: &quot;white&quot;
+      }
+    }
+  }
+}
+</code></pre>
+<p>Result:</p>
+<p><img src="https://images2.imgbox.com/3a/c2/ljn6gN20_o.png" alt=old></p>
+<hr>
+<p>This is an example showing off different styling options:</p>
+<pre><code class=language-json>&quot;highlight-matching-tag.styles&quot;: {
+  &quot;opening&quot;: {
+    &quot;left&quot;: {
+      &quot;underline&quot;: &quot;yellow&quot;
+    },
+    &quot;right&quot;: {
+      &quot;surround&quot;: &quot;#155FFA&quot;
+    },
+    &quot;name&quot;: {
+      &quot;highlight&quot;: &quot;rgba(180, 20, 80, 0.3)&quot;
+    }
+  },
+  &quot;closing&quot;: {
+    &quot;full&quot;: {
+      &quot;custom&quot;: {
+        &quot;dark&quot;: {
+          &quot;borderWidth&quot;: &quot;0 0 1px 0&quot;,
+          &quot;borderColor&quot;: &quot;white&quot;,
+          &quot;borderStyle&quot;: &quot;solid&quot;,
+          &quot;borderRadius&quot;: &quot;4px&quot;,
+          &quot;right&quot;: &quot;10px&quot;
+        },
+        &quot;light&quot;: {
+          &quot;borderWidth&quot;: &quot;0 0 1px 0&quot;,
+          &quot;borderColor&quot;: &quot;brown&quot;,
+          &quot;borderStyle&quot;: &quot;solid&quot;,
+          &quot;borderRadius&quot;: &quot;4px&quot;,
+          &quot;right&quot;: &quot;10px&quot;
+        }
+      }
+    }
+  }
+}
+</code></pre>
+<p>Result dark theme:</p>
+<p><img src="https://images2.imgbox.com/85/d6/qRBWNUgu_o.png" alt=dark></p>
+<p>Result light theme:</p>
+<p><img src="https://images2.imgbox.com/16/66/y47CkpXm_o.png" alt=light></p>
+<h2 id=commands>Commands</h2>
+<p>Used in Command Palette (Win/Linux: <code>Ctrl</code>+<code>Shift</code>+<code>P</code>; Mac: <code>Cmd</code>+<code>Shift</code>+<code>P</code>) by searching for command name. Can also be bound to <a href="https://code.visualstudio.com/docs/getstarted/keybindings" target=_blank rel="noreferrer noopener">Keyboard Shortcuts</a>.</p>
+<ul>
+<li>Jump to matching tag</li>
+<li>Select contents of matching tag pair</li>
+</ul>
+<h2 id=empty-elements>Empty elements</h2>
+<p>The plugin is able interpret some unclosed tags as self-closing. By default they correspond with HTML <a href="https://developer.mozilla.org/en-US/docs/Glossary/Empty_element" target=_blank rel="noreferrer noopener">empty elements</a> (img, meta, link, etc.).</p>
+<p>You can disable or extend them by changing <code>highlight-matching-tag.noDefaultEmptyElements</code> and/or <code>highlight-matching-tag.customEmptyElements</code> configuration options.</p>
+<p>For example, this will additionally assume that <code>custom</code> and <code>no-content</code> elements are always self-closing and can't have any content:</p>
+<pre><code>&quot;highlight-matching-tag.highlightSelfClosing&quot;: true,
+&quot;highlight-matching-tag.customEmptyElements&quot;: [
+  &quot;custom&quot;,
+  &quot;no-content&quot;
+]
+</code></pre>
+<h2 id=contributing>Contributing</h2>
+<p>If you want to contribute to the development of the plugin, please consult the <a href="https://github.com/vincaslt/vscode-highlight-matching-tag/blob/master/CONTRIBUTING.md" target=_blank rel="noreferrer noopener">contribution guidelines</a>.</p>
+</div></div></td><td class="ux-itemdetails-right" role="complementary"><div class="screenshot-carousel-container"></div><div class="loader-container"><div class="loader"></div></div><div class="itemDetails-right"></div></td></tr></tbody></table></div></div></div></div></div></div></div></div></div></div><div id="gallery-footer"><footer><div id="ux-footer" class="ltr" role="contentinfo"><div id="baseFooter"><div id="Fragment_BaseFooterLinks"><div class="linkList"><ul class="links horizontal"><li><a href="https://www.visualstudio.com/support/support-overview-vs" data-mscc-ic="false">Contact us</a></li><li><a href="https://careers.microsoft.com/" data-mscc-ic="false">Jobs</a></li><li><a href="https://go.microsoft.com/fwlink/?LinkID=264782" data-mscc-ic="false">Privacy</a></li><li><a href="https://aka.ms/vsmarketplace-ToU" data-mscc-ic="false">Terms of use</a></li><li><a href="https://www.microsoft.com/en-us/legal/intellectualproperty/Trademarks/EN-US.aspx" data-mscc-ic="false">Trademarks</a></li></ul></div></div><div id="rightBaseFooter">©<!-- --> 2019 Microsoft<span class="microsoftLogo" title="Microsoft"></span></div><div class="clear"></div></div></div></footer></div></div></div></div>
+    
+    <!-- Google Tag Manager -->
+    <noscript>
+        <iframe src="//www.googletagmanager.com/ns.html?id=GTM-WT9XBK"
+            height="0" width="0" style="display: none; visibility: hidden"></iframe>
+    </noscript>
+    <script type="text/javascript"  nonce="fokHcd+LmoA9B1APUzjvkg==">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName('body')[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.defer=true;j.src=
+        '//www.googletagmanager.com/gtm.js?id='+i+dl;f.insertBefore(j,f.lastChild);
+        })(window,document,'script','dataLayer','GTM-WT9XBK');</script>
+    <!-- End Google Tag Manager -->
+
+    <div class="render-time">
+        <script class="server-side-render" defer="defer" type="application/json">4</script>
+    </div>
+    <div class="rhs-content">
+        <script class="jiContent" defer="defer" type="application/json">{"GitHubLink":"https://github.com/vincaslt/vscode-highlight-matching-tag","ReleaseDateString":"Thu, 13 Apr 2017 20:18:01 GMT","LastUpdatedDateString":"Sat, 11 Apr 2020 18:46:47 GMT","GalleryUrl":"/","Categories":["Other"],"Tags":["multi-root ready","underline"],"ExtensionProperties":{"Microsoft.VisualStudio.Services.Links.Getstarted":"https://github.com/vincaslt/vscode-highlight-matching-tag","Microsoft.VisualStudio.Services.Links.Support":"https://github.com/vincaslt/vscode-highlight-matching-tag/issues","Microsoft.VisualStudio.Services.Links.Source":"https://github.com/vincaslt/vscode-highlight-matching-tag","Microsoft.VisualStudio.Services.Links.GitHub":"https://github.com/vincaslt/vscode-highlight-matching-tag","Microsoft.VisualStudio.Code.Engine":"^1.15.0","Microsoft.VisualStudio.Services.GitHubFlavoredMarkdown":"true","Microsoft.VisualStudio.Code.ExtensionDependencies":"","Microsoft.VisualStudio.Code.ExtensionPack":"","Microsoft.VisualStudio.Code.LocalizedLanguages":""},"Resources":{"LicenseText":"License","ChangelogText":"Changelog","PublisherName":"vincaslt","ExtensionName":"highlight-matching-tag","Version":"0.9.9"},"MoreInfo":{"VersionValue":"0.9.9","PublisherValue":"vincaslt","UniqueIdentifierValue":"vincaslt.highlight-matching-tag","TwitterShareContents":"Just%20discovered%20this%20on%20the%20%23VSMarketplace%3A%20https%3A%2F%2Fmarketplace.visualstudio.com%2Fitems%3FitemName%3Dvincaslt.highlight-matching-tag","EmailShareContents":"Hi%2C%20Just%20discovered%20this%20extension%20on%20the%20%23VSMarketplace%20that%20may%20be%20of%20interest%20to%20you.%20Check%20it%20out%20%40%20https%3A%2F%2Fmarketplace.visualstudio.com%2Fitems%3FitemName%3Dvincaslt.highlight-matching-tag%20%21","EmailShareSubject":"Check%20out%20-%20Highlight%20Matching%20Tag%20for%20Visual%20Studio%20Code","IsPublic":true},"ResourcesPath":"https://cdn.vsassets.io/v/M170_20200611.2/_content/","AssetUri":"https://vincaslt.gallerycdn.vsassets.io/extensions/vincaslt/highlight-matching-tag/0.9.9/1586630807350","VsixManifestAssetType":"Microsoft.VisualStudio.Services.VsixManifest","StaticResourceVersion":"M170_20200611.2","AfdIdentifier":"Ref A: A03874C68FDB42D1AE01C83D61E5EB9B Ref B: MAA02EDGE0317 Ref C: 2020-06-20T08:42:46Z","VsixId":null,"WorksWith":null,"ItemType":3,"IsMDPruned":false,"PrunedMDLength":0,"OverviewMDLength":9087,"IsRHSAsyncComponentsEnabled":true,"OfferDetails":null,"IsDetailsTabsEnabled":false}</script>
+    </div>
+    <div class="csp-user">
+        <script class="is-csp-user" defer="defer" type="application/json">null</script>
+    </div>
+    
+
+    <script type="text/javascript"  nonce="fokHcd+LmoA9B1APUzjvkg==">
+        if (document) {
+            try {
+                if (window.performance && window.performance.timing) {
+                    window["marketplaceRenderTime"] = Date.now() - window.performance.timing.navigationStart;
+                }
+            }
+            catch(e){ }
+        }
+    </script>
+    <script type="text/javascript" nonce="fokHcd+LmoA9B1APUzjvkg=="> var __vssPageContext = {"webContext":{"host":{"id":"2663b13f-50e3-a655-a159-22f6f4725fab","name":"TEAM FOUNDATION","uri":"https://marketplace.visualstudio.com/","relativeUri":"/","hostType":"deployment","scheme":"https","authority":"marketplace.visualstudio.com"}},"moduleLoaderConfig":{"baseUrl":"https://cdn.vsassets.io/v/M170_20200611.2/_scripts/TFS/min/","paths":{"ContentRendering/Resources":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/en-IN","Gallery/Scripts/Gallery/Resources":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/en-IN","VSSPreview/Resources":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/en-IN","Charts/Resources":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/en-IN","Engagement/Resources":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/en-IN","VSS/Resources":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/en-IN","highcharts":"https://cdn.vsassets.io/3rdParty/_scripts/highcharts.v7.2.1","highcharts/highcharts-more":"https://cdn.vsassets.io/3rdParty/_scripts/highcharts-more.v7.2.1","highcharts/modules/accessibility":"https://cdn.vsassets.io/3rdParty/_scripts/highcharts-accessibility.v7.2.1","highcharts/modules/funnel":"https://cdn.vsassets.io/3rdParty/_scripts/highcharts-funnel.v7.2.1","highcharts/modules/heatmap":"https://cdn.vsassets.io/3rdParty/_scripts/highcharts-heatmap.v7.2.1"},"map":{"*":{"office-ui-fabric-react/lib":"OfficeFabric"}},"contributionPaths":{"VSS":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/VSS","pathType":"default"},"VSS/Resources":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/en-IN","pathType":"resource"},"q":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/q","pathType":"default"},"knockout":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/knockout","pathType":"default"},"mousetrap":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/mousetrap","pathType":"default"},"mustache":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/mustache","pathType":"default"},"react":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/react.15.3","pathType":"default"},"react-dom":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/react-dom.15.3","pathType":"default"},"react-transition-group":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/react-transition-group.15.3","pathType":"default"},"jQueryUI":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/jQueryUI","pathType":"default"},"jquery":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/jquery","pathType":"default"},"OfficeFabric":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/OfficeFabric","pathType":"default"},"tslib":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/tslib","pathType":"default"},"@uifabric":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/@uifabric","pathType":"default"},"VSSUI":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/VSSUI","pathType":"default"},"ContentRendering":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/ContentRendering","pathType":"default"},"ContentRendering/Resources":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/en-IN","pathType":"resource"},"Charts":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/Charts","pathType":"default"},"Charts/Resources":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/en-IN","pathType":"resource"},"highcharts":{"value":"https://cdn.vsassets.io/3rdParty/_scripts/highcharts.v7.2.1","pathType":"thirdParty"},"highcharts/highcharts-more":{"value":"https://cdn.vsassets.io/3rdParty/_scripts/highcharts-more.v7.2.1","pathType":"thirdParty"},"highcharts/modules/accessibility":{"value":"https://cdn.vsassets.io/3rdParty/_scripts/highcharts-accessibility.v7.2.1","pathType":"thirdParty"},"highcharts/modules/funnel":{"value":"https://cdn.vsassets.io/3rdParty/_scripts/highcharts-funnel.v7.2.1","pathType":"thirdParty"},"highcharts/modules/heatmap":{"value":"https://cdn.vsassets.io/3rdParty/_scripts/highcharts-heatmap.v7.2.1","pathType":"thirdParty"}},"shim":{"jquery":{"deps":[],"exports":"jQuery"}},"waitSeconds":30},"coreReferences":{"stylesheets":[{"url":"/_static/tfs/M170_20200611.2/_cssbundles/Default/vss-bundle-ext-core-css-vQ8Us1s7UaJe7EYaHu4abPhUIoy4VkQeq0UCGlmbyyiE=","highContrastUrl":null,"isCoreStylesheet":true}],"scripts":[{"identifier":"JQuery","url":"https://cdn.vsassets.io/3rdParty/_scripts/jquery-2.2.4.min.js","fallbackUrl":null,"fallbackCondition":null,"isCoreModule":true},{"identifier":"JQueryXDomain","url":"https://cdn.vsassets.io/3rdParty/_scripts/jquery.xdomainrequest.min.js","fallbackUrl":null,"fallbackCondition":null,"isCoreModule":true},{"identifier":"Promise","url":"https://cdn.vsassets.io/v/M170_20200611.2/_scripts/TFS/min/promise.js","fallbackUrl":null,"fallbackCondition":null,"isCoreModule":true},{"identifier":"GlobalScripts","url":"https://cdn.vsassets.io/v/M170_20200611.2/_scripts/TFS/min/global-scripts.js","fallbackUrl":null,"fallbackCondition":null,"isCoreModule":true},{"identifier":"LoaderFixes","url":"https://cdn.vsassets.io/v/M170_20200611.2/_scripts/TFS/pre-loader-shim.min.js","fallbackUrl":null,"fallbackCondition":null,"isCoreModule":false},{"identifier":"AMDLoader","url":"https://cdn.vsassets.io/3rdParty/_scripts/require.min.js","fallbackUrl":null,"fallbackCondition":null,"isCoreModule":true},{"identifier":"LoaderFixes","url":"https://cdn.vsassets.io/v/M170_20200611.2/_scripts/TFS/post-loader-shim.min.js","fallbackUrl":null,"fallbackCondition":null,"isCoreModule":false}],"coreScriptsBundle":{"identifier":"CoreBundle","url":"/_public/_Bundling/Content?bundle=vss-bundle-basejs-v9GpWWBnsWqhM23ijhK2HfAqLowTXGUqZLDRsBCZbkfY=","fallbackUrl":null,"fallbackCondition":null,"isCoreModule":true},"extensionCoreReferences":{"identifier":"CoreBundle","url":"https://cdn.vsassets.io/bundles/vss-bundle-ext-core-vXmFrbZVv9in776dlqjrJLCGMci5PQIF14Ug3E2n2Ku0=","fallbackUrl":null,"fallbackCondition":null,"isCoreModule":true}},"webAccessConfiguration":{"isHosted":true,"paths":{"rootPath":"/","staticContentRootPath":"/","staticContentVersion":"M170_20200611.2","resourcesPath":"https://cdn.vsassets.io/v/M170_20200611.2/_content/","staticRootTfs":"https://cdn.vsassets.io/v/M170_20200611.2/","cdnFallbackStaticRootTfs":"/_static/tfs/M170_20200611.2/","staticRoot3rdParty":"https://cdn.vsassets.io/3rdParty/"},"api":{"webApiVersion":"1","areaPrefix":"_","controllerPrefix":"_"},"mailSettings":{"enabled":false},"registryItems":{}},"microsoftAjaxConfig":{"cultureInfo":{"name":"en-IN","numberFormat":{"CurrencyDecimalDigits":2,"CurrencyDecimalSeparator":".","IsReadOnly":true,"CurrencyGroupSizes":[3,2],"NumberGroupSizes":[3,2],"PercentGroupSizes":[3,2],"CurrencyGroupSeparator":",","CurrencySymbol":"₹","NaNSymbol":"NaN","CurrencyNegativePattern":12,"NumberNegativePattern":1,"PercentPositivePattern":1,"PercentNegativePattern":1,"NegativeInfinitySymbol":"-∞","NegativeSign":"-","NumberDecimalDigits":2,"NumberDecimalSeparator":".","NumberGroupSeparator":",","CurrencyPositivePattern":2,"PositiveInfinitySymbol":"∞","PositiveSign":"+","PercentDecimalDigits":2,"PercentDecimalSeparator":".","PercentGroupSeparator":",","PercentSymbol":"%","PerMilleSymbol":"‰","NativeDigits":["0","1","2","3","4","5","6","7","8","9"],"DigitSubstitution":1},"dateTimeFormat":{"AMDesignator":"AM","Calendar":{"MinSupportedDateTime":"0001-01-01T00:00:00","MaxSupportedDateTime":"9999-12-31T23:59:59.9999999","AlgorithmType":1,"CalendarType":1,"Eras":[1],"TwoDigitYearMax":2029,"IsReadOnly":true},"DateSeparator":"-","FirstDayOfWeek":1,"CalendarWeekRule":0,"FullDateTimePattern":"dd MMMM yyyy HH:mm:ss","LongDatePattern":"dd MMMM yyyy","LongTimePattern":"HH:mm:ss","MonthDayPattern":"d MMMM","PMDesignator":"PM","RFC1123Pattern":"ddd, dd MMM yyyy HH':'mm':'ss 'GMT'","ShortDatePattern":"dd-MM-yyyy","ShortTimePattern":"HH:mm","SortableDateTimePattern":"yyyy'-'MM'-'dd'T'HH':'mm':'ss","TimeSeparator":":","UniversalSortableDateTimePattern":"yyyy'-'MM'-'dd HH':'mm':'ss'Z'","YearMonthPattern":"MMMM, yyyy","AbbreviatedDayNames":["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],"ShortestDayNames":["Su","Mo","Tu","We","Th","Fr","Sa"],"DayNames":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"AbbreviatedMonthNames":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec",""],"MonthNames":["January","February","March","April","May","June","July","August","September","October","November","December",""],"IsReadOnly":true,"NativeCalendarName":"Gregorian Calendar","AbbreviatedMonthGenitiveNames":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec",""],"MonthGenitiveNames":["January","February","March","April","May","June","July","August","September","October","November","December",""]},"numberShortForm":{"QuantitySymbols":["K","M","B"],"NumberGroupSize":1000,"ThousandSymbol":"K"},"eras":null}},"timeZonesConfiguration":{},"featureAvailability":{"featureStates":{"VisualStudio.Services.Contribution.EnableOnPremUnsecureBrowsers":false,"VisualStudio.Service.WebPlatform.ClientErrorReporting":true,"Microsoft.VisualStudio.Services.Gallery.Client.UseCdnAssetUri":false,"VisualStudio.Services.WebAccess.SubresourceIntegrity":false,"VisualStudio.Services.IdentityPicker.ReactProfileCard":true}},"appInsightsConfiguration":{"enabled":false,"instrumentationKey":"00000000-0000-0000-0000-000000000000","insightsScriptUrl":null},"diagnostics":{"sessionId":"978ba7e2-2e6e-4299-820f-a239c8ffb448","activityId":"978ba7e2-2e6e-4299-820f-a239c8ffb448","bundlingEnabled":true,"cdnAvailable":true,"cdnEnabled":true,"webPlatformVersion":"M170","serviceVersion":"Dev18.M170.1 (build: AzureDevOps_M170_20200611.2)"},"navigation":{"topMostLevel":"deployment","area":"","currentController":"Gallery","currentAction":"Details","commandName":"Gallery.Details","routeId":"LegacyWebAccessRoute","routeValues":{"controller":"Gallery","action":"Details","serviceHost":"2663b13f-50e3-a655-a159-22f6f4725fab (TEAM FOUNDATION)"}},"globalization":{"explicitTheme":"","theme":"Default","culture":"en-IN","timezoneOffset":0,"timeZoneId":"UTC"},"serviceInstanceId":"00000029-0000-8888-8000-000000000000","hubsContext":{},"serviceLocations":{"locations":{"951917ac-a960-4999-8464-e3f0aa25b381":{"Application":"https://app.vssps.visualstudio.com/","Deployment":"https://app.vssps.visualstudio.com/"}}}};</script> <script defer="true" data-bundlelength="125076" data-bundlename="basejs" nonce="fokHcd+LmoA9B1APUzjvkg=="  src="https://cdn.vsassets.io/bundles/vss-bundle-basejs-v9GpWWBnsWqhM23ijhK2HfAqLowTXGUqZLDRsBCZbkfY="  type="text/javascript"></script>
+    <script defer="true" data-bundlelength="205378" data-bundlename="common" data-includedscripts="VSS/Bundling" nonce="fokHcd+LmoA9B1APUzjvkg=="  src="https://cdn.vsassets.io/bundles/vss-bundle-common-v_Ss9wqVqy_aJagjjTroIfzbnjzMUeKzN0KlnLkpPbLw="  type="text/javascript"></script><script defer="true" data-bundlelength="2079989" data-bundlename="view" data-includedscripts="Gallery/Client/Pages/VSSItemDetailsSSR/VSSItemDetailsSSRAsync" nonce="fokHcd+LmoA9B1APUzjvkg=="  src="https://cdn.vsassets.io/bundles/vss-bundle-view-vPRaNhU2r7iB5hbSt7BbiFyjMg5wLp-UMz6nkwupY_ck="  type="text/javascript"></script>
+    <script defer=true  nonce="fokHcd+LmoA9B1APUzjvkg==" src="/_static/tfs/M170_20200611.2/_scripts/TFS/min/Gallery/Client/Pages/VSSItemDetailsSSR/SSRModuleWrappers.js"></script>
+</body>
+
+</html>

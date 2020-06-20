@@ -1,0 +1,1364 @@
+
+
+<html lang="en-us">
+
+<head>
+     <meta name="description" content="Extension&#32;for&#32;Visual&#32;Studio&#32;Code&#32;-&#32;Markdown&#32;linting&#32;and&#32;style&#32;checking&#32;for&#32;Visual&#32;Studio&#32;Code" /><meta name="keywords" content="CommonMark,json,jsonc,lint,linters,markdown,md,multi-root&#32;ready,snippet" /><meta property="og:title" content="markdownlint&#32;-&#32;Visual&#32;Studio&#32;Marketplace" /><meta property="og:type" content="website" /><meta property="og:url" content="https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint" /><meta property="og:image" content="https://davidanson.gallerycdn.vsassets.io/extensions/davidanson/vscode-markdownlint/0.36.0/1590723528463/Microsoft.VisualStudio.Services.Icons.Default" /><meta property="og:description" content="Extension&#32;for&#32;Visual&#32;Studio&#32;Code&#32;-&#32;Markdown&#32;linting&#32;and&#32;style&#32;checking&#32;for&#32;Visual&#32;Studio&#32;Code" /><meta property="twitter:card" content="summary" /><meta property="twitter:site" content="@Code" /><link rel="canonical" href="https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint" />
+    <style>
+        html {
+            overflow-y: scroll;
+        }
+        body {
+            font-family: wf_segoe-ui, Helvetica Neue, Helvetica, Arial, Verdana;
+        	color: rgba( 0, 0, 0, 1);
+        	font-size: 12px;
+        	background-color: rgba(255, 255, 255, 1);
+        	margin: 0;
+        	padding: 0;
+        }
+
+/* L0 header styles start*/
+        .uxservices-header {
+            height: 34px;
+            background-color:black;
+        }
+
+        a.skip-main {
+            left: -999px;
+            position: absolute;
+            top: auto;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            z-index: -999;
+        }
+
+        a.skip-main:focus, a.skip-main:active {
+            color: #0078D4;
+            background-color: #FFFFFF;
+            position: absolute;
+            left: auto;
+            top: auto;
+            width: 122px;
+            height: 33px;
+            overflow: auto;
+            padding-left: 12px;
+            padding-right: 12px;
+            padding-top: 7px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 500;
+            font-family: 'Segoe UI';
+            line-height: 20px;
+            z-index: 999;
+        }
+
+        a.skip-main:hover {
+            color: #005BA1;
+            background-color: #F2F2F2;
+        }
+
+        .uxservices-header div.upperBandContent {
+            background-color:black;
+            color: white;
+            line-height: 17px;
+            width:100%;
+            margin:0 auto;
+            box-sizing:border-box;
+            max-width: 1160px;
+            padding: 0px;
+        }
+
+        .uxservices-header div.upperBandContent .left {
+            padding: 5px 0 0 0;
+        }
+
+        .uxservices-header div.upperBandContent .left .vs-logo-header {
+            height: 31px;
+            padding-top: 5px;
+        }
+
+        .uxservices-header div.upperBandContent .left .marketplacetext-header {
+            vertical-align: 9px;
+            padding-top: 5px;
+        }
+
+        .uxservices-header div.upperBandContent .right {
+            display: inline-block;
+            position: relative;
+            background-color: black;
+            font-size: 11px;
+            padding-top: 10px;
+        }
+
+        .uxservices-header div.upperBandContent .right .signIn {
+            font-weight: 600;
+            float: left;
+        }
+
+        .uxservices-header .marketPlaceLogoLink {
+            white-space: pre;
+            font-size: 16px;
+            line-height: 16px;
+            vertical-align: -4px;
+            display: inline-block;
+            color: white;
+        }
+
+        .uxservices-header .marketPlaceLogoLink.vs-brand-icon {
+            width: 30px;
+            height: 30px;
+            background: url(https://cdn.vsassets.io/v/M170_20200611.2/_content/Header/ImageSprite.png) no-repeat -250px 0 !important;
+        }
+
+        .uxservices-header .right a {
+            font-family: wf_segoe-ui, -apple-system, ".SFNSText-Regular", "San Francisco", "Roboto", "Helvetica Neue", "Lucida Grande", sans-serif;
+            font-size: inherit;
+        }
+
+        .uxservices-header div.upperBandContent .scarabLink {
+            margin-right: 0.23em;
+        }
+
+        #Fragment_SearchBox {
+            display: inline-block;
+            margin-left: 25px;
+            height: 13px;
+        }
+
+        #Fragment_SearchBox .header-search-button {
+            height: 20px;
+            width: 20px;
+            background: url(https://cdn.vsassets.io/v/M170_20200611.2/_content/Header/ImageSprite.png) no-repeat -195px 0 !important;
+            cursor: pointer;
+            border: none;
+            margin-left: 3px;
+            padding: 0px;
+        }
+
+        #Fragment_SearchBox .header-search-button:focus {
+            outline-color: rgb(77, 144, 254);
+            outline-style: auto;
+            outline-width: 5px;
+        }
+
+        #Fragment_SearchBox .header-search-textbox {
+            vertical-align: top;
+            background-color: #6a6a6a;
+            color: #ffffff;
+            padding-left: 2px;
+        }
+
+        
+/* l0 header ends*/
+
+        .tab {
+            overflow: hidden;
+            border-bottom: 1px solid #ccc;
+            background-color: transparent;
+            margin-bottom: 25px;
+        }
+
+/* Style the buttons that are used to open the tab content */
+        .tab button {
+            background-color: transparent;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 0px 16px;
+            font-size: 16px;
+            height: 40px;
+            border-width: 1px;
+            border-style: solid;
+            border-color: transparent
+        }
+
+/* Change background color of buttons on hover */
+        .tab button:hover {
+            color: #106ebe;
+        }
+
+        .tab button.selected {
+            color: #106ebe;
+            border-bottom: 2px solid #106ebe;
+        }
+
+        .tab button:focus, .tab button.selected:focus {
+            border-color: #000000;
+        }
+
+/* Style the tab content */
+        .tabcontent {
+            padding: 6px 12px;
+        }
+
+        .bowtie-icon,
+        i.bowtie-icon {
+        	font-family: "Bowtie";
+        	font-size: 14px;
+        	speak: none;
+        	display: inline-block;
+        	font-style: normal;
+        	font-weight: normal;
+        	font-variant: normal;
+        	text-transform: none;
+        	text-align: center;
+        	text-decoration: none;
+        	line-height: 16px;
+        	-webkit-font-smoothing: antialiased;
+        	-moz-osx-font-smoothing: grayscale;
+        }
+
+        .bowtie-icon:disabled,
+        i.bowtie-icon:disabled {
+        	opacity: 0.5;
+        }
+
+        .bowtie-brand-visualstudio::before {
+	        content: "\E91D";
+        }
+
+        .bowtie-install::before {
+        	content: "\E92C";
+        }
+
+        .bowtie-search::before {
+        	content: "\E986";
+        }
+
+        .bowtie-navigate-external::before {
+        	content: "\E9D0";
+        }
+
+        .bowtie-status-info::before {
+        	content: "\EA08";
+        }
+
+        .bowtie-status-info {
+        	color: rgba(0, 120, 212, 1);
+        	color: var(--communication-background, rgba(0, 120, 212, 1));
+        }
+
+        * {
+        	box-sizing: border-box;
+        	-webkit-box-sizing: border-box;
+        	-moz-box-sizing: border-box;
+        }
+
+        a:not(.ms-Button) {
+        	color: rgba(0, 120, 212, 1);
+        	color: var(--communication-foreground, rgba(0, 120, 212, 1));
+        	text-decoration: none;
+        	cursor: pointer;
+        }
+
+        a:not(.ms-Button):hover {
+        	color: rgba(0, 120, 212, 1);
+        	color: var(--communication-foreground, rgba(0, 120, 212, 1));
+        	text-decoration: underline;
+        }
+
+        a:not(.ms-Button):visited {
+        	color: rgba(0, 120, 212, 1);
+        	color: var(--communication-foreground, rgba(0, 120, 212, 1));
+        }
+
+        a:not(.ms-Button):active {
+        	color: rgba(0, 120, 212, 1);
+        	color: var(--communication-foreground, rgba(0, 120, 212, 1));
+        }
+
+        button {
+        	font-family: "Segoe UI VSS (Regular)", "Segoe UI", "-apple-system", BlinkMacSystemFont, Roboto, "Helvetica Neue", Helvetica, Ubuntu, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        	height: 30px;
+        	border: 1px solid;
+        	border-color: rgba( 200, 200, 200, 1);
+        	border-color: rgba( var(--palette-neutral-20, 200, 200, 200), 1);
+        	background-color: rgba( 248, 248, 248, 1);
+        	background-color: rgba( var(--palette-neutral-2, 248, 248, 248), 1);
+        	color: rgba( 51, 51, 51, 1);
+        	color: rgba( var(--palette-neutral-80, 51, 51, 51), 1);
+        	cursor: pointer;
+        	outline: 0;
+        	padding: 2px 12px 2px 12px;
+        }
+
+        button:hover:not(.ms-Button):not(.bolt-button):not(.link-as-button),
+        button:focus:not(.ms-Button):not(.bolt-button):not(.link-as-button) {
+        	border-color: rgba( 166, 166, 166, 1);
+        	border-color: rgba( var(--palette-neutral-30, 166, 166, 166), 1);
+            border-style: dotted;
+        }
+
+        .pricingTab-loader-container, .qnaTab-loader-container, .rnrTab-loader-container {
+            text-align: center;
+        }
+
+        .pricingTab-loader-container .loader, .qnaTab-loader-container .loader, .rnrTab-loader-container .loader {
+            display: inline-block;
+        }
+
+/* Styles for bread crumb */
+        .bread-crumb-container {
+        	font-size: 13px;
+        	color: #FFFFFF;
+        	height: 45px;
+        	line-height: 45px;
+        }
+
+        .bread-crumb-container .member {
+        	text-decoration: none;
+        }
+
+        .bread-crumb-container .separator {
+        	padding: 0 5px;
+        }
+
+        .bread-crumb-container a:visited {
+        	color: #FFFFFF;
+        }
+
+        .bread-crumb-container a {
+        	color: #FFFFFF;
+        }
+
+        .bread-crumb-container a:hover {
+        	color: #FFFFFF;
+        }
+
+        .item-details-control-root .breadcrumb {
+        	background-color: #232323;
+        	color: #FFFFFF;
+        	height: 45px;
+        	line-height: 45px;
+        	font-size: 13px;
+        	min-width: 1250px;
+        }
+
+        .item-details-control-root .breadcrumb .vsCodeDownloadLinkContainer {
+            float: right;
+            color: inherit;
+        }
+
+/* end of bread crumb styles */
+
+/* Styles for item banner */
+        .ux-section-banner {
+        	padding: 16px 0px;
+        	background-color: #eff1f3;
+        	min-width: 1250px;
+        }
+
+        .item-details-control-root .ux-section-banner {
+        	padding: 32px 0px;
+        	background-color: #eff1f3;
+        }
+
+        .gallery-centered-content {
+        	width: 1160px;
+        	margin-left: auto;
+        	margin-right: auto;
+        	padding-left: 10px;
+        	padding-right: 10px;
+        }
+
+        table {
+        	border-collapse: collapse;
+        	border-spacing: 0;
+        	margin: 0;
+        	padding: 0;
+        	border: 0;
+        }
+
+        .item-details-control-root .item-img {
+        	text-align: center;
+        	vertical-align: top;
+        	width: 132px;
+        }
+
+        .item-details-control-root .item-img img {
+        	max-width: 128px;
+        	position: relative;
+        	visibility: hidden;
+        }
+
+        .item-details-control-root .item-header .item-header-content {
+        	font-size: 14px;
+        	margin-left: 32px;
+        }
+
+        .item-details-control-root .ux-item-name {
+        	font-size: 26px;
+        	font-weight: 600;
+        	display: inline-block;
+        	padding-right: 8px;
+        }
+
+        .item-details-control-root .ux-item-second-row-wrapper {
+        	margin-top: 4px;
+        }
+
+        .item-details-control-root .ux-item-second-row-wrapper>div {
+        	display: inline-block;
+        }
+
+        .item-details-control-root .ux-item-second-row-wrapper>div:nth-child(1) {
+        	margin-right: 10px;
+        }
+
+        .item-details-control-root .ux-item-second-row-wrapper>.ux-item-rating {
+        	margin-left: 10px;
+        	margin-right: 10px;
+        }
+
+        .item-details-control-root .ux-item-second-row-wrapper>.item-price-category {
+        	margin-left: 10px;
+        	margin-right: 10px;
+        }
+
+        .item-details-control-root .item-header h1,
+        .item-details-control-root .item-header h2 {
+        	margin: 0px;
+        	padding: 0px;
+        	display: inline-block;
+        	font-size: 0em;
+        	font-weight: normal;
+        }
+
+        .item-details-control-root .item-header .dark {
+        	color: #FFFFFF;
+        }
+
+        .item-details-control-root .ux-item-rating {
+        	font-size: 14px;
+        }
+        .item-details-control-root .ux-item-publisher {
+        	font-size: 18px;
+        }
+
+        .item-details-control-root .ux-item-publisher-link {
+        	font-size: 18px;
+        	font-weight: 600;
+        }
+
+        .item-details-control-root .ux-item-shortdesc {
+        	margin: 20px 0;
+        	width: 608px;
+        	line-height: 1.5;
+        	overflow: hidden;
+        }
+
+        .item-details-control-root .dark .item-banner-focussable-child-item:focus {
+        	outline: 1px dotted white;
+        }
+
+        .item-details-control-root .item-header .item-header-content.light .installHelpInfo a {
+            color: #000000;
+            text-decoration: underline;
+            border-color: #000000;
+        }
+
+        .item-details-control-root .item-header .item-header-content.dark .installHelpInfo a {
+        	color: #FFFFFF;
+        	text-decoration: underline;
+        }
+
+/* not unpublished */
+        
+            .one-click-install-container {
+                display: flex;
+            }
+
+            .installHelpInfo {
+                margin-left: 10px;
+            }
+
+            .installHelpInfo>a {
+                vertical-align: sub;
+            }
+
+            .textContainer-41 {
+                flex-grow: 1;
+            }
+
+            .flexContainer-40 {
+                display: flex;
+                height: 100%;
+                flex-wrap: nowrap;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .label-43 {
+                margin-top: 0px;
+                margin-right: 4px;
+                margin-bottom: 0px;
+                margin-left: 4px;
+                line-height: 100%;
+                font-weight: 600;
+            }
+        
+            .item-details-control-root .ux-button.install {
+                position: relative;
+                font-family: "Segoe UI", "Segoe UI Web (West European)", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+                -webkit-font-smoothing: antialiased;
+                font-size: 14px;
+                font-weight: 400;
+                box-sizing: border-box;
+                display: inline-block;
+                text-align: center;
+                cursor: pointer;
+                vertical-align: top;
+                padding-top: 0px;
+                padding-right: 16px;
+                padding-bottom: 0px;
+                padding-left: 16px;
+                min-width: 80px;
+                height: 32px;
+                background-color: rgb(244, 244, 244);
+                color: rgb(51, 51, 51);
+                user-select: none;
+                outline: transparent;
+                border-width: 1px;
+                border-style: solid;
+                border-color: transparent;
+                border-image: initial;
+                text-decoration: none;
+                border-radius: 0px;
+            }
+
+            .item-details-control-root .item-header-content .install-button-container .ux-button.install.buttonDisabled {
+                background-color: #AAAAAA;
+                color: #EEEEEE;
+                opacity: 1;
+                border: 1px solid #E6E6E6;
+            }
+
+            .item-details-control-root .item-header-content .install-button-container .ux-button.install.buttonDisabled:hover {
+                cursor: default;
+                opacity: 1;
+            }
+
+            .item-details-control-root .dark .ux-button.install {
+                background-color: #107c10;
+                color: #FFFFFF;
+                min-width: 120px;
+                border: 1px solid #FFFFFF;
+            }
+
+            .item-details-control-root .dark .ux-button.install:hover {
+                background-color: #AAAAAA;
+                opacity: 0.6;
+            }
+
+            .item-details-control-root .light .ux-button.install {
+                background-color: #107c10;
+                color: #FFFFFF;
+                min-width: 120px;
+                border: 1px solid #666666;
+            }
+
+            .item-details-control-root .light .ux-button.install:hover,
+            .item-details-control-root .light .ux-button.install:focus {
+                background-color: #074507;
+            }
+
+            .item-details-control-root .dark .ux-button.install:focus,
+            .item-details-control-root .light .ux-button.install:focus {
+                border: 1px dotted;
+            }
+
+        
+/* End of item banner styles. */
+
+/* Styles for item details overview */
+        .item-details-control-root .ux-section-details {
+        	margin: 24px 0 34px 0px;
+        	font-size: 13px;
+        }
+
+        .item-details-control-root .ux-section-details .itemdetails-section-header {
+        	font-size: 16px;
+        	font-weight: bold;
+        	color: #555;
+        	padding-bottom: 16px;
+        }
+
+        .item-details-control-root .ux-section-details .ux-section-details-table {
+        	width: 100%;
+        	table-layout: fixed;
+        }
+
+        .item-details-control-root .ux-itemdetails-left {
+        	vertical-align: top;
+        	font-size: 14px;
+        	padding-right: 20px;
+        }
+
+        .item-details-control-root .ux-itemdetails-right {
+            width: 34.45%;
+            vertical-align: top;
+            padding: 0 0 0 20px;
+        }
+
+        .item-details-control-root .itemDetails-right {
+            display: none;
+        }
+
+        .item-details-control-root .markdown {
+        	color: #333;
+        	line-height: 1.6;
+        	position: relative;
+        }
+
+        .item-details-control-root .markdown > *:first-child {
+        	margin-top: 0!important;
+        }
+
+        .item-details-control-root .markdown .link-header:target:before {
+        	content: "";
+        	display: block;
+        	height: 250px;
+        	margin: -250px 0 0;
+        }
+
+        .link-as-button {
+        	height: initial;
+        }
+
+        .link-as-button:hover {
+        	text-decoration: underline;
+        }
+
+        /* End of item details overview styles. */
+
+        /* Styles for footer */
+        #ux-footer {
+        	line-height: 1.2em;
+        }
+
+        #ux-footer:after {
+        	content: "";
+        	display: table;
+        	clear: both;
+        }
+
+        #ux-footer a {
+        	color: #595958;
+        }
+
+        #ux-footer a:hover {
+        	color: #3399ff;
+        }
+
+        #ux-footer ul.links {
+        	padding: 0;
+        	line-height: 1.2em;
+        }
+
+        #ux-footer .linkList>ul>li {
+        	list-style-type: none;
+        	background: none;
+        	padding: 4px 0;
+        	margin: 0;
+        }
+
+        #ux-footer #baseFooter {
+        	width: 1160px;
+        	padding: 15px 10px;
+        	margin: 0 auto;
+        }
+
+        #ux-footer #baseFooter:after {
+        	content: "";
+        	display: table;
+        	clear: both;
+        }
+
+        #ux-footer #baseFooter li {
+        	display: inline-block;
+        	list-style-type: none;
+        	margin: 0 15px 0 0;
+        }
+
+        #ux-footer #baseFooter #Fragment_BaseFooterLinks {
+        	text-align: right;
+        }
+
+        #ux-footer #baseFooter #rightBaseFooter {
+        	float: right;
+        	width: 18%;
+        	font-family: wf_segoe-ui, Tahoma, Helvetica, Sans-Serif;
+        	color: #595958;
+        	font-weight: bold;
+        }
+
+        #ux-footer span.microsoftLogo {
+        	display: inline-block;
+        	margin-left: 16px;
+        }
+
+        .microsoftLogo {
+        	background: url(https://cdn.vsassets.io/v/M170_20200611.2/_content/Header/ImageSprite.png) no-repeat -93px 0!important;
+        }
+
+        .microsoftLogo {
+        	width: 70px;
+        	height: 14px;
+        	overflow: hidden;
+        }
+
+        /* End of footer styles. */
+
+        /* Styles for markdown */
+        .markdown img {
+        	max-width: 100%;
+        }
+
+        .markdown h1,
+        .markdown h2 {
+        	line-height: 1.4;
+        	margin-top: 1em;
+        	margin-bottom: 16px;
+        }
+
+        .markdown h1 {
+        	font-size: 1.5em;
+        	line-height: 1.2em;
+        	border-bottom: 1px solid #eee;
+        	margin-top: 2em;
+        	padding-bottom: 10px;
+        }
+
+        .markdown h2 {
+        	font-size: 1.375em;
+        	line-height: 1.2em;
+        	border-bottom: 1px solid #eee;
+        	margin-top: 2em;
+        	padding-bottom: 10px;
+        }
+
+        .markdown h3 {
+        	font-size: 1.25em;
+        }
+
+        .markdown h4 {
+        	font-size: 1.125em;
+        }
+
+        .markdown h5 {
+        	font-size: 1.0em;
+        }
+
+        .markdown blockquote {
+            padding: 0 15px;
+            color: #777;
+            border-left: 4px solid #ddd;
+            margin: 0;
+        }
+
+        .markdown pre {
+            padding: 16px;
+            overflow: auto;
+            font-size: 85%;
+            line-height: 1.45;
+            background-color: #f7f7f7;
+            border-radius: 3px;
+            word-wrap: normal;
+            font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+        }
+
+        .markdown code, .markdown tt {
+        	padding: 0;
+        	background-color: rgba(0, 0, 0, 0.04);
+        	margin: 0;
+        	padding-top: 0.2em;
+        	padding-bottom: 0.2em;
+        	border-radius: 3px;
+        	font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+        }
+
+        .markdown pre > code {
+            background-color: inherit;
+        }
+
+        .markdown table {
+        	display: block;
+        	width: 100%;
+        	overflow: auto;
+        	word-break: normal;
+        	word-break: keep-all;
+        }
+
+        .markdown table th {
+        	font-weight: bold;
+        }
+
+        .markdown table th,
+        .markdown table td {
+        	padding: 6px 13px;
+        	border: 1px solid #ddd;
+        }
+
+        .markdown table tr {
+        	background-color: #fff;
+        	border-top: 1px solid #ccc;
+        }
+
+        .markdown table tr:nth-child(2n) {
+        	background-color: #f8f8f8;
+        }
+
+        /* End of markdown styles. */
+
+        .main-content.item-details-main-content {
+        	min-height: 950px;
+        }
+
+        .item-details-main-content {
+        	background-color: #FFFFFF;
+        }
+
+        .ms-Fabric {
+        	-moz-osx-font-smoothing: grayscale;
+        	-webkit-font-smoothing: antialiased;
+        	color: #333333;
+        	font-family: "Segoe UI Web (West European)", "Segoe UI", -apple-system, BlinkMacSystemFont, "Roboto", "Helvetica Neue", sans-serif;
+        	font-size: 14px;
+        }
+
+        .ms-Fabric button {
+        	font-family: inherit;
+        }
+
+        .ux-section-details-tabs {
+            margin-top: -20px;
+        }
+
+         @font-face {
+        	font-family: wf_segoe-ui;
+        	src: url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.eot");
+        	src: local("Segoe UI Light"), local("Segoe Light"), local("Segoe WP Light"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.eot?#iefix") format("embedded-opentype"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.woff2") format("woff2"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.woff") format("woff"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.ttf") format("truetype");
+        	font-weight: 200;
+        	font-style: normal;
+        	-webkit-font-smoothing: antialiased;
+        }
+
+        @font-face {
+        	font-family: wf_segoe-ui;
+        	src: url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/semilight/latest.eot");
+        	src: local("Segoe UI Semilight"), local("Segoe Semilight"), local("Segoe WP Semilight"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/semilight/latest.eot?#iefix") format("embedded-opentype"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/semilight/latest.woff2") format("woff2"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/semilight/latest.woff") format("woff"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/semilight/latest.ttf") format("truetype");
+        	font-weight: 300;
+        	font-style: normal;
+        }
+
+        @font-face {
+        	font-family: wf_segoe-ui;
+        	src: url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/normal/latest.eot");
+        	src: local("Segoe UI"), local("Segoe"), local("Segoe WP"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/normal/latest.eot?#iefix") format("embedded-opentype"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/normal/latest.woff2") format("woff2"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/normal/latest.woff") format("woff"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/normal/latest.ttf") format("truetype");
+        	font-weight: normal;
+        	font-style: normal;
+        }
+
+        @font-face {
+        	font-family: wf_segoe-ui;
+        	src: url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/Semibold/latest.eot");
+        	src: local("Segoe UI Semibold"), local("Segoe Semibold"), local("Segoe WP Semibold"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/Semibold/latest.eot?#iefix") format("embedded-opentype"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/Semibold/latest.woff2") format("woff2"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/Semibold/latest.woff") format("woff"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/Semibold/latest.ttf") format("truetype");
+        	font-weight: 500;
+        	font-style: normal;
+        }
+
+        @font-face {
+        	font-family: wf_segoe-ui;
+        	src: url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/Semibold/latest.eot");
+        	src: local("Segoe UI Semibold"), local("Segoe Semibold"), local("Segoe WP Semibold"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/Semibold/latest.eot?#iefix") format("embedded-opentype"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/Semibold/latest.woff2") format("woff2"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/Semibold/latest.woff") format("woff"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/Semibold/latest.ttf") format("truetype");
+        	font-weight: 600;
+        	font-style: normal;
+        }
+
+        @font-face {
+        	font-family: wf_segoe-ui;
+        	src: url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/bold/latest.eot");
+        	src: local("Segoe UI Bold"), local("Segoe Bold"), local("Segoe WP Bold"), local("Segoe UI"), local("Segoe"), local("Segoe WP"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/bold/latest.eot?#iefix") format("embedded-opentype"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/bold/latest.woff") format("woff"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/bold/latest.woff2") format("woff2"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/bold/latest.ttf") format("truetype");
+        	font-weight: bold;
+        	font-style: normal;
+        }
+
+        @font-face {
+        	font-family: wf_segoe-ui_light;
+        	src: url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.eot");
+        	src: local("Segoe UI Light"), local("Segoe Light"), local("Segoe WP Light"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.eot?#iefix") format("embedded-opentype"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.woff2") format("woff2"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.woff") format("woff"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.ttf") format("truetype");
+        	font-weight: normal;
+        	font-style: normal;
+        }
+
+        @font-face {
+        	font-family: 'bowtie';
+        	font-style: normal;
+        	font-weight: normal;
+        	src: url(https://cdn.vsassets.io/v/M170_20200611.2/_content/Fonts/Icons/bowtie.eot);
+        	src: url(https://cdn.vsassets.io/v/M170_20200611.2/_content/Fonts/Icons/bowtie.eot?iefix) format("embedded-opentype"), url(https://cdn.vsassets.io/v/M170_20200611.2/_content/Fonts/Icons/bowtie.woff) format("woff"), url(https://cdn.vsassets.io/v/M170_20200611.2/_content/Fonts/Icons/bowtie.svg#bowtie) format("svg");
+        }
+
+        /* top pub. style begin */
+        
+
+        /* top pub. style end */
+
+        /*rating review style begin*/
+        .item-details-control-root .ux-item-review-rating .ux-item-rating-control .rating-control .star {
+            min-width: 16px;
+            min-height: 16px;
+            height: 12px;
+            width: 12px;
+            padding-top: 0px;
+            margin: 0px 2px;
+        }
+
+        .item-details-control-root .ux-item-second-row-wrapper .ux-item-review-rating-wrapper {
+            text-decoration: none;
+            color: inherit;
+            padding-top: 1px;
+            padding-bottom: 3px;
+        }
+
+        .item-details-control-root .ux-item-second-row-wrapper .ux-item-review-rating-wrapper .ux-item-review-rating{
+            display: inline-flex;
+        }
+
+        .item-details-control-root .ux-item-second-row-wrapper .ux-item-review-rating-wrapper .ux-item-review-rating .ux-item-rating-control {
+            margin-left: 10px;
+            top: 2px;
+            position: relative;
+        }
+
+        .item-details-control-root .ux-item-second-row-wrapper .ux-item-review-rating-wrapper .ux-item-review-rating .ux-item-rating-count {
+            margin-left: 5px;
+            font-size: 16px;
+            margin-top: -1px;
+            margin-right: 8px;
+        }
+
+        /*rating review style end*/
+        /*Spinner*/
+        .loader-container {
+            text-align: -webkit-center;
+            text-align: -mozkit-center;
+        }
+
+        .loader {
+            border: 3px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: solid #808080;
+            width: 30px;
+            height: 30px;
+            -webkit-animation: spin 2s linear infinite;
+            animation: spin 2s linear infinite;
+        }
+
+        @-webkit-keyframes spin {
+            0% { -webkit-transform: rotate(0deg); }
+            100% { -webkit-transform: rotate(360deg); }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        </style>
+
+        <script type="text/javascript"  nonce="ThW/5AuhaG6ONk98oUUHcQ==">
+            function sue(em, s, l, c, eo){var w=window,p="ue";w[p]=w[p]||[];w[p].push({"em":em,"s":s,"l":l,"c":c,"eo":eo});return false;}
+            window.onerror = sue;
+
+        isServerSideRendering = function () {
+            try {
+                return !(document !== undefined);
+            }
+            catch (e) {
+                return true;
+            }
+         };
+
+        redirectToNonSSR = function(area) {
+            var fqn = document.getElementById("FQN").value;
+            var galleryUrl = document.getElementById("galleryUrl").value;
+            window.location.assign(window.location.origin + galleryUrl +"items?itemName=" + fqn + "&ssr=false" + area);
+        }
+        
+        hideAndShowTabs = function(tabToShow) {
+            var currentTab = document.getElementsByClassName("selected-tab");
+            currentTab[0].style.display = "none";
+            currentTab[0].classList.remove("selected-tab");
+
+            var selectedTab =  document.getElementById(tabToShow);
+            selectedTab.classList.add("selected-tab");
+            selectedTab.style.display = "block";
+        }
+
+        if (!isServerSideRendering()) {
+            document.addEventListener('DOMContentLoaded', function() {
+                
+                        document.getElementById("qna").addEventListener("click", function(e) {
+                            redirectToNonSSR("#qna");   
+                        });
+                    
+                        document.getElementById("rnr").addEventListener("click", function(e) {
+                            redirectToNonSSR("#review-details");
+                        });
+                        document.getElementById("review-details").addEventListener("click", function(e) {
+                        redirectToNonSSR("#review-details");
+                        });
+                    
+                    // vscode copy command handlings
+                    let copyCommandInput = document.getElementById("vscode-command-input");
+                    if(copyCommandInput) {
+                        copyCommandInput.addEventListener("click", function(e) {
+                            e.target.select();
+                        });
+                        document.getElementById("copy-to-clipboard-button").addEventListener("click", function(e) {
+                            document.getElementById("vscode-command-input").select();
+                            var successful = document.execCommand('copy');
+                            if(successful) {
+                                var element = document.getElementById("copied-animation");
+                                element.style.display = "block";
+                            }
+                        });
+                    }
+                
+
+                // add handler for search
+                document.getElementById("Fragment_SearchBox").addEventListener("submit", function(e) {
+                    e.preventDefault();
+                    var queryText = document.getElementById("header-search-textbox").value;
+                    var galleryUrl = document.getElementById("galleryUrl").value;
+                    var searchTarget = document.getElementById("searchTarget").value;
+                    window.location = window.location.origin + galleryUrl +"search?term=" + queryText + "&target=" + searchTarget;
+                });
+                let acqBtn = document.getElementsByClassName("install-button-container");
+                if (acqBtn && acqBtn[0]) {
+                    acqBtn[0].onclick = function(event) {var w=window,p="ciEvents";w[p]=w[p]||[];w[p].push({"acquisition": true, "event": event});};
+                }
+
+                
+
+           });
+        }
+    </script>
+    <title>
+        markdownlint - Visual Studio Marketplace
+    </title>
+
+</head>
+<a href="#start-of-content" class="skip-main">Skip to content</a>
+<body class="platform gallery gallery-page-item-details">
+    <div class="uxservices-header" role="banner">
+        <div class="upperBandContent">
+            <a href="/" title="|   Marketplace" class="left" >
+                <img class="vs-logo-header" aria-label="Visual Studio logo" src="https://cdn.vsassets.io/v/M170_20200611.2/_content/Header/vs-logo.png"/>
+                <div id="marketPlaceLogoLink" class="marketPlaceLogoLink marketplacetext-header" aria-label="Marketplace logo">|   Marketplace</div>
+            </a>
+            <div class="right" style="float: right;">
+                
+                    <div class="signIn">
+                        
+                            <a href="https://app.vssps.visualstudio.com/_signin?realm=marketplace.visualstudio.com&amp;reply_to=https%3A%2F%2Fmarketplace.visualstudio.com%2Fitems%3FitemName%3DDavidAnson.vscode-markdownlint&amp;redirect=1&amp;context=eyJodCI6MywiaGlkIjoiMjY2M2IxM2YtNTBlMy1hNjU1LWExNTktMjJmNmY0NzI1ZmFiIiwicXMiOnt9LCJyciI6IiIsInZoIjoiIiwiY3YiOiIiLCJjcyI6IiJ90&amp;workflowId=marketplace&amp;wt.mc_id=o~msft~marketplace~signIn#ctx=eyJTaWduSW5Db29raWVEb21haW5zIjpbImh0dHBzOi8vbG9naW4ud2luZG93cy5uZXQiLCJodHRwczovL2xvZ2luLm1pY3Jvc29mdG9ubGluZS5jb20iXX01" class="scarabLink" style="margin-left:23px;padding-top:1px;color:#fff;font-weight:400;">
+                                Sign in
+                            </a>
+                        
+                    </div>
+                
+                <form id="Fragment_SearchBox" class="header-search" aria-label="search" role="search" data-fragmentname="SearchBox">
+                    <input id="header-search-textbox" class="header-search-textbox" aria-label="search" max-length="200" type="text" autocomplete="off">
+                    <button id="header-search-button" class="header-search-button" aria-label="search" type="submit"></button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="skiptarget" id="start-of-content"></div>
+    <div id="react_0HM0DV5UACDEI"><div data-reactroot=""><div class="item-details-control-root"><div class="breadcrumb"><div class="gallery-centered-content"><span class="bread-crumb-container"><a class="member" href="/vscode">Visual Studio Code</a><span class="separator">&gt;</span><a class="member" href="/search?sortBy=Installs&amp;category=Linters&amp;target=VSCode">Linters</a><span class="separator">&gt;</span><span class="member">markdownlint</span></span><span class="vsCodeDownloadLinkContainer"><span>New to Visual Studio Code?</span> <a class="vsCodeDownloadLink" href="https://go.microsoft.com/fwlink?linkid=846418&amp;pub=DavidAnson&amp;ext=vscode-markdownlint&amp;utm_source=vsmp&amp;utm_campaign=mpdetails" target="_blank" rel="noreferrer noopener" aria-label="Get Visual Studio Code Now">Get it now.</a></span></div></div><div class="main-content item-details-main-content" id="vss_1"><div class="item-details-control-root"><div class="ux-item-details"><div class="ux-section-banner" id="section-banner"><div class="ux-section-core gallery-centered-content"><table role="presentation"><tbody><tr><td class="item-img" id="vss_2"><img class="image-display" alt="" src="https://davidanson.gallerycdn.vsassets.io/extensions/davidanson/vscode-markdownlint/0.36.0/1590723528463/Microsoft.VisualStudio.Services.Icons.Default" style="top:0.5px;visibility:visible"/></td><td class="item-header"><div class="item-header-content light"><h1><span class="ux-item-name">markdownlint</span></h1><div class="ux-item-second-row-wrapper"><div class="ux-item-publisher"><h2 role="presentation"><a class="ux-item-publisher-link item-banner-focussable-child-item" href="publishers/DavidAnson" aria-label="More from David Anson publisher" style="color:#000000">David Anson</a></h2></div><span class="divider"> | </span><div class="ux-item-rating"><div class="bowtie-icon bowtie-install"></div><span class="installs-text" title="The number of unique installations, not including updates."> 1,812,311 installs</span></div><a id="review-details" href="#review-details" class="ux-item-review-rating-wrapper" aria-label="Average rating: 4.6 out of 5. Navigate to user reviews."><span class="ux-item-review-rating" title="Average rating: 4.6 out of 5"><span class="divider"> | </span><span class="ux-item-rating-control"><span class="rating-control"><img class="star full-star" alt="" aria-label="1 star" src="https://cdn.vsassets.io/v/M170_20200611.2/_content/FullStar.svg"/><img class="star full-star" alt="" aria-label="2 star" src="https://cdn.vsassets.io/v/M170_20200611.2/_content/FullStar.svg"/><img class="star full-star" alt="" aria-label="3 star" src="https://cdn.vsassets.io/v/M170_20200611.2/_content/FullStar.svg"/><img class="star full-star" alt="" aria-label="4 star" src="https://cdn.vsassets.io/v/M170_20200611.2/_content/FullStar.svg"/><img class="star half-star" alt="" src="https://cdn.vsassets.io/v/M170_20200611.2/_content/HalfStarDark.svg"/></span></span><span class="ux-item-rating-count"> (<span>43</span>)</span></span></a><span class="divider"> | </span><span class="item-price-category">Free</span></div><div class="ux-item-shortdesc">Markdown linting and style checking for Visual Studio Code</div><div class="ux-item-action"><div class="installButtonContainer"><div class="one-click-install-container"><div><div class="ms-Fabric"><span class="ux-oneclick-install-button-container"><a href="vscode:extension/DavidAnson.vscode-markdownlint" class="ms-Button ux-button install ms-Button--default root-39"><div class="ms-Button-flexContainer flexContainer-40"><div class="ms-Button-textContainer textContainer-41"><div class="ms-Button-label label-43" id="id__0">Install</div></div></div></a></span></div></div><span class="installHelpInfo"><a href="https://aka.ms/vscode_extn_install" target="_blank" rel="noreferrer noopener" class="light">Trouble Installing?<i class="bowtie-icon bowtie-navigate-external"></i></a></span></div></div><div style="display:none"><input type="text" id="FQN" readonly="" value="DavidAnson.vscode-markdownlint"/><input type="text" id="galleryUrl" readonly="" value="/"/><input type="text" id="searchTarget" readonly="" value="VSCode"/></div></div></div></td></tr></tbody></table></div></div><div class="gallery-centered-content"><div class="ux-section-details"><div class="ms-Fabric ux-section-details-tabs"><div class="gallery-centered-content"><div class="tab"><button id="overview" class="selected">Overview</button><button id="qna">Q &amp; A</button><button id="rnr">Rating &amp; Review</button></div><div class="tabcontent"><div id="overviewTab" class="overview selected-tab"><div class="details-tab itemdetails"><table class="ux-section-details-table" role="presentation"><tbody><tr><td class="ux-itemdetails-left"><div class="itemDetails"><div class="markdown"><h1 id=markdownlint>markdownlint</h1>
+<blockquote>
+<p>Markdown/CommonMark linting and style checking for Visual Studio Code</p>
+</blockquote>
+<h2 id=intro>Intro</h2>
+<p>The <a href="https://en.wikipedia.org/wiki/Markdown" target=_blank rel="noreferrer noopener">Markdown</a> markup language is designed to be easy to read, write, and understand. It succeeds - and its flexibility is both a benefit and a drawback. Many styles are possible, so formatting can be inconsistent. Some constructs don't work well in all parsers and should be avoided. For example, <a href="https://gist.github.com/DavidAnson/006a6c2a2d9d7b21b025" target=_blank rel="noreferrer noopener">here are some common/troublesome Markdown constructs</a>.</p>
+<p><a href="https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint" target=_blank rel="noreferrer noopener">markdownlint</a> is a Visual Studio Code extension that includes a library of rules to encourage standards and consistency for Markdown files. It is powered by <a href="https://github.com/DavidAnson/markdownlint" target=_blank rel="noreferrer noopener">markdownlint for Node.js</a> which is based on <a href="https://github.com/mivok/markdownlint" target=_blank rel="noreferrer noopener">markdownlint for Ruby</a>.</p>
+<h2 id=install>Install</h2>
+<ol>
+<li>Open <a href="https://code.visualstudio.com/" target=_blank rel="noreferrer noopener">Visual Studio Code</a></li>
+<li>Press <code>Ctrl+P</code> to open the Quick Open dialog</li>
+<li>Type <code>ext install markdownlint</code> to find the extension</li>
+<li>Click the <code>Install</code> button, then the <code>Enable</code> button</li>
+</ol>
+<p>OR</p>
+<ol>
+<li>Press <code>Ctrl+Shift+X</code> to open the Extensions tab</li>
+<li>Type <code>markdownlint</code> to find the extension</li>
+<li>Click the <code>Install</code> button, then the <code>Enable</code> button</li>
+</ol>
+<p>OR</p>
+<ol>
+<li>Open a command-line prompt</li>
+<li>Run <code>code --install-extension DavidAnson.vscode-markdownlint</code></li>
+</ol>
+<h2 id=use>Use</h2>
+<p>When editing a Markdown file in Code with markdownlint installed, any lines that violate one of markdownlint's rules (see below) will trigger a <em>Warning</em> in the editor. Warnings are indicated by a wavy green underline and can also be seen by pressing <code>Ctrl+Shift+M</code> to open the Errors and Warnings dialog. Hover the mouse pointer over a green line to see the warning or press <code>F8</code> and <code>Shift+F8</code> to cycle through all the warnings (markdownlint warnings all begin with <code>MD###</code>). For more information about a markdownlint warning, place the cursor on a line and click the light bulb icon or press <code>Ctrl+.</code> to open the code action dialog. Clicking one of the warnings in the dialog will display that rule's help entry in the default web browser.</p>
+<blockquote>
+<p>For a tutorial, please see <a href="https://thisdavej.com/build-an-amazing-markdown-editor-using-visual-studio-code-and-pandoc/" target=_blank rel="noreferrer noopener">Build an Amazing Markdown Editor Using Visual Studio Code and Pandoc</a> by Dave Johnson.</p>
+</blockquote>
+<h2 id=rules>Rules</h2>
+<ul>
+<li><strong><a href="https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md#md001" target=_blank rel="noreferrer noopener">MD001</a></strong> <em>heading-increment/header-increment</em> - Heading levels should only increment by one level at a time</li>
+<li>~~<strong><a href="https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md#md002" target=_blank rel="noreferrer noopener">MD002</a></strong> <em>first-heading-h1/first-header-h1</em> - First heading should be a top level heading~~</li>
+<li><strong><a href="https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md#md003" target=_blank rel="noreferrer noopener">MD003</a></strong> <em>heading-style/header-style</em> - Heading style</li>
+<li><strong><a href="https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md#md004" target=_blank rel="noreferrer noopener">MD004</a></strong> <em>ul-style</em> - Unordered list style</li>
+<li><strong><a href="https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md#md005" target=_blank rel="noreferrer noopener">MD005</a></strong> <em>list-indent</em> - Inconsistent indentation for list items at the same level</li>
+<li>~~<strong><a href="https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md#md006" target=_blank rel="noreferrer noopener">MD006</a></strong> <em>ul-start-left</em> - Consider starting bulleted lists at the beginning of the line~~</li>
+<li><strong><a href="https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md#md007" target=_blank rel="noreferrer noopener">MD007</a></strong> <em>ul-indent</em> - Unordered list indentation</li>
+<li><strong><a href="https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md#md009" target=_blank rel="noreferrer noopener">MD009</a></strong> <em>no-trailing-spaces</em> - Trailing spaces</li>
+<li><strong><a href="https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md#md010" target=_blank rel="noreferrer noopener">MD010</a></strong> <em>no-hard-tabs</em> - Hard tabs</li>
+<li><strong><a href="https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md#md011" target=_blank rel="noreferrer noopener">MD011</a></strong> <em>no-reversed-links</em> - Reversed link syntax</li>
+<li><strong><a href="https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md#md012" target=_blank rel="noreferrer noopener">MD012</a></strong> <em>no-multiple-blanks</em> - Multiple consecutive blank lines</li>
+<li><strong><a href="https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md#md013" target=_blank rel="noreferrer noopener">MD013</a></strong> <em>line-length</em> - Line length</li>
+<li><strong><a href="https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md#md014" target=_blank rel="noreferrer noopener">MD014</a></strong> <em>commands-show-output</em> - Dollar signs used before commands without showing output</li>
+<li><strong><a href="https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md#md018" target=_blank rel="noreferrer noopener">MD018</a></strong> <em>no-missing-space-atx</em> - No space after hash on atx style heading</li>
+<li><strong><a href="https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md#md019" target=_blank rel="noreferrer noopener">MD019</a></strong> <em>no-multiple-space-atx</em> - Multiple spaces after hash on atx style heading</li>
+<li><strong><a href="https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md#md020" target=_blank rel="noreferrer noopener">MD020</a></strong> <em>no-missing-space-closed-atx</em> - No space inside hashes on closed atx style heading</li>
+<li><strong><a href="https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md#md021" target=_blank rel="noreferrer noopener">MD021</a></strong> <em>no-multiple-space-closed-atx</em> - Multiple spaces inside hashes on closed atx style heading</li>
+<li><strong><a href="https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md#md022" target=_blank rel="noreferrer noopener">MD022</a></strong> <em>blanks-around-headings/blanks-around-headers</em> - Headings should be surrounded by blank lines</li>
+<li><strong><a href="https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md#md023" target=_blank rel="noreferrer noopener">MD023</a></strong> <em>heading-start-left/header-start-left</em> - Headings must start at the beginning of the line</li>
+<li><strong><a href="https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md#md024" target=_blank rel="noreferrer noopener">MD024</a></strong> <em>no-duplicate-heading/no-duplicate-header</em> - Multiple headings with the same content</li>
+<li><strong><a href="https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md#md025" target=_blank rel="noreferrer noopener">MD025</a></strong> <em>single-title/single-h1</em> - Multiple top level headings in the same document</li>
+<li><strong><a href="https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md#md026" target=_blank rel="noreferrer noopener">MD026</a></strong> <em>no-trailing-punctuation</em> - Trailing punctuation in heading</li>
+<li><strong><a href="https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md#md027" target=_blank rel="noreferrer noopener">MD027</a></strong> <em>no-multiple-space-blockquote</em> - Multiple spaces after blockquote symbol</li>
+<li><strong><a href="https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md#md028" target=_blank rel="noreferrer noopener">MD028</a></strong> <em>no-blanks-blockquote</em> - Blank line inside blockquote</li>
+<li><strong><a href="https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md#md029" target=_blank rel="noreferrer noopener">MD029</a></strong> <em>ol-prefix</em> - Ordered list item prefix</li>
+<li><strong><a href="https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md#md030" target=_blank rel="noreferrer noopener">MD030</a></strong> <em>list-marker-space</em> - Spaces after list markers</li>
+<li><strong><a href="https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md#md031" target=_blank rel="noreferrer noopener">MD031</a></strong> <em>blanks-around-fences</em> - Fenced code blocks should be surrounded by blank lines</li>
+<li><strong><a href="https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md#md032" target=_blank rel="noreferrer noopener">MD032</a></strong> <em>blanks-around-lists</em> - Lists should be surrounded by blank lines</li>
+<li><strong><a href="https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md#md033" target=_blank rel="noreferrer noopener">MD033</a></strong> <em>no-inline-html</em> - Inline HTML</li>
+<li><strong><a href="https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md#md034" target=_blank rel="noreferrer noopener">MD034</a></strong> <em>no-bare-urls</em> - Bare URL used</li>
+<li><strong><a href="https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md#md035" target=_blank rel="noreferrer noopener">MD035</a></strong> <em>hr-style</em> - Horizontal rule style</li>
+<li><strong><a href="https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md#md036" target=_blank rel="noreferrer noopener">MD036</a></strong> <em>no-emphasis-as-heading/no-emphasis-as-header</em> - Emphasis used instead of a heading</li>
+<li><strong><a href="https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md#md037" target=_blank rel="noreferrer noopener">MD037</a></strong> <em>no-space-in-emphasis</em> - Spaces inside emphasis markers</li>
+<li><strong><a href="https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md#md038" target=_blank rel="noreferrer noopener">MD038</a></strong> <em>no-space-in-code</em> - Spaces inside code span elements</li>
+<li><strong><a href="https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md#md039" target=_blank rel="noreferrer noopener">MD039</a></strong> <em>no-space-in-links</em> - Spaces inside link text</li>
+<li><strong><a href="https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md#md040" target=_blank rel="noreferrer noopener">MD040</a></strong> <em>fenced-code-language</em> - Fenced code blocks should have a language specified</li>
+<li><strong><a href="https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md#md041" target=_blank rel="noreferrer noopener">MD041</a></strong> <em>first-line-heading/first-line-h1</em> - First line in file should be a top level heading</li>
+<li><strong><a href="https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md#md042" target=_blank rel="noreferrer noopener">MD042</a></strong> <em>no-empty-links</em> - No empty links</li>
+<li><strong><a href="https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md#md043" target=_blank rel="noreferrer noopener">MD043</a></strong> <em>required-headings/required-headers</em> - Required heading structure</li>
+<li><strong><a href="https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md#md044" target=_blank rel="noreferrer noopener">MD044</a></strong> <em>proper-names</em> - Proper names should have the correct capitalization</li>
+<li><strong><a href="https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md#md045" target=_blank rel="noreferrer noopener">MD045</a></strong> <em>no-alt-text</em> - Images should have alternate text (alt text)</li>
+<li><strong><a href="https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md#md046" target=_blank rel="noreferrer noopener">MD046</a></strong> <em>code-block-style</em> - Code block style</li>
+<li><strong><a href="https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md#md047" target=_blank rel="noreferrer noopener">MD047</a></strong> <em>single-trailing-newline</em> - Files should end with a single newline character</li>
+<li><strong><a href="https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md#md048" target=_blank rel="noreferrer noopener">MD048</a></strong> <em>code-fence-style</em> - Code fence style</li>
+</ul>
+<p>See <a href="https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md" target=_blank rel="noreferrer noopener">markdownlint's Rules.md file</a> for more details.</p>
+<p>The following rules can be automatically fixed by moving the cursor to a rule violation (wavy underlined text) and typing <code>Ctrl+.</code> or clicking the light bulb icon.</p>
+<ul>
+<li>MD005 <em>list-indent</em></li>
+<li>MD006 <em>ul-start-left</em></li>
+<li>MD007 <em>ul-indent</em></li>
+<li>MD009 <em>no-trailing-spaces</em></li>
+<li>MD010 <em>no-hard-tabs</em></li>
+<li>MD011 <em>no-reversed-links</em></li>
+<li>MD012 <em>no-multiple-blanks</em></li>
+<li>MD014 <em>commands-show-output</em></li>
+<li>MD018 <em>no-missing-space-atx</em></li>
+<li>MD019 <em>no-multiple-space-atx</em></li>
+<li>MD020 <em>no-missing-space-closed-atx</em></li>
+<li>MD021 <em>no-multiple-space-closed-atx</em></li>
+<li>MD022 <em>blanks-around-headings</em></li>
+<li>MD023 <em>heading-start-left</em></li>
+<li>MD026 <em>no-trailing-punctuation</em></li>
+<li>MD027 <em>no-multiple-space-blockquote</em></li>
+<li>MD028 <em>no-blanks-blockquote</em></li>
+<li>MD030 <em>list-marker-space</em></li>
+<li>MD031 <em>blanks-around-fences</em></li>
+<li>MD032 <em>blanks-around-lists</em></li>
+<li>MD034 <em>no-bare-urls</em></li>
+<li>MD037 <em>no-space-in-emphasis</em></li>
+<li>MD038 <em>no-space-in-code</em></li>
+<li>MD039 <em>no-space-in-links</em></li>
+<li>MD044 <em>proper-names</em></li>
+<li>MD047 <em>single-trailing-newline</em></li>
+</ul>
+<p>All violations of the above rules in the current document can be fixed at once by running the <code>markdownlint.fixAll</code> command, either from the <a href="https://code.visualstudio.com/docs/getstarted/userinterface#_command-palette" target=_blank rel="noreferrer noopener">Command Palette</a> (via <code>View|Command Palette...</code> or <code>Ctrl+Shift+P</code> then search for &quot;markdownlint&quot;) or by <a href="https://code.visualstudio.com/docs/getstarted/keybindings" target=_blank rel="noreferrer noopener">binding the command to a keyboard shortcut</a>.</p>
+<p>To automatically fix these violations when saving a Markdown document, <a href="https://code.visualstudio.com/docs/getstarted/settings" target=_blank rel="noreferrer noopener">configure Visual Studio Code's <code>editor.codeActionsOnSave</code> setting</a> like so:</p>
+<pre><code class=language-json>&quot;editor.codeActionsOnSave&quot;: {
+    &quot;source.fixAll.markdownlint&quot;: true
+}
+</code></pre>
+<p>Automatically-applied fixes can be reverted by <code>Edit|Undo</code> or <code>Ctrl+Z</code>.</p>
+<p>To temporarily disable linting of Markdown documents, run the <code>markdownlint.toggleLinting</code> command (from the Command Palette or by binding it to a keyboard shortcut). To re-enable linting, run the <code>markdownlint.toggleLinting</code> command again.</p>
+<blockquote>
+<p><strong>Note</strong>: The effects of the <code>markdownlint.toggleLinting</code> command are reset when a new workspace is opened; linting defaults to enabled.</p>
+</blockquote>
+<h2 id=configure>Configure</h2>
+<h3 id=markdownlint.config>markdownlint.config</h3>
+<p>The default rule configuration disables <code>MD013</code>/<code>line-length</code> because many files include lines longer than the conventional 80 character limit:</p>
+<pre><code class=language-json>{
+    &quot;MD013&quot;: false
+}
+</code></pre>
+<blockquote>
+<p><strong>Note</strong>: <code>MD002</code>/<code>first-heading-h1</code> is disabled by default because it has been deprecated in the <code>markdownlint</code> library.</p>
+</blockquote>
+<p>Rules can be enabled, disabled, and customized by creating a <a href="https://en.wikipedia.org/wiki/JSON" target=_blank rel="noreferrer noopener">JSON</a> file named <code>.markdownlint.json</code> (or <code>.markdownlintrc</code>) or a <a href="https://en.wikipedia.org/wiki/YAML" target=_blank rel="noreferrer noopener">YAML</a> file named <code>.markdownlint.yaml</code> (or <code>.markdownlint.yml</code>) in any directory of a project. The rules defined by <code>.markdownlint{.json,.yaml,.yml,rc}</code> apply to Markdown files in the same directory and any sub-directories without their own <code>.markdownlint{.json,.yaml,.yml,rc}</code>.</p>
+<blockquote>
+<p><strong>Note</strong>: <code>.markdownlint{.json,.yaml,.yml,rc}</code> is used only if a project has been opened. When no folder is open or a file is not part of the current project, normal user and workspace settings apply (see below). If multiple of these files are present in the same directory, <code>.markdownlint.json</code> will be used instead of <code>.markdownlint.yaml</code> will be used instead of <code>.markdownlint.yml</code> will be used instead of <code>.markdownlintrc</code>.</p>
+</blockquote>
+<p>A custom configuration is often defined by a <code>.markdownlint.json</code> file in the root of the project:</p>
+<pre><code class=language-json>{
+    &quot;default&quot;: true,
+    &quot;MD003&quot;: { &quot;style&quot;: &quot;atx_closed&quot; },
+    &quot;MD007&quot;: { &quot;indent&quot;: 4 },
+    &quot;no-hard-tabs&quot;: false
+}
+</code></pre>
+<p>To extend another configuration file, any configuration file can use the <code>extends</code> property to provide a relative path:</p>
+<pre><code class=language-json>{
+    &quot;extends&quot;: &quot;../.markdownlint.json&quot;,
+    &quot;no-hard-tabs&quot;: true
+}
+</code></pre>
+<p>Files referenced via <code>extends</code> do not need to be part of the current project (but usually are).</p>
+<p>Rules can also be configured using Code's support for <a href="https://code.visualstudio.com/docs/customization/userandworkspace" target=_blank rel="noreferrer noopener">user and workspace settings</a>.</p>
+<p>The earlier configuration might look like the following in Code's user settings:</p>
+<pre><code class=language-json>{
+    &quot;editor.someSetting&quot;: true,
+    &quot;markdownlint.config&quot;: {
+        &quot;default&quot;: true,
+        &quot;MD003&quot;: { &quot;style&quot;: &quot;atx_closed&quot; },
+        &quot;MD007&quot;: { &quot;indent&quot;: 4 },
+        &quot;no-hard-tabs&quot;: false
+    }
+}
+</code></pre>
+<p>File paths referenced by <code>extends</code> from user settings are resolved relative to the user's home directory (ex: <code>%USERPROFILE%</code> on Windows or <code>$HOME</code> on macOS/Linux).</p>
+<p>Configuration locations have the following precedence (in decreasing order):</p>
+<ul>
+<li><code>.markdownlint{.json,.yaml,.yml,rc}</code> file in the same directory</li>
+<li><code>.markdownlint{.json,.yaml,.yml,rc}</code> file in a parent directory</li>
+<li><code>.markdownlint{.json,.yaml,.yml,rc}</code> file in the root of the project</li>
+<li>Visual Studio Code user/workspace settings</li>
+<li>Default configuration (see above)</li>
+</ul>
+<p>Once a configuration is found, lower-precedence locations are ignored. Changes saved to any location take effect immediately. Files referenced via <code>extends</code> are not monitored for changes. Only the last two locations apply to files outside a project.</p>
+<p>See <a href="https://github.com/DavidAnson/markdownlint#optionsconfig" target=_blank rel="noreferrer noopener">markdownlint's options.config section</a> for more information about rule configuration.</p>
+<p>When a workspace is active, running the <code>markdownlint.openConfigFile</code> command (from the Command Palette or by binding it to a keyboard shortcut) will open an editor for the <code>.markdownlint{.json,.yaml,.yml,rc}</code> configuration file in the root of the workspace. If none of those files exist, <code>.markdownlint.json</code> will be created in the &quot;pending save&quot; state and opened in the editor.</p>
+<h3 id=markdownlint.ignore>markdownlint.ignore</h3>
+<p>If a workspace contains generated content or other Markdown files that trigger warnings but cannot be fixed, it may be helpful to ignore (skip) those files when linting. This can be done by creating a file named <code>.markdownlintignore</code> in the root of the project or by updating the user/workspace configuration with a glob expression matching the relevant file names.</p>
+<p>When using a <code>.markdownlintignore</code> file, the content of the file follows the rules for <a href="https://git-scm.com/docs/gitignore" target=_blank rel="noreferrer noopener">gitignore</a> and may look something like:</p>
+<pre><code class=language-ini># Ignore Markdown files in the test directory
+test/*.md
+!test/except/this/one.md
+</code></pre>
+<p>An example of using Code's workspace configuration to ignore files might be:</p>
+<pre><code class=language-json>{
+    &quot;editor.someSetting&quot;: true,
+    &quot;markdownlint.ignore&quot;: [
+        &quot;ignore.md&quot;,
+        &quot;directory/ignore.md&quot;,
+        &quot;**/ignore.md&quot;,
+        &quot;**/*.md&quot;
+    ]
+}
+</code></pre>
+<p>The globbing library used for matching <code>markdownlint.ignore</code> configuration values is <a href="https://github.com/isaacs/minimatch" target=_blank rel="noreferrer noopener">minimatch</a> with the <code>dot</code> and <code>nocomment</code> options enabled. Matching is case-sensitive and paths are resolved relative to the root of the workspace. The directory separator is <code>/</code>, even on Windows.</p>
+<h3 id=markdownlint.run>markdownlint.run</h3>
+<p>By default, linting is performed as you type or edit a document. Linting is fast and efficient and should not interfere with typical workflows.</p>
+<p>If you find this distracting, linting can be configured to run only when the document is saved. This looks like the following in Code's user settings:</p>
+<pre><code class=language-json>{
+    &quot;editor.someSetting&quot;: true,
+    &quot;markdownlint.run&quot;: &quot;onSave&quot;
+}
+</code></pre>
+<blockquote>
+<p><strong>Note</strong>: When configured to run <code>onSave</code>, the list of reported issues will become outdated while the document is edited and will update when the document is saved.</p>
+</blockquote>
+<h3 id=markdownlint.customrules>markdownlint.customRules</h3>
+<p>Custom rules can be specified in Code's user/workspace configuration to apply additional linting beyond the default set of rules. Custom rules are specified by the path to a JavaScript file or the path to an <a href="https://www.npmjs.com/" target=_blank rel="noreferrer noopener">npm</a> package exporting one rule or an array of rules.</p>
+<p>Paths are normally relative to the root of the current workspace (or the Code install directory when no folder is open). Paths can also be absolute. When adding custom rules to a workspace, consider committing those rules under the <code>.vscode</code> directory where they will be separate from other workspace content and available to everyone who clones the repository.</p>
+<p>Paths of the form <code>{extension}/path</code> are relative to the base directory of the Code extension named <code>extension</code> (which must already be installed). This syntax allows custom rules to be included within another extension's package and shared across multiple workspaces.</p>
+<p>An example of Code's workspace settings for custom rules might look like the following:</p>
+<pre><code class=language-json>{
+    &quot;editor.someSetting&quot;: true,
+    &quot;markdownlint.customRules&quot;: [
+        &quot;.vscode/my-custom-rule.js&quot;,
+        &quot;.vscode/my-custom-rule-array.js&quot;,
+        &quot;.vscode/npm-package-for-custom-rule&quot;,
+        &quot;c:\\absolute\\path\\to\\custom\\rule.js&quot;,
+        &quot;{publisher.extension-name}/custom-rule.js&quot;,
+        &quot;{publisher.extension-name}/npm/rule/package&quot;
+    ]
+}
+</code></pre>
+<p>To troubleshoot issues loading or running custom rules, please refer to diagnostic messages from the extension in Code's Output window.</p>
+<p>For information about authoring custom rules, see <a href="https://github.com/DavidAnson/markdownlint/blob/master/doc/CustomRules.md" target=_blank rel="noreferrer noopener">markdownlint/CustomRules</a>.</p>
+<h3 id=markdownlint.customrulesalwaysallow>markdownlint.customRulesAlwaysAllow</h3>
+<p>A list of workspace paths for which the user's response to the custom rule prompt was &quot;Always allow&quot;. This setting is updated automatically by the extension, but can be modified to reset the prompt for a workspace.</p>
+<blockquote>
+<p><strong>Note</strong>: This setting is only valid as a user setting, not as a workspace setting (where it could be set by a malicious workspace).</p>
+</blockquote>
+<h2 id=suppress>Suppress</h2>
+<p>Individual warnings can be suppressed with inline comments:</p>
+<pre><code class=language-md>&lt;!-- markdownlint-disable MD037 --&gt;
+deliberate space * in * emphasis
+&lt;!-- markdownlint-enable MD037 --&gt;
+</code></pre>
+<p>The following snippets are available to help (press <code>Ctrl+Space</code> for IntelliSense suggestions):</p>
+<ul>
+<li><code>markdownlint-disable</code></li>
+<li><code>markdownlint-enable</code></li>
+<li><code>markdownlint-capture</code></li>
+<li><code>markdownlint-restore</code></li>
+<li><code>markdownlint-disable-file</code></li>
+<li><code>markdownlint-enable-file</code></li>
+<li><code>markdownlint-configure-file</code></li>
+</ul>
+<p>See <a href="https://github.com/DavidAnson/markdownlint#configuration" target=_blank rel="noreferrer noopener">markdownlint's configuration section</a> for more details.</p>
+<h2 id=history>History</h2>
+<p>See <a href="https://github.com/DavidAnson/vscode-markdownlint/blob/master/CHANGELOG.md" target=_blank rel="noreferrer noopener">CHANGELOG.md</a>.</p>
+</div></div></td><td class="ux-itemdetails-right" role="complementary"><div class="screenshot-carousel-container"></div><div class="loader-container"><div class="loader"></div></div><div class="itemDetails-right"></div></td></tr></tbody></table></div></div></div></div></div></div></div></div></div></div><div id="gallery-footer"><footer><div id="ux-footer" class="ltr" role="contentinfo"><div id="baseFooter"><div id="Fragment_BaseFooterLinks"><div class="linkList"><ul class="links horizontal"><li><a href="https://www.visualstudio.com/support/support-overview-vs" data-mscc-ic="false">Contact us</a></li><li><a href="https://careers.microsoft.com/" data-mscc-ic="false">Jobs</a></li><li><a href="https://go.microsoft.com/fwlink/?LinkID=264782" data-mscc-ic="false">Privacy</a></li><li><a href="https://aka.ms/vsmarketplace-ToU" data-mscc-ic="false">Terms of use</a></li><li><a href="https://www.microsoft.com/en-us/legal/intellectualproperty/Trademarks/EN-US.aspx" data-mscc-ic="false">Trademarks</a></li></ul></div></div><div id="rightBaseFooter">©<!-- --> 2019 Microsoft<span class="microsoftLogo" title="Microsoft"></span></div><div class="clear"></div></div></div></footer></div></div></div></div>
+    
+    <!-- Google Tag Manager -->
+    <noscript>
+        <iframe src="//www.googletagmanager.com/ns.html?id=GTM-WT9XBK"
+            height="0" width="0" style="display: none; visibility: hidden"></iframe>
+    </noscript>
+    <script type="text/javascript"  nonce="ThW/5AuhaG6ONk98oUUHcQ==">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName('body')[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.defer=true;j.src=
+        '//www.googletagmanager.com/gtm.js?id='+i+dl;f.insertBefore(j,f.lastChild);
+        })(window,document,'script','dataLayer','GTM-WT9XBK');</script>
+    <!-- End Google Tag Manager -->
+
+    <div class="render-time">
+        <script class="server-side-render" defer="defer" type="application/json">4</script>
+    </div>
+    <div class="rhs-content">
+        <script class="jiContent" defer="defer" type="application/json">{"GitHubLink":"https://github.com/DavidAnson/vscode-markdownlint.git","ReleaseDateString":"Sun, 22 Nov 2015 20:15:13 GMT","LastUpdatedDateString":"Fri, 29 May 2020 03:38:48 GMT","GalleryUrl":"/","Categories":["Linters"],"Tags":["CommonMark","json","jsonc","lint","linters","markdown","md","multi-root ready","snippet"],"ExtensionProperties":{"Microsoft.VisualStudio.Services.Links.Getstarted":"https://github.com/DavidAnson/vscode-markdownlint.git","Microsoft.VisualStudio.Services.Links.Support":"https://github.com/DavidAnson/vscode-markdownlint/issues","Microsoft.VisualStudio.Services.Links.Learn":"https://github.com/DavidAnson/vscode-markdownlint","Microsoft.VisualStudio.Services.Links.Source":"https://github.com/DavidAnson/vscode-markdownlint.git","Microsoft.VisualStudio.Services.Links.GitHub":"https://github.com/DavidAnson/vscode-markdownlint.git","Microsoft.VisualStudio.Code.Engine":"^1.43.0","Microsoft.VisualStudio.Services.GitHubFlavoredMarkdown":"true","Microsoft.VisualStudio.Code.ExtensionDependencies":"","Microsoft.VisualStudio.Code.ExtensionPack":"","Microsoft.VisualStudio.Code.LocalizedLanguages":""},"Resources":{"LicenseText":"License","ChangelogText":"Changelog","PublisherName":"DavidAnson","ExtensionName":"vscode-markdownlint","Version":"0.36.0"},"MoreInfo":{"VersionValue":"0.36.0","PublisherValue":"David Anson","UniqueIdentifierValue":"DavidAnson.vscode-markdownlint","TwitterShareContents":"Just%20discovered%20this%20on%20the%20%23VSMarketplace%3A%20https%3A%2F%2Fmarketplace.visualstudio.com%2Fitems%3FitemName%3DDavidAnson.vscode-markdownlint","EmailShareContents":"Hi%2C%20Just%20discovered%20this%20extension%20on%20the%20%23VSMarketplace%20that%20may%20be%20of%20interest%20to%20you.%20Check%20it%20out%20%40%20https%3A%2F%2Fmarketplace.visualstudio.com%2Fitems%3FitemName%3DDavidAnson.vscode-markdownlint%20%21","EmailShareSubject":"Check%20out%20-%20markdownlint%20for%20Visual%20Studio%20Code","IsPublic":true},"ResourcesPath":"https://cdn.vsassets.io/v/M170_20200611.2/_content/","AssetUri":"https://davidanson.gallerycdn.vsassets.io/extensions/davidanson/vscode-markdownlint/0.36.0/1590723528463","VsixManifestAssetType":"Microsoft.VisualStudio.Services.VsixManifest","StaticResourceVersion":"M170_20200611.2","AfdIdentifier":"Ref A: 65D51536DFEB472B8A7A0C3066227BAD Ref B: MAA02EDGE0317 Ref C: 2020-06-20T08:43:11Z","VsixId":null,"WorksWith":null,"ItemType":3,"IsMDPruned":false,"PrunedMDLength":0,"OverviewMDLength":19409,"IsRHSAsyncComponentsEnabled":true,"OfferDetails":null,"IsDetailsTabsEnabled":false}</script>
+    </div>
+    <div class="csp-user">
+        <script class="is-csp-user" defer="defer" type="application/json">null</script>
+    </div>
+    
+
+    <script type="text/javascript"  nonce="ThW/5AuhaG6ONk98oUUHcQ==">
+        if (document) {
+            try {
+                if (window.performance && window.performance.timing) {
+                    window["marketplaceRenderTime"] = Date.now() - window.performance.timing.navigationStart;
+                }
+            }
+            catch(e){ }
+        }
+    </script>
+    <script type="text/javascript" nonce="ThW/5AuhaG6ONk98oUUHcQ=="> var __vssPageContext = {"webContext":{"host":{"id":"2663b13f-50e3-a655-a159-22f6f4725fab","name":"TEAM FOUNDATION","uri":"https://marketplace.visualstudio.com/","relativeUri":"/","hostType":"deployment","scheme":"https","authority":"marketplace.visualstudio.com"}},"moduleLoaderConfig":{"baseUrl":"https://cdn.vsassets.io/v/M170_20200611.2/_scripts/TFS/min/","paths":{"ContentRendering/Resources":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/en-IN","Gallery/Scripts/Gallery/Resources":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/en-IN","VSSPreview/Resources":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/en-IN","Charts/Resources":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/en-IN","Engagement/Resources":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/en-IN","VSS/Resources":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/en-IN","highcharts":"https://cdn.vsassets.io/3rdParty/_scripts/highcharts.v7.2.1","highcharts/highcharts-more":"https://cdn.vsassets.io/3rdParty/_scripts/highcharts-more.v7.2.1","highcharts/modules/accessibility":"https://cdn.vsassets.io/3rdParty/_scripts/highcharts-accessibility.v7.2.1","highcharts/modules/funnel":"https://cdn.vsassets.io/3rdParty/_scripts/highcharts-funnel.v7.2.1","highcharts/modules/heatmap":"https://cdn.vsassets.io/3rdParty/_scripts/highcharts-heatmap.v7.2.1"},"map":{"*":{"office-ui-fabric-react/lib":"OfficeFabric"}},"contributionPaths":{"VSS":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/VSS","pathType":"default"},"VSS/Resources":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/en-IN","pathType":"resource"},"q":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/q","pathType":"default"},"knockout":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/knockout","pathType":"default"},"mousetrap":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/mousetrap","pathType":"default"},"mustache":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/mustache","pathType":"default"},"react":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/react.15.3","pathType":"default"},"react-dom":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/react-dom.15.3","pathType":"default"},"react-transition-group":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/react-transition-group.15.3","pathType":"default"},"jQueryUI":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/jQueryUI","pathType":"default"},"jquery":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/jquery","pathType":"default"},"OfficeFabric":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/OfficeFabric","pathType":"default"},"tslib":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/tslib","pathType":"default"},"@uifabric":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/@uifabric","pathType":"default"},"VSSUI":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/VSSUI","pathType":"default"},"ContentRendering":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/ContentRendering","pathType":"default"},"ContentRendering/Resources":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/en-IN","pathType":"resource"},"Charts":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/Charts","pathType":"default"},"Charts/Resources":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/en-IN","pathType":"resource"},"highcharts":{"value":"https://cdn.vsassets.io/3rdParty/_scripts/highcharts.v7.2.1","pathType":"thirdParty"},"highcharts/highcharts-more":{"value":"https://cdn.vsassets.io/3rdParty/_scripts/highcharts-more.v7.2.1","pathType":"thirdParty"},"highcharts/modules/accessibility":{"value":"https://cdn.vsassets.io/3rdParty/_scripts/highcharts-accessibility.v7.2.1","pathType":"thirdParty"},"highcharts/modules/funnel":{"value":"https://cdn.vsassets.io/3rdParty/_scripts/highcharts-funnel.v7.2.1","pathType":"thirdParty"},"highcharts/modules/heatmap":{"value":"https://cdn.vsassets.io/3rdParty/_scripts/highcharts-heatmap.v7.2.1","pathType":"thirdParty"}},"shim":{"jquery":{"deps":[],"exports":"jQuery"}},"waitSeconds":30},"coreReferences":{"stylesheets":[{"url":"/_static/tfs/M170_20200611.2/_cssbundles/Default/vss-bundle-ext-core-css-vQ8Us1s7UaJe7EYaHu4abPhUIoy4VkQeq0UCGlmbyyiE=","highContrastUrl":null,"isCoreStylesheet":true}],"scripts":[{"identifier":"JQuery","url":"https://cdn.vsassets.io/3rdParty/_scripts/jquery-2.2.4.min.js","fallbackUrl":null,"fallbackCondition":null,"isCoreModule":true},{"identifier":"JQueryXDomain","url":"https://cdn.vsassets.io/3rdParty/_scripts/jquery.xdomainrequest.min.js","fallbackUrl":null,"fallbackCondition":null,"isCoreModule":true},{"identifier":"Promise","url":"https://cdn.vsassets.io/v/M170_20200611.2/_scripts/TFS/min/promise.js","fallbackUrl":null,"fallbackCondition":null,"isCoreModule":true},{"identifier":"GlobalScripts","url":"https://cdn.vsassets.io/v/M170_20200611.2/_scripts/TFS/min/global-scripts.js","fallbackUrl":null,"fallbackCondition":null,"isCoreModule":true},{"identifier":"LoaderFixes","url":"https://cdn.vsassets.io/v/M170_20200611.2/_scripts/TFS/pre-loader-shim.min.js","fallbackUrl":null,"fallbackCondition":null,"isCoreModule":false},{"identifier":"AMDLoader","url":"https://cdn.vsassets.io/3rdParty/_scripts/require.min.js","fallbackUrl":null,"fallbackCondition":null,"isCoreModule":true},{"identifier":"LoaderFixes","url":"https://cdn.vsassets.io/v/M170_20200611.2/_scripts/TFS/post-loader-shim.min.js","fallbackUrl":null,"fallbackCondition":null,"isCoreModule":false}],"coreScriptsBundle":{"identifier":"CoreBundle","url":"/_public/_Bundling/Content?bundle=vss-bundle-basejs-v9GpWWBnsWqhM23ijhK2HfAqLowTXGUqZLDRsBCZbkfY=","fallbackUrl":null,"fallbackCondition":null,"isCoreModule":true},"extensionCoreReferences":{"identifier":"CoreBundle","url":"https://cdn.vsassets.io/bundles/vss-bundle-ext-core-vXmFrbZVv9in776dlqjrJLCGMci5PQIF14Ug3E2n2Ku0=","fallbackUrl":null,"fallbackCondition":null,"isCoreModule":true}},"webAccessConfiguration":{"isHosted":true,"paths":{"rootPath":"/","staticContentRootPath":"/","staticContentVersion":"M170_20200611.2","resourcesPath":"https://cdn.vsassets.io/v/M170_20200611.2/_content/","staticRootTfs":"https://cdn.vsassets.io/v/M170_20200611.2/","cdnFallbackStaticRootTfs":"/_static/tfs/M170_20200611.2/","staticRoot3rdParty":"https://cdn.vsassets.io/3rdParty/"},"api":{"webApiVersion":"1","areaPrefix":"_","controllerPrefix":"_"},"mailSettings":{"enabled":false},"registryItems":{}},"microsoftAjaxConfig":{"cultureInfo":{"name":"en-IN","numberFormat":{"CurrencyDecimalDigits":2,"CurrencyDecimalSeparator":".","IsReadOnly":true,"CurrencyGroupSizes":[3,2],"NumberGroupSizes":[3,2],"PercentGroupSizes":[3,2],"CurrencyGroupSeparator":",","CurrencySymbol":"₹","NaNSymbol":"NaN","CurrencyNegativePattern":12,"NumberNegativePattern":1,"PercentPositivePattern":1,"PercentNegativePattern":1,"NegativeInfinitySymbol":"-∞","NegativeSign":"-","NumberDecimalDigits":2,"NumberDecimalSeparator":".","NumberGroupSeparator":",","CurrencyPositivePattern":2,"PositiveInfinitySymbol":"∞","PositiveSign":"+","PercentDecimalDigits":2,"PercentDecimalSeparator":".","PercentGroupSeparator":",","PercentSymbol":"%","PerMilleSymbol":"‰","NativeDigits":["0","1","2","3","4","5","6","7","8","9"],"DigitSubstitution":1},"dateTimeFormat":{"AMDesignator":"AM","Calendar":{"MinSupportedDateTime":"0001-01-01T00:00:00","MaxSupportedDateTime":"9999-12-31T23:59:59.9999999","AlgorithmType":1,"CalendarType":1,"Eras":[1],"TwoDigitYearMax":2029,"IsReadOnly":true},"DateSeparator":"-","FirstDayOfWeek":1,"CalendarWeekRule":0,"FullDateTimePattern":"dd MMMM yyyy HH:mm:ss","LongDatePattern":"dd MMMM yyyy","LongTimePattern":"HH:mm:ss","MonthDayPattern":"d MMMM","PMDesignator":"PM","RFC1123Pattern":"ddd, dd MMM yyyy HH':'mm':'ss 'GMT'","ShortDatePattern":"dd-MM-yyyy","ShortTimePattern":"HH:mm","SortableDateTimePattern":"yyyy'-'MM'-'dd'T'HH':'mm':'ss","TimeSeparator":":","UniversalSortableDateTimePattern":"yyyy'-'MM'-'dd HH':'mm':'ss'Z'","YearMonthPattern":"MMMM, yyyy","AbbreviatedDayNames":["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],"ShortestDayNames":["Su","Mo","Tu","We","Th","Fr","Sa"],"DayNames":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"AbbreviatedMonthNames":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec",""],"MonthNames":["January","February","March","April","May","June","July","August","September","October","November","December",""],"IsReadOnly":true,"NativeCalendarName":"Gregorian Calendar","AbbreviatedMonthGenitiveNames":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec",""],"MonthGenitiveNames":["January","February","March","April","May","June","July","August","September","October","November","December",""]},"numberShortForm":{"QuantitySymbols":["K","M","B"],"NumberGroupSize":1000,"ThousandSymbol":"K"},"eras":null}},"timeZonesConfiguration":{},"featureAvailability":{"featureStates":{"VisualStudio.Services.Contribution.EnableOnPremUnsecureBrowsers":false,"VisualStudio.Service.WebPlatform.ClientErrorReporting":true,"Microsoft.VisualStudio.Services.Gallery.Client.UseCdnAssetUri":false,"VisualStudio.Services.WebAccess.SubresourceIntegrity":false,"VisualStudio.Services.IdentityPicker.ReactProfileCard":true}},"appInsightsConfiguration":{"enabled":false,"instrumentationKey":"00000000-0000-0000-0000-000000000000","insightsScriptUrl":null},"diagnostics":{"sessionId":"9145d367-aff5-4d39-963c-dd22658e46f1","activityId":"9145d367-aff5-4d39-963c-dd22658e46f1","bundlingEnabled":true,"cdnAvailable":true,"cdnEnabled":true,"webPlatformVersion":"M170","serviceVersion":"Dev18.M170.1 (build: AzureDevOps_M170_20200611.2)"},"navigation":{"topMostLevel":"deployment","area":"","currentController":"Gallery","currentAction":"Details","commandName":"Gallery.Details","routeId":"LegacyWebAccessRoute","routeValues":{"controller":"Gallery","action":"Details","serviceHost":"2663b13f-50e3-a655-a159-22f6f4725fab (TEAM FOUNDATION)"}},"globalization":{"explicitTheme":"","theme":"Default","culture":"en-IN","timezoneOffset":0,"timeZoneId":"UTC"},"serviceInstanceId":"00000029-0000-8888-8000-000000000000","hubsContext":{},"serviceLocations":{"locations":{"951917ac-a960-4999-8464-e3f0aa25b381":{"Application":"https://app.vssps.visualstudio.com/","Deployment":"https://app.vssps.visualstudio.com/"}}}};</script> <script defer="true" data-bundlelength="125076" data-bundlename="basejs" nonce="ThW/5AuhaG6ONk98oUUHcQ=="  src="https://cdn.vsassets.io/bundles/vss-bundle-basejs-v9GpWWBnsWqhM23ijhK2HfAqLowTXGUqZLDRsBCZbkfY="  type="text/javascript"></script>
+    <script defer="true" data-bundlelength="205378" data-bundlename="common" data-includedscripts="VSS/Bundling" nonce="ThW/5AuhaG6ONk98oUUHcQ=="  src="https://cdn.vsassets.io/bundles/vss-bundle-common-v_Ss9wqVqy_aJagjjTroIfzbnjzMUeKzN0KlnLkpPbLw="  type="text/javascript"></script><script defer="true" data-bundlelength="2079989" data-bundlename="view" data-includedscripts="Gallery/Client/Pages/VSSItemDetailsSSR/VSSItemDetailsSSRAsync" nonce="ThW/5AuhaG6ONk98oUUHcQ=="  src="https://cdn.vsassets.io/bundles/vss-bundle-view-vPRaNhU2r7iB5hbSt7BbiFyjMg5wLp-UMz6nkwupY_ck="  type="text/javascript"></script>
+    <script defer=true  nonce="ThW/5AuhaG6ONk98oUUHcQ==" src="/_static/tfs/M170_20200611.2/_scripts/TFS/min/Gallery/Client/Pages/VSSItemDetailsSSR/SSRModuleWrappers.js"></script>
+</body>
+
+</html>

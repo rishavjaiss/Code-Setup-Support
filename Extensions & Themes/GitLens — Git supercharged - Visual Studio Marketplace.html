@@ -1,0 +1,2833 @@
+
+
+<html lang="en-us">
+
+<head>
+     <meta name="description" content="Extension&#32;for&#32;Visual&#32;Studio&#32;Code&#32;-&#32;Supercharge&#32;the&#32;Git&#32;capabilities&#32;built&#32;into&#32;Visual&#32;Studio&#32;Code&#32;&#8212;&#32;Visualize&#32;code&#32;authorship&#32;at&#32;a&#32;glance&#32;via&#32;Git&#32;blame&#32;annotations&#32;and&#32;code&#32;lens,&#32;seamlessly&#32;navigate&#32;and&#32;explore&#32;Git&#32;repositories,&#32;gain&#32;valuable&#32;insights&#32;via&#32;powerful&#32;comparison&#32;commands,&#32;and&#32;so&#32;much&#32;more" /><meta name="keywords" content="annotation,blame,git,gitlens,keybindings,log,multi-root&#32;ready" /><meta property="og:title" content="GitLens&#32;&#8212;&#32;Git&#32;supercharged&#32;-&#32;Visual&#32;Studio&#32;Marketplace" /><meta property="og:type" content="website" /><meta property="og:url" content="https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens" /><meta property="og:image" content="https://eamodio.gallerycdn.vsassets.io/extensions/eamodio/gitlens/10.2.2/1591818157905/Microsoft.VisualStudio.Services.Icons.Default" /><meta property="og:description" content="Extension&#32;for&#32;Visual&#32;Studio&#32;Code&#32;-&#32;Supercharge&#32;the&#32;Git&#32;capabilities&#32;built&#32;into&#32;Visual&#32;Studio&#32;Code&#32;&#8212;&#32;Visualize&#32;code&#32;authorship&#32;at&#32;a&#32;glance&#32;via&#32;Git&#32;blame&#32;annotations&#32;and&#32;code&#32;lens,&#32;seamlessly&#32;navigate&#32;and&#32;explore&#32;Git&#32;repositories,&#32;gain&#32;valuable&#32;insights&#32;via&#32;powerful&#32;comparison&#32;commands,&#32;and&#32;so&#32;much&#32;more" /><meta property="twitter:card" content="summary" /><meta property="twitter:site" content="@Code" /><link rel="canonical" href="https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens" />
+    <style>
+        html {
+            overflow-y: scroll;
+        }
+        body {
+            font-family: wf_segoe-ui, Helvetica Neue, Helvetica, Arial, Verdana;
+        	color: rgba( 0, 0, 0, 1);
+        	font-size: 12px;
+        	background-color: rgba(255, 255, 255, 1);
+        	margin: 0;
+        	padding: 0;
+        }
+
+/* L0 header styles start*/
+        .uxservices-header {
+            height: 34px;
+            background-color:black;
+        }
+
+        a.skip-main {
+            left: -999px;
+            position: absolute;
+            top: auto;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            z-index: -999;
+        }
+
+        a.skip-main:focus, a.skip-main:active {
+            color: #0078D4;
+            background-color: #FFFFFF;
+            position: absolute;
+            left: auto;
+            top: auto;
+            width: 122px;
+            height: 33px;
+            overflow: auto;
+            padding-left: 12px;
+            padding-right: 12px;
+            padding-top: 7px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 500;
+            font-family: 'Segoe UI';
+            line-height: 20px;
+            z-index: 999;
+        }
+
+        a.skip-main:hover {
+            color: #005BA1;
+            background-color: #F2F2F2;
+        }
+
+        .uxservices-header div.upperBandContent {
+            background-color:black;
+            color: white;
+            line-height: 17px;
+            width:100%;
+            margin:0 auto;
+            box-sizing:border-box;
+            max-width: 1160px;
+            padding: 0px;
+        }
+
+        .uxservices-header div.upperBandContent .left {
+            padding: 5px 0 0 0;
+        }
+
+        .uxservices-header div.upperBandContent .left .vs-logo-header {
+            height: 31px;
+            padding-top: 5px;
+        }
+
+        .uxservices-header div.upperBandContent .left .marketplacetext-header {
+            vertical-align: 9px;
+            padding-top: 5px;
+        }
+
+        .uxservices-header div.upperBandContent .right {
+            display: inline-block;
+            position: relative;
+            background-color: black;
+            font-size: 11px;
+            padding-top: 10px;
+        }
+
+        .uxservices-header div.upperBandContent .right .signIn {
+            font-weight: 600;
+            float: left;
+        }
+
+        .uxservices-header .marketPlaceLogoLink {
+            white-space: pre;
+            font-size: 16px;
+            line-height: 16px;
+            vertical-align: -4px;
+            display: inline-block;
+            color: white;
+        }
+
+        .uxservices-header .marketPlaceLogoLink.vs-brand-icon {
+            width: 30px;
+            height: 30px;
+            background: url(https://cdn.vsassets.io/v/M170_20200611.2/_content/Header/ImageSprite.png) no-repeat -250px 0 !important;
+        }
+
+        .uxservices-header .right a {
+            font-family: wf_segoe-ui, -apple-system, ".SFNSText-Regular", "San Francisco", "Roboto", "Helvetica Neue", "Lucida Grande", sans-serif;
+            font-size: inherit;
+        }
+
+        .uxservices-header div.upperBandContent .scarabLink {
+            margin-right: 0.23em;
+        }
+
+        #Fragment_SearchBox {
+            display: inline-block;
+            margin-left: 25px;
+            height: 13px;
+        }
+
+        #Fragment_SearchBox .header-search-button {
+            height: 20px;
+            width: 20px;
+            background: url(https://cdn.vsassets.io/v/M170_20200611.2/_content/Header/ImageSprite.png) no-repeat -195px 0 !important;
+            cursor: pointer;
+            border: none;
+            margin-left: 3px;
+            padding: 0px;
+        }
+
+        #Fragment_SearchBox .header-search-button:focus {
+            outline-color: rgb(77, 144, 254);
+            outline-style: auto;
+            outline-width: 5px;
+        }
+
+        #Fragment_SearchBox .header-search-textbox {
+            vertical-align: top;
+            background-color: #6a6a6a;
+            color: #ffffff;
+            padding-left: 2px;
+        }
+
+        
+/* l0 header ends*/
+
+        .tab {
+            overflow: hidden;
+            border-bottom: 1px solid #ccc;
+            background-color: transparent;
+            margin-bottom: 25px;
+        }
+
+/* Style the buttons that are used to open the tab content */
+        .tab button {
+            background-color: transparent;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 0px 16px;
+            font-size: 16px;
+            height: 40px;
+            border-width: 1px;
+            border-style: solid;
+            border-color: transparent
+        }
+
+/* Change background color of buttons on hover */
+        .tab button:hover {
+            color: #106ebe;
+        }
+
+        .tab button.selected {
+            color: #106ebe;
+            border-bottom: 2px solid #106ebe;
+        }
+
+        .tab button:focus, .tab button.selected:focus {
+            border-color: #000000;
+        }
+
+/* Style the tab content */
+        .tabcontent {
+            padding: 6px 12px;
+        }
+
+        .bowtie-icon,
+        i.bowtie-icon {
+        	font-family: "Bowtie";
+        	font-size: 14px;
+        	speak: none;
+        	display: inline-block;
+        	font-style: normal;
+        	font-weight: normal;
+        	font-variant: normal;
+        	text-transform: none;
+        	text-align: center;
+        	text-decoration: none;
+        	line-height: 16px;
+        	-webkit-font-smoothing: antialiased;
+        	-moz-osx-font-smoothing: grayscale;
+        }
+
+        .bowtie-icon:disabled,
+        i.bowtie-icon:disabled {
+        	opacity: 0.5;
+        }
+
+        .bowtie-brand-visualstudio::before {
+	        content: "\E91D";
+        }
+
+        .bowtie-install::before {
+        	content: "\E92C";
+        }
+
+        .bowtie-search::before {
+        	content: "\E986";
+        }
+
+        .bowtie-navigate-external::before {
+        	content: "\E9D0";
+        }
+
+        .bowtie-status-info::before {
+        	content: "\EA08";
+        }
+
+        .bowtie-status-info {
+        	color: rgba(0, 120, 212, 1);
+        	color: var(--communication-background, rgba(0, 120, 212, 1));
+        }
+
+        * {
+        	box-sizing: border-box;
+        	-webkit-box-sizing: border-box;
+        	-moz-box-sizing: border-box;
+        }
+
+        a:not(.ms-Button) {
+        	color: rgba(0, 120, 212, 1);
+        	color: var(--communication-foreground, rgba(0, 120, 212, 1));
+        	text-decoration: none;
+        	cursor: pointer;
+        }
+
+        a:not(.ms-Button):hover {
+        	color: rgba(0, 120, 212, 1);
+        	color: var(--communication-foreground, rgba(0, 120, 212, 1));
+        	text-decoration: underline;
+        }
+
+        a:not(.ms-Button):visited {
+        	color: rgba(0, 120, 212, 1);
+        	color: var(--communication-foreground, rgba(0, 120, 212, 1));
+        }
+
+        a:not(.ms-Button):active {
+        	color: rgba(0, 120, 212, 1);
+        	color: var(--communication-foreground, rgba(0, 120, 212, 1));
+        }
+
+        button {
+        	font-family: "Segoe UI VSS (Regular)", "Segoe UI", "-apple-system", BlinkMacSystemFont, Roboto, "Helvetica Neue", Helvetica, Ubuntu, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        	height: 30px;
+        	border: 1px solid;
+        	border-color: rgba( 200, 200, 200, 1);
+        	border-color: rgba( var(--palette-neutral-20, 200, 200, 200), 1);
+        	background-color: rgba( 248, 248, 248, 1);
+        	background-color: rgba( var(--palette-neutral-2, 248, 248, 248), 1);
+        	color: rgba( 51, 51, 51, 1);
+        	color: rgba( var(--palette-neutral-80, 51, 51, 51), 1);
+        	cursor: pointer;
+        	outline: 0;
+        	padding: 2px 12px 2px 12px;
+        }
+
+        button:hover:not(.ms-Button):not(.bolt-button):not(.link-as-button),
+        button:focus:not(.ms-Button):not(.bolt-button):not(.link-as-button) {
+        	border-color: rgba( 166, 166, 166, 1);
+        	border-color: rgba( var(--palette-neutral-30, 166, 166, 166), 1);
+            border-style: dotted;
+        }
+
+        .pricingTab-loader-container, .qnaTab-loader-container, .rnrTab-loader-container {
+            text-align: center;
+        }
+
+        .pricingTab-loader-container .loader, .qnaTab-loader-container .loader, .rnrTab-loader-container .loader {
+            display: inline-block;
+        }
+
+/* Styles for bread crumb */
+        .bread-crumb-container {
+        	font-size: 13px;
+        	color: #FFFFFF;
+        	height: 45px;
+        	line-height: 45px;
+        }
+
+        .bread-crumb-container .member {
+        	text-decoration: none;
+        }
+
+        .bread-crumb-container .separator {
+        	padding: 0 5px;
+        }
+
+        .bread-crumb-container a:visited {
+        	color: #FFFFFF;
+        }
+
+        .bread-crumb-container a {
+        	color: #FFFFFF;
+        }
+
+        .bread-crumb-container a:hover {
+        	color: #FFFFFF;
+        }
+
+        .item-details-control-root .breadcrumb {
+        	background-color: #232323;
+        	color: #FFFFFF;
+        	height: 45px;
+        	line-height: 45px;
+        	font-size: 13px;
+        	min-width: 1250px;
+        }
+
+        .item-details-control-root .breadcrumb .vsCodeDownloadLinkContainer {
+            float: right;
+            color: inherit;
+        }
+
+/* end of bread crumb styles */
+
+/* Styles for item banner */
+        .ux-section-banner {
+        	padding: 16px 0px;
+        	background-color: #eff1f3;
+        	min-width: 1250px;
+        }
+
+        .item-details-control-root .ux-section-banner {
+        	padding: 32px 0px;
+        	background-color: #eff1f3;
+        }
+
+        .gallery-centered-content {
+        	width: 1160px;
+        	margin-left: auto;
+        	margin-right: auto;
+        	padding-left: 10px;
+        	padding-right: 10px;
+        }
+
+        table {
+        	border-collapse: collapse;
+        	border-spacing: 0;
+        	margin: 0;
+        	padding: 0;
+        	border: 0;
+        }
+
+        .item-details-control-root .item-img {
+        	text-align: center;
+        	vertical-align: top;
+        	width: 132px;
+        }
+
+        .item-details-control-root .item-img img {
+        	max-width: 128px;
+        	position: relative;
+        	visibility: hidden;
+        }
+
+        .item-details-control-root .item-header .item-header-content {
+        	font-size: 14px;
+        	margin-left: 32px;
+        }
+
+        .item-details-control-root .ux-item-name {
+        	font-size: 26px;
+        	font-weight: 600;
+        	display: inline-block;
+        	padding-right: 8px;
+        }
+
+        .item-details-control-root .ux-item-second-row-wrapper {
+        	margin-top: 4px;
+        }
+
+        .item-details-control-root .ux-item-second-row-wrapper>div {
+        	display: inline-block;
+        }
+
+        .item-details-control-root .ux-item-second-row-wrapper>div:nth-child(1) {
+        	margin-right: 10px;
+        }
+
+        .item-details-control-root .ux-item-second-row-wrapper>.ux-item-rating {
+        	margin-left: 10px;
+        	margin-right: 10px;
+        }
+
+        .item-details-control-root .ux-item-second-row-wrapper>.item-price-category {
+        	margin-left: 10px;
+        	margin-right: 10px;
+        }
+
+        .item-details-control-root .item-header h1,
+        .item-details-control-root .item-header h2 {
+        	margin: 0px;
+        	padding: 0px;
+        	display: inline-block;
+        	font-size: 0em;
+        	font-weight: normal;
+        }
+
+        .item-details-control-root .item-header .dark {
+        	color: #FFFFFF;
+        }
+
+        .item-details-control-root .ux-item-rating {
+        	font-size: 14px;
+        }
+        .item-details-control-root .ux-item-publisher {
+        	font-size: 18px;
+        }
+
+        .item-details-control-root .ux-item-publisher-link {
+        	font-size: 18px;
+        	font-weight: 600;
+        }
+
+        .item-details-control-root .ux-item-shortdesc {
+        	margin: 20px 0;
+        	width: 608px;
+        	line-height: 1.5;
+        	overflow: hidden;
+        }
+
+        .item-details-control-root .dark .item-banner-focussable-child-item:focus {
+        	outline: 1px dotted white;
+        }
+
+        .item-details-control-root .item-header .item-header-content.light .installHelpInfo a {
+            color: #000000;
+            text-decoration: underline;
+            border-color: #000000;
+        }
+
+        .item-details-control-root .item-header .item-header-content.dark .installHelpInfo a {
+        	color: #FFFFFF;
+        	text-decoration: underline;
+        }
+
+/* not unpublished */
+        
+            .one-click-install-container {
+                display: flex;
+            }
+
+            .installHelpInfo {
+                margin-left: 10px;
+            }
+
+            .installHelpInfo>a {
+                vertical-align: sub;
+            }
+
+            .textContainer-41 {
+                flex-grow: 1;
+            }
+
+            .flexContainer-40 {
+                display: flex;
+                height: 100%;
+                flex-wrap: nowrap;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .label-43 {
+                margin-top: 0px;
+                margin-right: 4px;
+                margin-bottom: 0px;
+                margin-left: 4px;
+                line-height: 100%;
+                font-weight: 600;
+            }
+        
+            .item-details-control-root .ux-button.install {
+                position: relative;
+                font-family: "Segoe UI", "Segoe UI Web (West European)", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+                -webkit-font-smoothing: antialiased;
+                font-size: 14px;
+                font-weight: 400;
+                box-sizing: border-box;
+                display: inline-block;
+                text-align: center;
+                cursor: pointer;
+                vertical-align: top;
+                padding-top: 0px;
+                padding-right: 16px;
+                padding-bottom: 0px;
+                padding-left: 16px;
+                min-width: 80px;
+                height: 32px;
+                background-color: rgb(244, 244, 244);
+                color: rgb(51, 51, 51);
+                user-select: none;
+                outline: transparent;
+                border-width: 1px;
+                border-style: solid;
+                border-color: transparent;
+                border-image: initial;
+                text-decoration: none;
+                border-radius: 0px;
+            }
+
+            .item-details-control-root .item-header-content .install-button-container .ux-button.install.buttonDisabled {
+                background-color: #AAAAAA;
+                color: #EEEEEE;
+                opacity: 1;
+                border: 1px solid #E6E6E6;
+            }
+
+            .item-details-control-root .item-header-content .install-button-container .ux-button.install.buttonDisabled:hover {
+                cursor: default;
+                opacity: 1;
+            }
+
+            .item-details-control-root .dark .ux-button.install {
+                background-color: #107c10;
+                color: #FFFFFF;
+                min-width: 120px;
+                border: 1px solid #FFFFFF;
+            }
+
+            .item-details-control-root .dark .ux-button.install:hover {
+                background-color: #AAAAAA;
+                opacity: 0.6;
+            }
+
+            .item-details-control-root .light .ux-button.install {
+                background-color: #107c10;
+                color: #FFFFFF;
+                min-width: 120px;
+                border: 1px solid #666666;
+            }
+
+            .item-details-control-root .light .ux-button.install:hover,
+            .item-details-control-root .light .ux-button.install:focus {
+                background-color: #074507;
+            }
+
+            .item-details-control-root .dark .ux-button.install:focus,
+            .item-details-control-root .light .ux-button.install:focus {
+                border: 1px dotted;
+            }
+
+        
+/* End of item banner styles. */
+
+/* Styles for item details overview */
+        .item-details-control-root .ux-section-details {
+        	margin: 24px 0 34px 0px;
+        	font-size: 13px;
+        }
+
+        .item-details-control-root .ux-section-details .itemdetails-section-header {
+        	font-size: 16px;
+        	font-weight: bold;
+        	color: #555;
+        	padding-bottom: 16px;
+        }
+
+        .item-details-control-root .ux-section-details .ux-section-details-table {
+        	width: 100%;
+        	table-layout: fixed;
+        }
+
+        .item-details-control-root .ux-itemdetails-left {
+        	vertical-align: top;
+        	font-size: 14px;
+        	padding-right: 20px;
+        }
+
+        .item-details-control-root .ux-itemdetails-right {
+            width: 34.45%;
+            vertical-align: top;
+            padding: 0 0 0 20px;
+        }
+
+        .item-details-control-root .itemDetails-right {
+            display: none;
+        }
+
+        .item-details-control-root .markdown {
+        	color: #333;
+        	line-height: 1.6;
+        	position: relative;
+        }
+
+        .item-details-control-root .markdown > *:first-child {
+        	margin-top: 0!important;
+        }
+
+        .item-details-control-root .markdown .link-header:target:before {
+        	content: "";
+        	display: block;
+        	height: 250px;
+        	margin: -250px 0 0;
+        }
+
+        .link-as-button {
+        	height: initial;
+        }
+
+        .link-as-button:hover {
+        	text-decoration: underline;
+        }
+
+        /* End of item details overview styles. */
+
+        /* Styles for footer */
+        #ux-footer {
+        	line-height: 1.2em;
+        }
+
+        #ux-footer:after {
+        	content: "";
+        	display: table;
+        	clear: both;
+        }
+
+        #ux-footer a {
+        	color: #595958;
+        }
+
+        #ux-footer a:hover {
+        	color: #3399ff;
+        }
+
+        #ux-footer ul.links {
+        	padding: 0;
+        	line-height: 1.2em;
+        }
+
+        #ux-footer .linkList>ul>li {
+        	list-style-type: none;
+        	background: none;
+        	padding: 4px 0;
+        	margin: 0;
+        }
+
+        #ux-footer #baseFooter {
+        	width: 1160px;
+        	padding: 15px 10px;
+        	margin: 0 auto;
+        }
+
+        #ux-footer #baseFooter:after {
+        	content: "";
+        	display: table;
+        	clear: both;
+        }
+
+        #ux-footer #baseFooter li {
+        	display: inline-block;
+        	list-style-type: none;
+        	margin: 0 15px 0 0;
+        }
+
+        #ux-footer #baseFooter #Fragment_BaseFooterLinks {
+        	text-align: right;
+        }
+
+        #ux-footer #baseFooter #rightBaseFooter {
+        	float: right;
+        	width: 18%;
+        	font-family: wf_segoe-ui, Tahoma, Helvetica, Sans-Serif;
+        	color: #595958;
+        	font-weight: bold;
+        }
+
+        #ux-footer span.microsoftLogo {
+        	display: inline-block;
+        	margin-left: 16px;
+        }
+
+        .microsoftLogo {
+        	background: url(https://cdn.vsassets.io/v/M170_20200611.2/_content/Header/ImageSprite.png) no-repeat -93px 0!important;
+        }
+
+        .microsoftLogo {
+        	width: 70px;
+        	height: 14px;
+        	overflow: hidden;
+        }
+
+        /* End of footer styles. */
+
+        /* Styles for markdown */
+        .markdown img {
+        	max-width: 100%;
+        }
+
+        .markdown h1,
+        .markdown h2 {
+        	line-height: 1.4;
+        	margin-top: 1em;
+        	margin-bottom: 16px;
+        }
+
+        .markdown h1 {
+        	font-size: 1.5em;
+        	line-height: 1.2em;
+        	border-bottom: 1px solid #eee;
+        	margin-top: 2em;
+        	padding-bottom: 10px;
+        }
+
+        .markdown h2 {
+        	font-size: 1.375em;
+        	line-height: 1.2em;
+        	border-bottom: 1px solid #eee;
+        	margin-top: 2em;
+        	padding-bottom: 10px;
+        }
+
+        .markdown h3 {
+        	font-size: 1.25em;
+        }
+
+        .markdown h4 {
+        	font-size: 1.125em;
+        }
+
+        .markdown h5 {
+        	font-size: 1.0em;
+        }
+
+        .markdown blockquote {
+            padding: 0 15px;
+            color: #777;
+            border-left: 4px solid #ddd;
+            margin: 0;
+        }
+
+        .markdown pre {
+            padding: 16px;
+            overflow: auto;
+            font-size: 85%;
+            line-height: 1.45;
+            background-color: #f7f7f7;
+            border-radius: 3px;
+            word-wrap: normal;
+            font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+        }
+
+        .markdown code, .markdown tt {
+        	padding: 0;
+        	background-color: rgba(0, 0, 0, 0.04);
+        	margin: 0;
+        	padding-top: 0.2em;
+        	padding-bottom: 0.2em;
+        	border-radius: 3px;
+        	font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+        }
+
+        .markdown pre > code {
+            background-color: inherit;
+        }
+
+        .markdown table {
+        	display: block;
+        	width: 100%;
+        	overflow: auto;
+        	word-break: normal;
+        	word-break: keep-all;
+        }
+
+        .markdown table th {
+        	font-weight: bold;
+        }
+
+        .markdown table th,
+        .markdown table td {
+        	padding: 6px 13px;
+        	border: 1px solid #ddd;
+        }
+
+        .markdown table tr {
+        	background-color: #fff;
+        	border-top: 1px solid #ccc;
+        }
+
+        .markdown table tr:nth-child(2n) {
+        	background-color: #f8f8f8;
+        }
+
+        /* End of markdown styles. */
+
+        .main-content.item-details-main-content {
+        	min-height: 950px;
+        }
+
+        .item-details-main-content {
+        	background-color: #FFFFFF;
+        }
+
+        .ms-Fabric {
+        	-moz-osx-font-smoothing: grayscale;
+        	-webkit-font-smoothing: antialiased;
+        	color: #333333;
+        	font-family: "Segoe UI Web (West European)", "Segoe UI", -apple-system, BlinkMacSystemFont, "Roboto", "Helvetica Neue", sans-serif;
+        	font-size: 14px;
+        }
+
+        .ms-Fabric button {
+        	font-family: inherit;
+        }
+
+        .ux-section-details-tabs {
+            margin-top: -20px;
+        }
+
+         @font-face {
+        	font-family: wf_segoe-ui;
+        	src: url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.eot");
+        	src: local("Segoe UI Light"), local("Segoe Light"), local("Segoe WP Light"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.eot?#iefix") format("embedded-opentype"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.woff2") format("woff2"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.woff") format("woff"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.ttf") format("truetype");
+        	font-weight: 200;
+        	font-style: normal;
+        	-webkit-font-smoothing: antialiased;
+        }
+
+        @font-face {
+        	font-family: wf_segoe-ui;
+        	src: url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/semilight/latest.eot");
+        	src: local("Segoe UI Semilight"), local("Segoe Semilight"), local("Segoe WP Semilight"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/semilight/latest.eot?#iefix") format("embedded-opentype"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/semilight/latest.woff2") format("woff2"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/semilight/latest.woff") format("woff"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/semilight/latest.ttf") format("truetype");
+        	font-weight: 300;
+        	font-style: normal;
+        }
+
+        @font-face {
+        	font-family: wf_segoe-ui;
+        	src: url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/normal/latest.eot");
+        	src: local("Segoe UI"), local("Segoe"), local("Segoe WP"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/normal/latest.eot?#iefix") format("embedded-opentype"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/normal/latest.woff2") format("woff2"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/normal/latest.woff") format("woff"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/normal/latest.ttf") format("truetype");
+        	font-weight: normal;
+        	font-style: normal;
+        }
+
+        @font-face {
+        	font-family: wf_segoe-ui;
+        	src: url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/Semibold/latest.eot");
+        	src: local("Segoe UI Semibold"), local("Segoe Semibold"), local("Segoe WP Semibold"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/Semibold/latest.eot?#iefix") format("embedded-opentype"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/Semibold/latest.woff2") format("woff2"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/Semibold/latest.woff") format("woff"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/Semibold/latest.ttf") format("truetype");
+        	font-weight: 500;
+        	font-style: normal;
+        }
+
+        @font-face {
+        	font-family: wf_segoe-ui;
+        	src: url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/Semibold/latest.eot");
+        	src: local("Segoe UI Semibold"), local("Segoe Semibold"), local("Segoe WP Semibold"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/Semibold/latest.eot?#iefix") format("embedded-opentype"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/Semibold/latest.woff2") format("woff2"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/Semibold/latest.woff") format("woff"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/Semibold/latest.ttf") format("truetype");
+        	font-weight: 600;
+        	font-style: normal;
+        }
+
+        @font-face {
+        	font-family: wf_segoe-ui;
+        	src: url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/bold/latest.eot");
+        	src: local("Segoe UI Bold"), local("Segoe Bold"), local("Segoe WP Bold"), local("Segoe UI"), local("Segoe"), local("Segoe WP"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/bold/latest.eot?#iefix") format("embedded-opentype"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/bold/latest.woff") format("woff"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/bold/latest.woff2") format("woff2"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/bold/latest.ttf") format("truetype");
+        	font-weight: bold;
+        	font-style: normal;
+        }
+
+        @font-face {
+        	font-family: wf_segoe-ui_light;
+        	src: url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.eot");
+        	src: local("Segoe UI Light"), local("Segoe Light"), local("Segoe WP Light"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.eot?#iefix") format("embedded-opentype"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.woff2") format("woff2"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.woff") format("woff"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.ttf") format("truetype");
+        	font-weight: normal;
+        	font-style: normal;
+        }
+
+        @font-face {
+        	font-family: 'bowtie';
+        	font-style: normal;
+        	font-weight: normal;
+        	src: url(https://cdn.vsassets.io/v/M170_20200611.2/_content/Fonts/Icons/bowtie.eot);
+        	src: url(https://cdn.vsassets.io/v/M170_20200611.2/_content/Fonts/Icons/bowtie.eot?iefix) format("embedded-opentype"), url(https://cdn.vsassets.io/v/M170_20200611.2/_content/Fonts/Icons/bowtie.woff) format("woff"), url(https://cdn.vsassets.io/v/M170_20200611.2/_content/Fonts/Icons/bowtie.svg#bowtie) format("svg");
+        }
+
+        /* top pub. style begin */
+        
+
+        /* top pub. style end */
+
+        /*rating review style begin*/
+        .item-details-control-root .ux-item-review-rating .ux-item-rating-control .rating-control .star {
+            min-width: 16px;
+            min-height: 16px;
+            height: 12px;
+            width: 12px;
+            padding-top: 0px;
+            margin: 0px 2px;
+        }
+
+        .item-details-control-root .ux-item-second-row-wrapper .ux-item-review-rating-wrapper {
+            text-decoration: none;
+            color: inherit;
+            padding-top: 1px;
+            padding-bottom: 3px;
+        }
+
+        .item-details-control-root .ux-item-second-row-wrapper .ux-item-review-rating-wrapper .ux-item-review-rating{
+            display: inline-flex;
+        }
+
+        .item-details-control-root .ux-item-second-row-wrapper .ux-item-review-rating-wrapper .ux-item-review-rating .ux-item-rating-control {
+            margin-left: 10px;
+            top: 2px;
+            position: relative;
+        }
+
+        .item-details-control-root .ux-item-second-row-wrapper .ux-item-review-rating-wrapper .ux-item-review-rating .ux-item-rating-count {
+            margin-left: 5px;
+            font-size: 16px;
+            margin-top: -1px;
+            margin-right: 8px;
+        }
+
+        /*rating review style end*/
+        /*Spinner*/
+        .loader-container {
+            text-align: -webkit-center;
+            text-align: -mozkit-center;
+        }
+
+        .loader {
+            border: 3px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: solid #808080;
+            width: 30px;
+            height: 30px;
+            -webkit-animation: spin 2s linear infinite;
+            animation: spin 2s linear infinite;
+        }
+
+        @-webkit-keyframes spin {
+            0% { -webkit-transform: rotate(0deg); }
+            100% { -webkit-transform: rotate(360deg); }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        </style>
+
+        <script type="text/javascript"  nonce="1oBUckegXBLjvYipvOGhCw==">
+            function sue(em, s, l, c, eo){var w=window,p="ue";w[p]=w[p]||[];w[p].push({"em":em,"s":s,"l":l,"c":c,"eo":eo});return false;}
+            window.onerror = sue;
+
+        isServerSideRendering = function () {
+            try {
+                return !(document !== undefined);
+            }
+            catch (e) {
+                return true;
+            }
+         };
+
+        redirectToNonSSR = function(area) {
+            var fqn = document.getElementById("FQN").value;
+            var galleryUrl = document.getElementById("galleryUrl").value;
+            window.location.assign(window.location.origin + galleryUrl +"items?itemName=" + fqn + "&ssr=false" + area);
+        }
+        
+        hideAndShowTabs = function(tabToShow) {
+            var currentTab = document.getElementsByClassName("selected-tab");
+            currentTab[0].style.display = "none";
+            currentTab[0].classList.remove("selected-tab");
+
+            var selectedTab =  document.getElementById(tabToShow);
+            selectedTab.classList.add("selected-tab");
+            selectedTab.style.display = "block";
+        }
+
+        if (!isServerSideRendering()) {
+            document.addEventListener('DOMContentLoaded', function() {
+                
+                        document.getElementById("qna").addEventListener("click", function(e) {
+                            redirectToNonSSR("#qna");   
+                        });
+                    
+                        document.getElementById("rnr").addEventListener("click", function(e) {
+                            redirectToNonSSR("#review-details");
+                        });
+                        document.getElementById("review-details").addEventListener("click", function(e) {
+                        redirectToNonSSR("#review-details");
+                        });
+                    
+                    // vscode copy command handlings
+                    let copyCommandInput = document.getElementById("vscode-command-input");
+                    if(copyCommandInput) {
+                        copyCommandInput.addEventListener("click", function(e) {
+                            e.target.select();
+                        });
+                        document.getElementById("copy-to-clipboard-button").addEventListener("click", function(e) {
+                            document.getElementById("vscode-command-input").select();
+                            var successful = document.execCommand('copy');
+                            if(successful) {
+                                var element = document.getElementById("copied-animation");
+                                element.style.display = "block";
+                            }
+                        });
+                    }
+                
+
+                // add handler for search
+                document.getElementById("Fragment_SearchBox").addEventListener("submit", function(e) {
+                    e.preventDefault();
+                    var queryText = document.getElementById("header-search-textbox").value;
+                    var galleryUrl = document.getElementById("galleryUrl").value;
+                    var searchTarget = document.getElementById("searchTarget").value;
+                    window.location = window.location.origin + galleryUrl +"search?term=" + queryText + "&target=" + searchTarget;
+                });
+                let acqBtn = document.getElementsByClassName("install-button-container");
+                if (acqBtn && acqBtn[0]) {
+                    acqBtn[0].onclick = function(event) {var w=window,p="ciEvents";w[p]=w[p]||[];w[p].push({"acquisition": true, "event": event});};
+                }
+
+                
+
+           });
+        }
+    </script>
+    <title>
+        GitLens &#8212; Git supercharged - Visual Studio Marketplace
+    </title>
+
+</head>
+<a href="#start-of-content" class="skip-main">Skip to content</a>
+<body class="platform gallery gallery-page-item-details">
+    <div class="uxservices-header" role="banner">
+        <div class="upperBandContent">
+            <a href="/" title="|   Marketplace" class="left" >
+                <img class="vs-logo-header" aria-label="Visual Studio logo" src="https://cdn.vsassets.io/v/M170_20200611.2/_content/Header/vs-logo.png"/>
+                <div id="marketPlaceLogoLink" class="marketPlaceLogoLink marketplacetext-header" aria-label="Marketplace logo">|   Marketplace</div>
+            </a>
+            <div class="right" style="float: right;">
+                
+                    <div class="signIn">
+                        
+                            <a href="https://app.vssps.visualstudio.com/_signin?realm=marketplace.visualstudio.com&amp;reply_to=https%3A%2F%2Fmarketplace.visualstudio.com%2Fitems%3FitemName%3Deamodio.gitlens&amp;redirect=1&amp;context=eyJodCI6MywiaGlkIjoiMjY2M2IxM2YtNTBlMy1hNjU1LWExNTktMjJmNmY0NzI1ZmFiIiwicXMiOnt9LCJyciI6IiIsInZoIjoiIiwiY3YiOiIiLCJjcyI6IiJ90&amp;workflowId=marketplace&amp;wt.mc_id=o~msft~marketplace~signIn#ctx=eyJTaWduSW5Db29raWVEb21haW5zIjpbImh0dHBzOi8vbG9naW4ud2luZG93cy5uZXQiLCJodHRwczovL2xvZ2luLm1pY3Jvc29mdG9ubGluZS5jb20iXX01" class="scarabLink" style="margin-left:23px;padding-top:1px;color:#fff;font-weight:400;">
+                                Sign in
+                            </a>
+                        
+                    </div>
+                
+                <form id="Fragment_SearchBox" class="header-search" aria-label="search" role="search" data-fragmentname="SearchBox">
+                    <input id="header-search-textbox" class="header-search-textbox" aria-label="search" max-length="200" type="text" autocomplete="off">
+                    <button id="header-search-button" class="header-search-button" aria-label="search" type="submit"></button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="skiptarget" id="start-of-content"></div>
+    <div id="react_0HM0DV5RVRUB7"><div data-reactroot=""><div class="item-details-control-root"><div class="breadcrumb"><div class="gallery-centered-content"><span class="bread-crumb-container"><a class="member" href="/vscode">Visual Studio Code</a><span class="separator">&gt;</span><a class="member" href="/search?sortBy=Installs&amp;category=Other&amp;target=VSCode">Other</a><span class="separator">&gt;</span><span class="member">GitLens — Git supercharged</span></span><span class="vsCodeDownloadLinkContainer"><span>New to Visual Studio Code?</span> <a class="vsCodeDownloadLink" href="https://go.microsoft.com/fwlink?linkid=846418&amp;pub=eamodio&amp;ext=gitlens&amp;utm_source=vsmp&amp;utm_campaign=mpdetails" target="_blank" rel="noreferrer noopener" aria-label="Get Visual Studio Code Now">Get it now.</a></span></div></div><div class="main-content item-details-main-content" id="vss_1"><div class="item-details-control-root"><div class="ux-item-details"><div class="ux-section-banner" id="section-banner" style="background-color:#8647ae"><div class="ux-section-core gallery-centered-content"><table role="presentation"><tbody><tr><td class="item-img" id="vss_2"><img class="image-display" alt="" src="https://eamodio.gallerycdn.vsassets.io/extensions/eamodio/gitlens/10.2.2/1591818157905/Microsoft.VisualStudio.Services.Icons.Default" style="top:0.5px;visibility:visible"/></td><td class="item-header"><div class="item-header-content dark"><h1><span class="ux-item-name">GitLens — Git supercharged</span></h1><div class="ux-item-second-row-wrapper"><div class="ux-item-publisher"><h2 role="presentation"><a class="ux-item-publisher-link item-banner-focussable-child-item" href="publishers/eamodio" aria-label="More from Eric Amodio publisher" style="color:#ffffff">Eric Amodio</a></h2></div><span class="divider"> | </span><div class="ux-item-rating"><div class="bowtie-icon bowtie-install"></div><span class="installs-text" title="The number of unique installations, not including updates."> 5,522,045 installs</span></div><a id="review-details" href="#review-details" class="ux-item-review-rating-wrapper" aria-label="Average rating: 4.9 out of 5. Navigate to user reviews."><span class="ux-item-review-rating" title="Average rating: 4.9 out of 5"><span class="divider"> | </span><span class="ux-item-rating-control"><span class="rating-control"><img class="star full-star" alt="" aria-label="1 star" src="https://cdn.vsassets.io/v/M170_20200611.2/_content/FullStarLight.svg"/><img class="star full-star" alt="" aria-label="2 star" src="https://cdn.vsassets.io/v/M170_20200611.2/_content/FullStarLight.svg"/><img class="star full-star" alt="" aria-label="3 star" src="https://cdn.vsassets.io/v/M170_20200611.2/_content/FullStarLight.svg"/><img class="star full-star" alt="" aria-label="4 star" src="https://cdn.vsassets.io/v/M170_20200611.2/_content/FullStarLight.svg"/><img class="star full-star" alt="" aria-label="5 star" src="https://cdn.vsassets.io/v/M170_20200611.2/_content/FullStarLight.svg"/></span></span><span class="ux-item-rating-count"> (<span>370</span>)</span></span></a><span class="divider"> | </span><span class="item-price-category">Free</span></div><div class="ux-item-shortdesc">Supercharge the Git capabilities built into Visual Studio Code — Visualize code authorship at a glance via Git blame annotations and code lens, seamlessly navigate and explore Git repositories, gain valuable insights via powerful comparison commands, and so much more</div><div class="ux-item-action"><div class="installButtonContainer"><div class="one-click-install-container"><div><div class="ms-Fabric"><span class="ux-oneclick-install-button-container"><a href="vscode:extension/eamodio.gitlens" class="ms-Button ux-button install ms-Button--default root-39"><div class="ms-Button-flexContainer flexContainer-40"><div class="ms-Button-textContainer textContainer-41"><div class="ms-Button-label label-43" id="id__0">Install</div></div></div></a></span></div></div><span class="installHelpInfo"><a href="https://aka.ms/vscode_extn_install" target="_blank" rel="noreferrer noopener" class="dark">Trouble Installing?<i class="bowtie-icon bowtie-navigate-external"></i></a></span></div></div><div style="display:none"><input type="text" id="FQN" readonly="" value="eamodio.gitlens"/><input type="text" id="galleryUrl" readonly="" value="/"/><input type="text" id="searchTarget" readonly="" value="VSCode"/></div></div></div></td></tr></tbody></table></div></div><div class="gallery-centered-content"><div class="ux-section-details"><div class="ms-Fabric ux-section-details-tabs"><div class="gallery-centered-content"><div class="tab"><button id="overview" class="selected">Overview</button><button id="qna">Q &amp; A</button><button id="rnr">Rating &amp; Review</button></div><div class="tabcontent"><div id="overviewTab" class="overview selected-tab"><div class="details-tab itemdetails"><table class="ux-section-details-table" role="presentation"><tbody><tr><td class="ux-itemdetails-left"><div class="itemDetails"><div class="markdown"><p><a href="https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens" target=_blank rel="noreferrer noopener"><img src="https://vsmarketplacebadge.apphb.com/version-short/eamodio.gitlens.svg" alt=""></a>
+<a href="https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens" target=_blank rel="noreferrer noopener"><img src="https://vsmarketplacebadge.apphb.com/downloads-short/eamodio.gitlens.svg" alt=""></a>
+<a href="https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens" target=_blank rel="noreferrer noopener"><img src="https://vsmarketplacebadge.apphb.com/rating-short/eamodio.gitlens.svg" alt=""></a>
+<a href="https://aka.ms/vsls-gitlens" target=_blank rel="noreferrer noopener"><img src="https://aka.ms/vsls-badge" alt=""></a>
+<a href="https://vscode-slack.amod.io" target=_blank rel="noreferrer noopener"><img src="https://img.shields.io/badge/vscode--dev--community-gitlens-blue.svg?logo=slack&amp;labelColor=555555" alt=""></a></p>
+<p align=center>
+  <br>
+  <a title="Learn more about GitLens" href="https://gitlens.amod.io"><img src="https://raw.githubusercontent.com/eamodio/vscode-gitlens/master/images/docs/gitlens-logo.png" alt="GitLens Logo"></a>
+</p>
+<blockquote>
+<p>GitLens <strong>supercharges</strong> the Git capabilities built into Visual Studio Code. It helps you to <strong>visualize code authorship</strong> at a glance via Git blame annotations and code lens, <strong>seamlessly navigate and explore</strong> Git repositories, <strong>gain valuable insights</strong> via powerful comparison commands, and so much more.</p>
+</blockquote>
+<h2 id=support-gitlens>Support GitLens</h2>
+<table>
+<thead>
+<tr>
+<th>Sponsored by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><p align=center style="font-size:10px;font-weight:400;margin:8px 0 8px 0;"><a href="https://codestream.com/?utm_source=vscmarket&amp;utm_medium=banner&amp;utm_campaign=gitlens" target=_blank rel="noreferrer noopener" title="Try CodeStream"><img src="https://alt-images.codestream.com/codestream_logo_gitlens_vscmarket.png" alt=""></a><br>Discuss, review, and share code with your team in VS Code. Links discussions about code to your code. Integrates w/ Slack, Jira, Trello, and Live Share. <strong><a href="https://codestream.com/?utm_source=vscmarket&amp;utm_medium=banner&amp;utm_campaign=gitlens" target=_blank rel="noreferrer noopener" title="Try CodeStream">Try it free</a></strong></p></td>
+</tr>
+</tbody>
+</table>
+<p>While GitLens is generously offered to everyone free of charge, if you find it useful, please consider <a href="https://gitlens.amod.io/#support-gitlens" target=_blank rel="noreferrer noopener"><strong>supporting</strong></a> it.</p>
+<ul>
+<li><a href="https://www.patreon.com/eamodio" target=_blank rel="noreferrer noopener" title="Become a sponsor on Patreon"><strong>Become a Sponsor</strong></a> — join the growing group of generous <a href="https://github.com/eamodio/vscode-gitlens/blob/master/BACKERS.md" target=_blank rel="noreferrer noopener">backers</a></li>
+<li><a href="https://www.paypal.me/eamodio" target=_blank rel="noreferrer noopener" title="Donate via PayPal"><strong>Donate via PayPal</strong></a> or <a href="https://cash.me/$eamodio" target=_blank rel="noreferrer noopener" title="Donate via Cash App"><strong>Donate via Cash App</strong></a></li>
+</ul>
+<p>Also please <a href="https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens#review-details" target=_blank rel="noreferrer noopener" title="Write a review">write a review</a>, <a href="https://github.com/eamodio/vscode-gitlens" target=_blank rel="noreferrer noopener" title="Star me on GitHub">star me on GitHub</a>, and <a href="https://twitter.com/eamodio" target=_blank rel="noreferrer noopener" title="Follow me on Twitter">follow me on Twitter</a></p>
+<h1 id=whats-new-in-gitlens-10>What's new in GitLens 10</h1>
+<ul>
+<li>Adds all-new iconography to better match VS Code's new visual style</li>
+<li>Adds an all-new Welcome experience with a simple quick setup of common GitLens features</li>
+<li>Adds a new and improved interactive Settings editor experience</li>
+<li>Adds a new and improved <em>Git Commands</em> experience</li>
+<li>Adds an all-new commit search experience — complete with ability to match on more than one search pattern</li>
+<li>Adds a <em>Reveal Commit in Repositories View</em> command to reveal the current commit in the <em>Repositories</em> view</li>
+<li>Adds a <em>Show Commits within Selection in Search Commits View</em> command to show all the commits within the current selection in the <em>Search Commits</em> view</li>
+<li>Adds new actions options to the Git Code Lens</li>
+<li>Adds ability to sort branches and tags in quick pick menus and views</li>
+<li>And much more</li>
+</ul>
+<p>See the <a href="https://github.com/eamodio/vscode-gitlens/blob/master/CHANGELOG.md" target=_blank rel="noreferrer noopener" title="Open Release Notes">release notes</a> for the full set of changes</p>
+<h1 id=gitlens>GitLens</h1>
+<p><a href="https://gitlens.amod.io" target=_blank rel="noreferrer noopener" title="Learn more about GitLens">GitLens</a> is an <a href="https://github.com/eamodio/vscode-gitlens" target=_blank rel="noreferrer noopener" title="Open GitLens on GitHub">open-source</a> extension for <a href="https://code.visualstudio.com" target=_blank rel="noreferrer noopener">Visual Studio Code</a> created by <a href="https://www.amod.io" target=_blank rel="noreferrer noopener" title="Learn more about Eric">Eric Amodio</a>.</p>
+<p>GitLens simply helps you <strong>better understand code</strong>. Quickly glimpse into whom, why, and when a line or code block was changed. Jump back through history to <strong>gain further insights</strong> as to how and why the code evolved. Effortlessly explore the history and evolution of a codebase.</p>
+<p>GitLens, while <strong>powerful and feature rich</strong>, is also <a href="#gitlens-settings-" rel="noreferrer noopener" title="Jump to the GitLens settings docs">highly customizable</a> to meet your needs. Do you find code lens intrusive or the current line blame annotation distracting — no problem, quickly turn them off or change how they behave via the interactive <a href="#configuration" rel="noreferrer noopener" title="Jump to Configuration"><em>GitLens Settings</em> editor</a>. For advanced customizations, refer to the <a href="#gitlens-settings-" rel="noreferrer noopener" title="Jump to the GitLens settings">GitLens docs</a> and edit your <a href="https://code.visualstudio.com/docs/getstarted/settings" target=_blank rel="noreferrer noopener" title="Open User settings">user settings</a>.</p>
+<p>Here are just some of the <strong>features</strong> that GitLens provides,</p>
+<ul>
+<li>an unobtrusive <a href="#current-line-blame-" rel="noreferrer noopener" title="Jump to the Current Line Blame"><strong>current line blame</strong></a> annotation at the end of the line with detailed blame information accessible via <a href="#hovers-" rel="noreferrer noopener" title="Jump to Hovers"><strong>hovers</strong></a></li>
+<li><a href="#git-code-lens-" rel="noreferrer noopener" title="Jump to the Git Code Lens"><strong>authorship code lens</strong></a> showing the most recent commit and # of authors to the top of files and/or on code blocks</li>
+<li>a <a href="#status-bar-blame-" rel="noreferrer noopener" title="Jump to the Status Bar Blame"><strong>status bar blame</strong></a> annotation showing author and date for the current line</li>
+<li>many rich Side Bar views
+<ul>
+<li>a <a href="#repositories-view-" rel="noreferrer noopener" title="Jump to the Repositories view"><strong><em>Repositories</em> view</strong></a> to visualize, navigate, and explore Git repositories</li>
+<li>a <a href="#file-history-view-" rel="noreferrer noopener" title="Jump to the File History view"><strong><em>File History</em> view</strong></a> to visualize, navigate, and explore the revision history of the current file</li>
+<li>a <a href="#line-history-view-" rel="noreferrer noopener" title="Jump to the Line History view"><strong><em>Line History</em> view</strong></a> to visualize, navigate, and explore the revision history of the selected lines of current file</li>
+<li>a <a href="#search-commits-view-" rel="noreferrer noopener" title="Jump to the Search Commits view"><strong><em>Search Commits</em> view</strong></a> to search and explore commit histories by message, author, files, id, etc</li>
+<li>a <a href="#compare-view-" rel="noreferrer noopener" title="Jump to the Compare view"><strong><em>Compare</em> view</strong></a> to visualize comparisons between branches, tags, commits, and more</li>
+</ul>
+</li>
+<li>on-demand <a href="#gutter-blame-" rel="noreferrer noopener" title="Jump to the Gutter Blame"><strong>gutter blame</strong></a> annotations, including a heatmap, for the whole file</li>
+<li>on-demand <a href="#gutter-heatmap-" rel="noreferrer noopener" title="Jump to the Gutter Heatmap"><strong>gutter heatmap</strong></a> annotations to show how recently lines were changed, relative to all the other changes in the file and to now (hot vs. cold)</li>
+<li>on-demand <a href="#recent-changes-" rel="noreferrer noopener" title="Jump to the Recent Changes"><strong>recent changes</strong></a> annotations to highlight lines changed by the most recent commit</li>
+<li>many <a href="#navigate-and-explore-" rel="noreferrer noopener" title="Jump to the Navigate and Explorer"><strong>powerful commands</strong></a> for exploring commits and histories, comparing and navigating revisions, stash access, repository status, etc</li>
+<li>user-defined <a href="#modes-" rel="noreferrer noopener" title="Jump to the Modes"><strong>modes</strong></a> for quickly toggling between sets of settings</li>
+<li>and so much <a href="#and-more-" rel="noreferrer noopener" title="Jump to More"><strong>more</strong></a></li>
+</ul>
+<p align=center>
+  <br>
+  <img src="https://raw.githubusercontent.com/eamodio/vscode-gitlens/master/images/docs/gitlens-preview.gif" alt="GitLens Preview">
+  <br>
+</p>
+<h1 id=configuration>Configuration</h1>
+<p align=center>
+  <img src="https://raw.githubusercontent.com/eamodio/vscode-gitlens/master/images/docs/settings.png" alt="GitLens Interactive Settings">
+</p>
+<p>GitLens has a built-in <strong>interactive settings editor</strong> which provides an easy-to-use interface to configure many of GitLens' powerful features. It can be accessed via the <em>GitLens: Open Settings</em> (<code>gitlens.showSettingsPage</code>) command from the <a href="https://code.visualstudio.com/docs/getstarted/userinterface#_command-palette" target=_blank rel="noreferrer noopener"><em>Command Palette</em></a>.</p>
+<p>For more advanced customizations, refer to the <a href="#gitlens-settings-" rel="noreferrer noopener" title="Jump to the GitLens settings docs">settings documentation</a> below.</p>
+<h1 id=features>Features</h1>
+<h3 id=current-line-blame>Current Line Blame <a href="#current-line-blame-" rel="noreferrer noopener" title="Current Line Blame">#</a></h3>
+<p align=center>
+  <img src="https://raw.githubusercontent.com/eamodio/vscode-gitlens/master/images/docs/current-line-blame.png" alt="Current Line Blame">
+</p>
+<ul>
+<li>Adds an unobtrusive, <a href="#current-line-blame-settings-" rel="noreferrer noopener" title="Jump to the Current Line Blame settings">customizable</a>, and <a href="#themable-colors-" rel="noreferrer noopener" title="Jump to the Themable Colors">themable</a>, <strong>blame annotation</strong> at the end of the current line
+<ul>
+<li>Contains the author, date, and message of the current line's most recent commit (by <a href="#current-line-blame-settings-" rel="noreferrer noopener" title="Jump to the Current Line Blame settings">default</a>)</li>
+<li>Adds a <em>Toggle Line Blame Annotations</em> command (<code>gitlens.toggleLineBlame</code>) to toggle the blame annotation on and off</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id=git-code-lens>Git Code Lens <a href="#git-code-lens-" rel="noreferrer noopener" title="Git Code Lens">#</a></h3>
+<p align=center>
+  <img src="https://raw.githubusercontent.com/eamodio/vscode-gitlens/master/images/docs/code-lens.png" alt="Git Code Lens">
+</p>
+<ul>
+<li><p>Adds Git authorship <strong>code lens</strong> to the top of the file and on code blocks (<a href="#git-code-lens-settings-" rel="noreferrer noopener" title="Jump to the Git Code Lens settings">optional</a>, on by default)</p>
+<ul>
+<li><p><strong>Recent Change</strong> — author and date of the most recent commit for the file or code block</p>
+<ul>
+<li>Click the code lens to show a <strong>commit file details quick pick menu</strong> with commands for comparing, navigating and exploring commits, and more (by <a href="#git-code-lens-settings-" rel="noreferrer noopener" title="Jump to the Code Lens settings">default</a>)</li>
+</ul>
+</li>
+<li><p><strong>Authors</strong> — number of authors of the file or code block and the most prominent author (if there is more than one)</p>
+<ul>
+<li>Click the code lens to toggle the file Git blame annotations on and off of the whole file (by <a href="#git-code-lens-settings-" rel="noreferrer noopener" title="Jump to the Git Code Lens settings">default</a>)</li>
+<li>Will be hidden if the author of the most recent commit is also the only author of the file or block, to avoid duplicate information and reduce visual noise</li>
+</ul>
+</li>
+<li><p>Provides <a href="#git-code-lens-settings-" rel="noreferrer noopener" title="Jump to the Git Code Lens settings">customizable</a> click behavior for each code lens — choose between one of the following</p>
+<ul>
+<li>Toggle file blame annotations on and off</li>
+<li>Compare the commit with the previous commit</li>
+<li>Show a quick pick menu with details and commands for the commit</li>
+<li>Show a quick pick menu with file details and commands for the commit</li>
+<li>Show a quick pick menu with the commit history of the file</li>
+<li>Show a quick pick menu with the commit history of the current branch</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Adds a <em>Toggle Git Code Lens</em> command (<code>gitlens.toggleCodeLens</code>) with a shortcut of <code>shift+alt+b</code> to toggle the code lens on and off</p>
+</li>
+</ul>
+<hr>
+<h3 id=status-bar-blame>Status Bar Blame <a href="#status-bar-blame-" rel="noreferrer noopener" title="Status Bar Blame">#</a></h3>
+<p align=center>
+  <img src="https://raw.githubusercontent.com/eamodio/vscode-gitlens/master/images/docs/status-bar.png" alt="Status Bar Blame">
+</p>
+<ul>
+<li><p>Adds a <a href="#status-bar-settings-" rel="noreferrer noopener" title="Jump to the Status Bar Blame settings">customizable</a> <strong>Git blame annotation</strong> about the current line to the <strong>status bar</strong> (<a href="#status-bar-settings-" rel="noreferrer noopener" title="Jump to the Status Bar Blame settings">optional</a>, on by default)</p>
+<ul>
+<li><p>Contains the commit author and date (by <a href="#status-bar-settings-" rel="noreferrer noopener" title="Jump to the Status Bar Blame settings">default</a>)</p>
+</li>
+<li><p>Click the status bar item to show a <strong>commit details quick pick menu</strong> with commands for comparing, navigating and exploring commits, and more (by <a href="#status-bar-settings-" rel="noreferrer noopener" title="Jump to the Status Bar Blame settings">default</a>)</p>
+</li>
+<li><p>Provides <a href="#status-bar-settings-" rel="noreferrer noopener" title="Jump to the Status Bar Blame settings">customizable</a> click behavior — choose between one of the following</p>
+<ul>
+<li>Toggle file blame annotations on and off</li>
+<li>Toggle code lens on and off</li>
+<li>Compare the line commit with the previous commit</li>
+<li>Compare the line commit with the working tree</li>
+<li>Show a quick pick menu with details and commands for the commit (default)</li>
+<li>Show a quick pick menu with file details and commands for the commit</li>
+<li>Show a quick pick menu with the commit history of the file</li>
+<li>Show a quick pick menu with the commit history of the current branch</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id=hovers>Hovers <a href="#hovers-" rel="noreferrer noopener" title=Hovers>#</a></h3>
+<h4 id=current-line-hovers>Current Line Hovers</h4>
+<p align=center>
+  <img src="https://raw.githubusercontent.com/eamodio/vscode-gitlens/master/images/docs/hovers-current-line.png" alt="Current Line Hovers">
+</p>
+<ul>
+<li>Adds <a href="#hover-settings-" rel="noreferrer noopener" title="Jump to the Hover settings">customizable</a> Git blame hovers accessible over the current line</li>
+</ul>
+<h5 id=details-hover>Details Hover</h5>
+  <p align=center>
+    <img src="https://raw.githubusercontent.com/eamodio/vscode-gitlens/master/images/docs/hovers-current-line-details.png" alt="Current Line Details Hover">
+  </p>
+<ul>
+<li>Adds a <strong>details hover</strong> annotation to the current line to show more commit details (<a href="#hover-settings-" rel="noreferrer noopener" title="Jump to the Hover settings">optional</a>, on by default)
+<ul>
+<li>Provides <strong>automatic issue linking</strong> to Bitbucket, GitHub, GitLab, and Azure DevOps in commit messages</li>
+<li>Provides a <strong>quick-access command bar</strong> with <em>Open Changes</em>, <em>Blame Previous Revision</em>, <em>Open on Remote</em>, <em>Invite to Live Share</em> (if available), and <em>Show More Actions</em> command buttons</li>
+<li>Click the commit id to execute the <em>Show Commit Details</em> command</li>
+</ul>
+</li>
+</ul>
+<h5 id=changes-diff-hover>Changes (diff) Hover</h5>
+<p align=center>
+  <img src="https://raw.githubusercontent.com/eamodio/vscode-gitlens/master/images/docs/hovers-current-line-changes.png" alt="Current Line Changes (diff) Hover">
+</p>
+<ul>
+<li>Adds a <strong>changes (diff) hover</strong> annotation to the current line to show the line's previous version (<a href="#hover-settings-" rel="noreferrer noopener" title="Jump to the Hover settings">optional</a>, on by default)
+<ul>
+<li>Click the <strong>Changes</strong> to execute the <em>Open Changes</em> command</li>
+<li>Click the current and previous commit ids to execute the <em>Show Commit Details</em> command</li>
+</ul>
+</li>
+</ul>
+<h4 id=annotation-hovers>Annotation Hovers</h4>
+<p align=center>
+  <img src="https://raw.githubusercontent.com/eamodio/vscode-gitlens/master/images/docs/hovers-annotations.png" alt="Annotation Hovers">
+</p>
+<ul>
+<li>Adds <a href="#hover-settings-" rel="noreferrer noopener" title="Jump to the Hover settings">customizable</a> Git blame hovers accessible when annotating</li>
+</ul>
+<h5 id=details-hover-1>Details Hover</h5>
+  <p align=center>
+    <img src="https://raw.githubusercontent.com/eamodio/vscode-gitlens/master/images/docs/hovers-annotations-details.png" alt="Annotations Details Hover">
+  </p>
+<ul>
+<li>Adds a <strong>details hover</strong> annotation to each line while annotating to show more commit details (<a href="#hover-settings-" rel="noreferrer noopener" title="Jump to the Hover settings">optional</a>, on by default)
+<ul>
+<li>Provides <strong>automatic issue linking</strong> to Bitbucket, GitHub, GitLab, and Azure DevOps in commit messages</li>
+<li>Provides a <strong>quick-access command bar</strong> with <em>Open Changes</em>, <em>Blame Previous Revision</em>, <em>Open on Remote</em>, <em>Invite to Live Share</em> (if available), and <em>Show More Actions</em> command buttons</li>
+<li>Click the commit id to execute the <em>Show Commit Details</em> command</li>
+</ul>
+</li>
+</ul>
+<h5 id=changes-diff-hover-1>Changes (diff) Hover</h5>
+<p align=center>
+  <img src="https://raw.githubusercontent.com/eamodio/vscode-gitlens/master/images/docs/hovers-annotations-changes.png" alt="Annotations Changes (diff) Hover">
+</p>
+<ul>
+<li>Adds a <strong>changes (diff) hover</strong> annotation to each line while annotating to show the line's previous version (<a href="#hover-settings-" rel="noreferrer noopener" title="Jump to the Hover settings">optional</a>, on by default)
+<ul>
+<li>Click the <strong>Changes</strong> to execute the <em>Open Changes</em> command</li>
+<li>Click the current and previous commit ids to execute the <em>Show Commit Details</em> command</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id=side-bar-views>Side Bar Views</h2>
+<h3 id=repositories-view>Repositories view <a href="#repositories-view-" rel="noreferrer noopener" title="Repositories view">#</a></h3>
+<p align=center>
+  <img src="https://raw.githubusercontent.com/eamodio/vscode-gitlens/master/images/docs/view-repositories.png" alt="Repositories view">
+</p>
+<p>A <a href="#repositories-view-settings-" rel="noreferrer noopener" title="Jump to the Repositories view settings">customizable</a> view to visualize, navigate, and explore Git repositories</p>
+<ul>
+<li>A toolbar provides quick access to the <em>Push Repositories</em>, <em>Pull Repositories</em>, <em>Fetch Repositories</em>, and <em>Refresh</em> commands
+<ul>
+<li>A context menu provides <em>Automatic Layout</em>, <em>List Layout</em>, <em>Tree Layout</em>, <em>Enable Automatic Refresh</em> or <em>Disable Automatic Refresh</em>, <em>Open Settings</em> commands</li>
+</ul>
+</li>
+</ul>
+<p>The repositories view provides the following features,</p>
+<ul>
+<li><p><strong>Repositories</strong> — lists the opened repositories</p>
+<ul>
+<li>Provides the name of each repository, the name of its current branch, <a href="#repositories-view-settings-" rel="noreferrer noopener" title="Jump to the Repositories view settings">optionally</a> its working tree status, and when it was last fetched
+<ul>
+<li>Indicator dots on each repository icon denote the following:
+<ul>
+<li><em>None</em> — no upstream or up-to-date with the upstream</li>
+<li><em>Green</em> — ahead of the upstream</li>
+<li><em>Red</em> — behind the upstream</li>
+<li><em>Yellow</em> — both ahead of and behind the upstream</li>
+</ul>
+</li>
+<li>An inline toolbar provides quick access to the <em>Add to Favorites</em> (when applicable), <em>Remove from Favorites</em> (when applicable), <em>Search Commits</em>, <em>Push</em> (<code>alt-click</code> for <em>Push (force)</em>), <em>Pull</em>, and <em>Fetch</em> commands</li>
+<li>A context menu provides access to more common repository commands</li>
+<li><strong>Current Branch</strong> — lists the revision (commit) history of the current branch and <a href="#repositories-view-settings-" rel="noreferrer noopener" title="Jump to the Repositories view settings">optionally</a> shows its remote tracking branch and status (if available)
+<ul>
+<li>An inline toolbar provides quick access to the <em>Compare with Remote</em> (if available), <em>Compare with Working Tree</em>, and <em>Open Branch on Remote</em> (if available) commands</li>
+<li>A context menu provides access to more common branch commands</li>
+</ul>
+</li>
+<li><strong>* Commits Behind</strong> — quickly see and explore the specific commits behind the upstream (i.e. commits that haven't been pulled)
+<ul>
+<li>Only provided if the current branch is tracking a remote branch and is behind it</li>
+<li>An inline toolbar provides quick access to the <em>Pull</em> command</li>
+</ul>
+</li>
+<li><strong>* Commits Ahead</strong> — quickly see and explore the specific commits ahead of the upstream (i.e. commits that haven't been pushed)
+<ul>
+<li>Only provided if the current branch is tracking a remote branch and is ahead of it</li>
+<li>An inline toolbar provides quick access to the <em>Push</em> (<code>alt-click</code> for <em>Push (force)</em>) command</li>
+</ul>
+</li>
+<li><strong>* Files Changed</strong> — lists all the &quot;working&quot; changes
+<ul>
+<li>Expands to a file-based view of all changed files in the working tree (<a href="#repositories-view-settings-" rel="noreferrer noopener" title="Jump to the Repositories view settings">optionally</a>) and/or all files in all commits ahead of the upstream</li>
+<li>An inline toolbar provides quick access to the <em>Stash All Changes</em> command</li>
+</ul>
+</li>
+<li><strong>Compare Current Branch with &lt;branch, tag, or ref&gt;</strong> — <a href="#repositories-view-settings-" rel="noreferrer noopener" title="Jump to the Repositories view settings">optionally</a> shows a comparison of the current branch to a user-selected reference
+<ul>
+<li><strong>* Commits</strong> — lists the commits between the compared revisions
+<ul>
+<li>Expands to provide the message, author, date, and change indicator of each revision (commit) — fully <a href="#view-settings-" rel="noreferrer noopener" title="Jump to the View settings">customizable</a>
+<ul>
+<li>Each revision (commit) expands to list its set of changed files, complete with status indicators for adds, changes, renames, and deletes
+<ul>
+<li>An inline toolbar provides quick access to the <em>Open File</em>, <em>Copy Commit ID to Clipboard</em> (<code>alt-click</code> for <em>Copy Commit Message to Clipboard</em>), and <em>Open File on Remote</em> (if available) commands</li>
+<li>A context menu provides access to more common file revision commands</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>* Files Changed</strong> — lists all of the files changed between the compared revisions</li>
+<li>An inline toolbar provides quick access to the <em>Switch to Two-dot Comparison</em> (when applicable), <em>Switch to Three-dot Comparison</em> (when applicable), <em>Switch to Working Tree Comparison</em> (when applicable), <em>Switch to Branch Comparison</em> (when applicable), and <em>Refresh</em> commands</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Branches</strong> — lists the local branches in the repository</p>
+<ul>
+<li>An inline toolbar provides quick access to the <em>Open Branches on Remote</em> (if available) command</li>
+<li>Provides the name of each branch, an indicator (check-mark) if the branch is the current one, and <a href="#repositories-view-settings-" rel="noreferrer noopener" title="Jump to the Repositories view settings">optionally</a> shows its remote tracking branch and status (if available)
+<ul>
+<li>Indicator dots on each branch icon denote the following:
+<ul>
+<li><em>None</em> — no upstream or up-to-date with the upstream</li>
+<li><em>Green</em> — ahead of the upstream</li>
+<li><em>Red</em> — behind the upstream</li>
+<li><em>Yellow</em> — both ahead of and behind the upstream</li>
+</ul>
+</li>
+<li>An inline toolbar provides quick access to the <em>Add to Favorites</em> (when applicable), <em>Remove from Favorites</em> (when applicable), <em>Checkout</em>, <em>Compare with Remote</em> (if available), <em>Compare with HEAD</em> (<code>alt-click</code> for <em>Compare with Working Tree</em>), and <em>Open Branch on Remote</em> (if available) commands</li>
+<li>A context menu provides access to more common branch commands</li>
+<li>Each branch expands to list its revision (commit) history
+<ul>
+<li><strong>* Commits Behind</strong> — quickly see and explore the specific commits behind the upstream (i.e. commits that haven't been pulled)
+<ul>
+<li>Only provided if the current branch is tracking a remote branch and is behind it</li>
+</ul>
+</li>
+<li><strong>* Commits Ahead</strong> — quickly see and explore the specific commits ahead of the upstream (i.e. commits that haven't been pushed)
+<ul>
+<li>Only provided if the current branch is tracking a remote branch and is ahead of it</li>
+</ul>
+</li>
+<li>An inline toolbar provides quick access to the <em>Compare with HEAD</em> (<code>alt-click</code> for <em>Compare with Working Tree</em>), <em>Copy Commit ID to Clipboard</em> (<code>alt-click</code> for <em>Copy Commit Message to Clipboard</em>), and <em>Open Commit on Remote</em> (if available) commands</li>
+<li>A context menu provides access to more common revision (commit) commands</li>
+<li>Each revision (commit) expands to list its set of changed files, complete with status indicators for adds, changes, renames, and deletes
+<ul>
+<li>An inline toolbar provides quick access to the <em>Open File</em>, <em>Copy Commit ID to Clipboard</em> (<code>alt-click</code> for <em>Copy Commit Message to Clipboard</em>), and <em>Open File on Remote</em> (if available) commands</li>
+<li>A context menu provides access to more common file revision commands</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Contributors</strong> — lists the contributors in the repository, sorted by contributed commits</p>
+<ul>
+<li>Provides the avatar (if enabled), name, and email address of each contributor
+<ul>
+<li>An inline toolbar provides quick access to the <em>Copy to Clipboard</em> command</li>
+<li>A context menu provides access to the <em>Copy to Clipboard</em>, <em>Add as Co-author</em>, and <em>Refresh</em> commands</li>
+<li>Each contributor expands to list the repository's revision (commit) history filtered by the contributor
+<ul>
+<li>An inline toolbar provides quick access to the <em>Compare with HEAD</em> (<code>alt-click</code> for <em>Compare with Working Tree</em>), <em>Copy Commit ID to Clipboard</em> (<code>alt-click</code> for <em>Copy Commit Message to Clipboard</em>), and <em>Open Commit on Remote</em> (if available) commands</li>
+<li>A context menu provides access to more common revision (commit) commands</li>
+<li>Each revision (commit) expands to list its set of changed files, complete with status indicators for adds, changes, renames, and deletes
+<ul>
+<li>An inline toolbar provides quick access to the <em>Open File</em>, <em>Copy Commit ID to Clipboard</em> (<code>alt-click</code> for <em>Copy Commit Message to Clipboard</em>), and <em>Open File on Remote</em> (if available) commands</li>
+<li>A context menu provides access to more common file revision commands</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Incoming Activity</strong> — lists the recent incoming activity (merges and pulls) to your local repository (experimental, enabled via <code>&quot;gitlens.insiders&quot;: true</code>)</p>
+<ul>
+<li>Provides the command, branch (if available), and date of each activity
+<ul>
+<li>A context menu provides access to the <em>Refresh</em> command</li>
+<li>Each activity expands to list the commits added by the command
+<ul>
+<li>An inline toolbar provides quick access to the <em>Compare with HEAD</em> (<code>alt-click</code> for <em>Compare with Working Tree</em>), <em>Copy Commit ID to Clipboard</em> (<code>alt-click</code> for <em>Copy Commit Message to Clipboard</em>), and <em>Open Commit on Remote</em> (if available) commands</li>
+<li>A context menu provides access to more common revision (commit) commands</li>
+<li>Each revision (commit) expands to list its set of changed files, complete with status indicators for adds, changes, renames, and deletes
+<ul>
+<li>An inline toolbar provides quick access to the <em>Open File</em>, <em>Copy Commit ID to Clipboard</em> (<code>alt-click</code> for <em>Copy Commit Message to Clipboard</em>), and <em>Open File on Remote</em> (if available) commands</li>
+<li>A context menu provides access to more common file revision commands</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Remotes</strong> — lists the remotes in the repository</p>
+<ul>
+<li>Provides the name of each remote, an indicator of the remote's direction (fetch, push, both), remote service (if applicable), and repository path
+<ul>
+<li>An inline toolbar provides quick access to the <em>Fetch</em>, and <em>Open Repository on Remote</em> (if available) commands</li>
+<li>A context menu provides access to more common repository and remote commands</li>
+<li>Each remote expands to list its remote branches
+<ul>
+<li>See the <strong>Branches</strong> above for additional details</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Stashes</strong> — lists the stashed changes in the repository</p>
+<ul>
+<li>An inline toolbar provides quick access to the <em>Stash All Changes</em>, and <em>Apply Stash Changes</em> commands</li>
+<li>Provides the name of each stash, the date, and an indicator (+x ~x -x) of the changes
+<ul>
+<li>An inline toolbar provides quick access to the <em>Compare with HEAD</em> (<code>alt-click</code> for <em>Compare with Working Tree</em>), <em>Apply Stash</em>, and <em>Delete Stash</em> commands</li>
+<li>A context menu provides access to more common stash commands</li>
+<li>Each stash expands to list the set of stashed files, complete with status indicators for adds, changes, renames, and deletes
+<ul>
+<li>An inline toolbar provides quick access to the <em>Open File</em>, and <em>Open File on Remote</em> (if available) commands</li>
+<li>A context menu provides access to more common file revision commands</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Tags</strong> — lists the tags in the repository</p>
+<ul>
+<li>Provides the name of each tag
+<ul>
+<li>An inline toolbar provides quick access to the <em>Checkout, and _Compare with HEAD</em> (<code>alt-click</code> for <em>Compare with Working Tree</em>) commands</li>
+<li>A context menu provides access to more common tag commands</li>
+<li>Each tags expands to list its revision (commit) history
+<ul>
+<li>An inline toolbar provides quick access to the <em>Compare with HEAD</em> (<code>alt-click</code> for <em>Compare with Working Tree</em>), <em>Copy Commit ID to Clipboard</em> (<code>alt-click</code> for <em>Copy Commit Message to Clipboard</em>), and <em>Open Commit on Remote</em> (if available) commands</li>
+<li>A context menu provides access to more common revision (commit) commands</li>
+<li>Each revision (commit) expands to list its set of changed files, complete with status indicators for adds, changes, renames, and deletes
+<ul>
+<li>An inline toolbar provides quick access to the <em>Open File</em>, <em>Copy Commit ID to Clipboard</em> (<code>alt-click</code> for <em>Copy Commit Message to Clipboard</em>), and <em>Open File on Remote</em> (if available) commands</li>
+<li>A context menu provides access to more common file revision commands</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id=file-history-view>File History view <a href="#file-history-view-" rel="noreferrer noopener" title="File History view">#</a></h3>
+<p align=center>
+  <img src="https://raw.githubusercontent.com/eamodio/vscode-gitlens/master/images/docs/view-file-history.png" alt="File History view">
+</p>
+<p>A <a href="#file-history-view-settings-" rel="noreferrer noopener" title="Jump to the File History view settings">customizable</a> view to visualize, navigate, and explore the revision history of the current file</p>
+<ul>
+<li>A toolbar provides quick access to the <em>Pause File Tracking</em> or <em>Resume File Tracking</em>, <em>Change Base...</em>, and <em>Refresh</em> commands</li>
+<li>A context menu provides the <em>Follow Renames</em> or <em>Don't Follow Renames</em>, and <em>Open Settings</em> commands</li>
+</ul>
+<p>The file history view provides the following features,</p>
+<ul>
+<li>Automatically tracks the current editor and lists the revision (commit) history of the current file</li>
+<li>An inline toolbar provides quick access to the <em>Open File</em>, and <em>Open File on Remote</em> (if available) commands</li>
+<li>A context menu provides <em>Open File</em>, <em>Open File on Remote</em> (if available), <em>Copy Remote Url to Clipboard</em> (if available), and <em>Refresh</em> commands</li>
+<li>Provides the message, author, and date of each revision (commit) — fully <a href="#view-settings-" rel="noreferrer noopener" title="Jump to the View settings">customizable</a>
+<ul>
+<li>An inline toolbar provides quick access to the <em>Compare with HEAD</em> (<code>alt-click</code> for <em>Compare with Working Tree</em>), <em>Copy Commit ID to Clipboard</em> (<code>alt-click</code> for <em>Copy Commit Message to Clipboard</em>), and <em>Open Commit on Remote</em> (if available) commands</li>
+<li>A context menu provides access to more common revision (commit) commands</li>
+<li>Each revision (commit) expands to list its set of changed files, complete with status indicators for adds, changes, renames, and deletes
+<ul>
+<li>An inline toolbar provides quick access to the <em>Open File</em>, <em>Copy Commit ID to Clipboard</em> (<code>alt-click</code> for <em>Copy Commit Message to Clipboard</em>), and <em>Open File on Remote</em> (if available) commands</li>
+<li>A context menu provides access to more common file revision commands</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id=line-history-view>Line History view <a href="#line-history-view-" rel="noreferrer noopener" title="Line History view">#</a></h3>
+<p align=center>
+  <img src="https://raw.githubusercontent.com/eamodio/vscode-gitlens/master/images/docs/view-line-history.png" alt="Line History view">
+</p>
+<p>A <a href="#line-history-view-settings-" rel="noreferrer noopener" title="Jump to the Line History view settings">customizable</a> view to visualize, navigate, and explore the revision history of the selected lines of current file</p>
+<ul>
+<li>A toolbar provides quick access to the <em>Pause File Tracking</em> or <em>Resume File Tracking</em>, <em>Change Base...</em>, and <em>Refresh</em> commands</li>
+<li>A context menu provides the <em>Follow Renames</em> or <em>Don't Follow Renames</em>, and <em>Open Settings</em> commands</li>
+</ul>
+<p>The line history view provides the following features,</p>
+<ul>
+<li>Automatically tracks the current editor selection and lists the revision (commit) history of the selection in current file</li>
+<li>An inline toolbar provides quick access to the <em>Open File</em>, and <em>Open File on Remote</em> (if available) commands</li>
+<li>A context menu provides <em>Open File</em>, <em>Open File on Remote</em> (if available), <em>Copy Remote Url to Clipboard</em> (if available), and <em>Refresh</em> commands</li>
+<li>Provides the message, author, and date of each revision (commit) — fully <a href="#view-settings-" rel="noreferrer noopener" title="Jump to the View settings">customizable</a>
+<ul>
+<li>An inline toolbar provides quick access to the <em>Compare with HEAD</em> (<code>alt-click</code> for <em>Compare with Working Tree</em>), <em>Copy Commit ID to Clipboard</em> (<code>alt-click</code> for <em>Copy Commit Message to Clipboard</em>), and <em>Open Commit on Remote</em> (if available) commands</li>
+<li>A context menu provides access to more common revision (commit) commands</li>
+<li>Each revision (commit) expands to list its set of changed files, complete with status indicators for adds, changes, renames, and deletes
+<ul>
+<li>An inline toolbar provides quick access to the <em>Open File</em>, <em>Copy Commit ID to Clipboard</em> (<code>alt-click</code> for <em>Copy Commit Message to Clipboard</em>), and <em>Open File on Remote</em> (if available) commands</li>
+<li>A context menu provides access to more common file revision commands</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id=search-commits-view>Search Commits view <a href="#search-commits-view-" rel="noreferrer noopener" title="Search Commits view">#</a></h3>
+<p align=center>
+  <img src="https://raw.githubusercontent.com/eamodio/vscode-gitlens/master/images/docs/view-search.png" alt="Search Commits view">
+</p>
+<p>A <a href="#search-commits-view-settings-" rel="noreferrer noopener" title="Jump to the Search Commits view settings">customizable</a> view to search and explore commit histories by message, author, files, id, etc</p>
+<ul>
+<li>A toolbar provides quick access to the <em>Search Commits</em>, <em>Keep Results</em>, <em>Clear Results</em>, and <em>Refresh</em> commands</li>
+<li>A context menu provides <em>Automatic Layout</em>, <em>List Layout</em>, <em>Tree Layout</em>, <em>Open Settings</em> commands</li>
+<li>Use the <em>Search Commits</em> command (<code>gitlens.showCommitSearch</code>) with a shortcut of <code>alt+/</code> to search for commits
+<ul>
+<li>by message — use <code>&lt;message&gt;</code> to search for commits with messages that match <code>&lt;message&gt;</code> — See <a href="https://git-scm.com/docs/git-log#Documentation/git-log.txt---grepltpatterngt" target=_blank rel="noreferrer noopener" title="Open Git docs">Git docs</a></li>
+<li>or, by author — use <code>@&lt;pattern&gt;</code> to search for commits with authors that match <code>&lt;pattern&gt;</code> — See <a href="https://git-scm.com/docs/git-log#Documentation/git-log.txt---authorltpatterngt" target=_blank rel="noreferrer noopener" title="Open Git docs">Git docs</a></li>
+<li>or, by commit id — use <code>#&lt;sha&gt;</code> to search for a commit with id of <code>&lt;sha&gt;</code> — See <a href="https://git-scm.com/docs/git-log#Documentation/git-log.txt-ltrevisionrangegt" target=_blank rel="noreferrer noopener" title="Open Git docs">Git docs</a></li>
+<li>or, by files — use <code>:&lt;path/glob&gt;</code> to search for commits with file names that match <code>&lt;path/glob&gt;</code> — See <a href="https://git-scm.com/docs/git-log#Documentation/git-log.txt---ltpathgt82308203" target=_blank rel="noreferrer noopener" title="Open Git docs">Git docs</a></li>
+<li>or, by changes — use <code>~&lt;pattern&gt;</code> to search for commits with differences whose patch text contains added/removed lines that match <code>&lt;pattern&gt;</code> — See <a href="https://git-scm.com/docs/git-log#Documentation/git-log.txt--Gltregexgt" target=_blank rel="noreferrer noopener" title="Open Git docs">Git docs</a></li>
+</ul>
+</li>
+</ul>
+<p>The search commits view provides the following features,</p>
+<ul>
+<li>Provides a semi-persistent results view for searching and exploring commit histories
+<ul>
+<li>An inline toolbar provides quick access to the <em>Dismiss</em> command</li>
+<li>A context menu provides access to common search commands</li>
+<li>Provides the message, author, date, and change indicator of each revision (commit) — fully <a href="#view-settings-" rel="noreferrer noopener" title="Jump to the View settings">customizable</a>
+<ul>
+<li>An inline toolbar provides quick access to the <em>Compare with HEAD</em> (<code>alt-click</code> for <em>Compare with Working Tree</em>), <em>Copy Commit ID to Clipboard</em> (<code>alt-click</code> for <em>Copy Commit Message to Clipboard</em>), and <em>Open Commit on Remote</em> (if available) commands</li>
+<li>A context menu provides access to more common revision (commit) commands</li>
+<li>Each revision (commit) expands to list its set of changed files, complete with status indicators for adds, changes, renames, and deletes
+<ul>
+<li>An inline toolbar provides quick access to the <em>Open File</em>, <em>Copy Commit ID to Clipboard</em> (<code>alt-click</code> for <em>Copy Commit Message to Clipboard</em>), and <em>Open File on Remote</em> (if available) commands</li>
+<li>A context menu provides access to more common file revision commands</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Results can be provided by the following commands
+<ul>
+<li><em>Search Commits</em> command (<code>gitlens.showCommitSearch</code>)</li>
+<li><em>Show File History</em> command (<code>gitlens.showQuickFileHistory</code>)</li>
+<li><em>Show Commit Details</em> command (<code>gitlens.showQuickCommitDetails</code>)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id=compare-view>Compare view <a href="#compare-view-" rel="noreferrer noopener" title="Compare view">#</a></h3>
+<p align=center>
+  <img src="https://raw.githubusercontent.com/eamodio/vscode-gitlens/master/images/docs/view-compare.png" alt="Compare view">
+</p>
+<p>A <a href="#compare-view-settings-" rel="noreferrer noopener" title="Jump to the Compare view settings">customizable</a> view to visualize comparisons between branches, tags, commits, and more</p>
+<ul>
+<li>A toolbar provides quick access to the <em>Compare with...</em>, <em>Keep Results</em>, <em>Clear Results</em>, and <em>Refresh</em> commands</li>
+<li>A context menu provides <em>Automatic Layout</em>, <em>List Layout</em>, <em>Tree Layout</em>, <em>Open Settings</em> commands</li>
+</ul>
+<p>The compare view provides the following features,</p>
+<ul>
+<li>Provides a semi-persistent results view for comparison operations
+<ul>
+<li>An inline toolbar provides quick access to the <em>Pin Comparison</em> (when applicable), <em>Unpin Comparison</em> (when applicable), <em>Switch to Two-dot Comparison</em> (when applicable), <em>Switch to Three-dot Comparison</em> (when applicable), <em>Swap Comparison</em>, <em>Refresh</em>, and <em>Dismiss</em> (when applicable) commands</li>
+<li>A context menu provides access to common comparison commands</li>
+<li><strong>* Commits</strong> — lists the commits between the compared revisions
+<ul>
+<li>Expands to provide the message, author, date, and change indicator of each revision (commit) — fully <a href="#view-settings-" rel="noreferrer noopener" title="Jump to the View settings">customizable</a>
+<ul>
+<li>Each revision (commit) expands to list its set of changed files, complete with status indicators for adds, changes, renames, and deletes
+<ul>
+<li>An inline toolbar provides quick access to the <em>Open File</em>, <em>Copy Commit ID to Clipboard</em> (<code>alt-click</code> for <em>Copy Commit Message to Clipboard</em>), and <em>Open File on Remote</em> (if available) commands</li>
+<li>A context menu provides access to more common file revision commands</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>* Files Changed</strong> — lists all of the files changed between the compared revisions
+<ul>
+<li>Expands to a file-based view of all changed files in the working tree (<a href="#compare-view-settings-" rel="noreferrer noopener" title="Jump to the Compare view settings">optionally</a>) and/or all files in all commits ahead of the upstream</li>
+</ul>
+</li>
+<li>Results can be provided by the following commands
+<ul>
+<li><em>Compare with Remote</em> command (<code>gitlens.views.compareWithRemote</code>)</li>
+<li><em>Compare with HEAD</em> command (<code>gitlens.views.compareWithHead</code>)</li>
+<li><em>Compare with Working Tree</em> command (<code>gitlens.views.compareWithWorking</code>)</li>
+<li><em>Compare with Selected</em> command (<code>gitlens.views.compareWithSelected</code>)</li>
+<li><em>Compare Ancestry with Working Tree</em> command (<code>gitlens.views.compareAncestryWithWorking</code>)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id=gutter-blame>Gutter Blame <a href="#gutter-blame-" rel="noreferrer noopener" title="Gutter Blame">#</a></h3>
+<p align=center>
+  <img src="https://raw.githubusercontent.com/eamodio/vscode-gitlens/master/images/docs/gutter-blame.png" alt="Gutter Blame">
+</p>
+<ul>
+<li>Adds on-demand, <a href="#gutter-blame-settings-" rel="noreferrer noopener" title="Jump to the Gutter Blame settings">customizable</a>, and <a href="#themable-colors-" rel="noreferrer noopener" title="Jump to the Themable Colors">themable</a>, <strong>gutter blame annotations</strong> for the whole file
+<ul>
+<li>Contains the commit message and date, by <a href="#gutter-blame-settings-" rel="noreferrer noopener" title="Jump to the Gutter Blame settings">default</a></li>
+<li>Adds a <strong>heatmap</strong> (age) indicator on right edge (by <a href="#gutter-blame-settings-" rel="noreferrer noopener" title="Jump to the Gutter Blame settings">default</a>) of the gutter to provide an easy, at-a-glance way to tell how recently lines were changed (<a href="#gutter-blame-settings-" rel="noreferrer noopener" title="Jump to the Gutter Blame settings">optional</a>, on by default)
+<ul>
+<li>See the <a href="#gutter-Heatmap-" rel="noreferrer noopener" title="Jump to the Gutter Heatmap">gutter heatmap</a> section below for more details</li>
+</ul>
+</li>
+<li>Adds a <em>Toggle File Blame Annotations</em> command (<code>gitlens.toggleFileBlame</code>) with a shortcut of <code>alt+b</code> to toggle the blame annotations on and off</li>
+<li>Press <code>Escape</code> to turn off the annotations</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id=gutter-heatmap>Gutter Heatmap <a href="#gutter-heatmap-" rel="noreferrer noopener" title="Gutter Heatmap">#</a></h3>
+<p align=center>
+  <img src="https://raw.githubusercontent.com/eamodio/vscode-gitlens/master/images/docs/heatmap.png" alt="Gutter Heatmap">
+</p>
+<ul>
+<li>Adds an on-demand <strong>heatmap</strong> to the edge of the gutter to show how recently lines were changed
+<ul>
+<li>The indicator's <a href="#gutter-heatmap-settings-" rel="noreferrer noopener" title="Jump to the Gutter Heatmap settings">customizable</a> color will either be hot or cold based on the age of the most recent change (cold after 90 days by <a href="#gutter-heatmap-settings-" rel="noreferrer noopener" title="Jump to the Gutter Heatmap settings">default</a>)</li>
+<li>The indicator's brightness ranges from bright (newer) to dim (older) based on the relative age, which is calculated from the median age of all the changes in the file</li>
+<li>Adds <em>Toggle File Heatmap Annotations</em> command (<code>gitlens.toggleFileHeatmap</code>) to toggle the heatmap on and off</li>
+<li>Press <code>Escape</code> to turn off the annotations</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id=recent-changes>Recent Changes <a href="#recent-changes-" rel="noreferrer noopener" title="Recent Changes">#</a></h3>
+<p align=center>
+  <img src="https://raw.githubusercontent.com/eamodio/vscode-gitlens/master/images/docs/recent-changes.png" alt="Recent Changes">
+</p>
+<ul>
+<li>Adds an on-demand, <a href="#recent-changes-settings-" rel="noreferrer noopener" title="Jump to the Recent Changes settings">customizable</a> and <a href="#themable-colors-" rel="noreferrer noopener" title="Jump to the Themable Colors">themable</a>, <strong>recent changes annotation</strong> to highlight lines changed by the most recent commit
+<ul>
+<li>Adds <em>Toggle Recent File Changes Annotations</em> command (<code>gitlens.toggleFileRecentChanges</code>) to toggle the recent changes annotations on and off</li>
+<li>Press <code>Escape</code> to turn off the annotations</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id=modes>Modes <a href="#modes-" rel="noreferrer noopener" title=Modes>#</a></h3>
+<ul>
+<li>GitLens supports <a href="#modes-settings-" rel="noreferrer noopener" title="Jump to the Modes settings">user-defined</a> modes for quickly toggling between sets of settings
+<ul>
+<li>Adds <em>Switch Mode</em> command (<code>gitlens.switchMode</code>) to quickly switch the active mode</li>
+<li>Adds a built-in <em>Zen</em> mode which for a zen-like experience, disables many visual features
+<ul>
+<li>Adds <em>Toggle Zen Mode</em> command (<code>gitlens.toggleZenMode</code>) to toggle Zen mode</li>
+</ul>
+</li>
+<li>Adds a built-in <em>Review</em> mode which for reviewing code, enables many visual features
+<ul>
+<li>Adds <em>Toggle Review Mode</em> command (<code>gitlens.toggleReviewMode</code>) to toggle Review mode</li>
+</ul>
+</li>
+<li>Adds the active mode to the <strong>status bar</strong> (<a href="#modes-settings-" rel="noreferrer noopener" title="Jump to the Modes settings">optional</a>, on by default)</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id=navigate-and-explore>Navigate and Explore <a href="#navigate-and-explore-" rel="noreferrer noopener" title="Navigate and Explore">#</a></h3>
+<ul>
+<li><p>Adds a <em>Show Last Opened Quick Pick</em> command (<code>gitlens.showLastQuickPick</code>) with a shortcut of <code>alt+-</code> to quickly get back to where you were when the last GitLens quick pick menu closed</p>
+</li>
+<li><p>Adds commands to Open files, commits, branches, and the repository on the supported remote services, <strong>Bitbucket, GitHub, GitLab, and Azure DevOps</strong> or a <a href="#custom-remotes-settings" rel="noreferrer noopener" title="Jump to Custom Remotes settings"><strong>user-defined</strong> remote services</a> — only available if a Git upstream service is configured in the repository</p>
+<ul>
+<li>Also supports <a href="#custom-remotes-settings" rel="noreferrer noopener" title="Jump to Custom Remotes settings">remote services with custom domains</a>, such as <strong>Bitbucket, Bitbucket Server (previously called Stash), GitHub, GitHub Enterprise, GitLab</strong></li>
+<li><em>Open Branches on Remote</em> command (<code>gitlens.openBranchesInRemote</code>) — opens the branches on the supported remote service</li>
+<li><em>Open Branch on Remote</em> command (<code>gitlens.openBranchInRemote</code>) — opens the current branch commits on the supported remote service</li>
+<li><em>Open Commit on Remote</em> command (<code>gitlens.openCommitInRemote</code>) — opens the commit revision of the current line on the supported remote service</li>
+<li><em>Open File on Remote</em> command (<code>gitlens.openFileInRemote</code>) — opens the current file/revision on the supported remote service</li>
+<li><em>Open Repository on Remote</em> command (<code>gitlens.openRepoInRemote</code>) — opens the repository on the supported remote service</li>
+</ul>
+</li>
+</ul>
+<h4 id=git-commands>Git Commands</h4>
+<p align=center>
+  <img src="https://raw.githubusercontent.com/eamodio/vscode-gitlens/master/images/docs/menu-git-commands.png" alt="Git Commands Quick Pick Menu">
+</p>
+<ul>
+<li>Adds a <em>Git Commands</em> command (<code>gitlens.gitCommands</code>) to provide guided (step-by-step) access to common Git commands and their flags
+<ul>
+<li>Quickly navigate and execute Git commands through easy-to-use menus where each command requires an explicit confirm step before executing</li>
+</ul>
+</li>
+</ul>
+<h4 id=branch-history>Branch History</h4>
+<p align=center>
+  <img src="https://raw.githubusercontent.com/eamodio/vscode-gitlens/master/images/docs/menu-branch-history.png" alt="Branch History Quick Pick Menu">
+</p>
+<ul>
+<li><p>Adds a <em>Show Current Branch History</em> command (<code>gitlens.showQuickRepoHistory</code>) with a shortcut of <code>shift+alt+h</code> to show a paged <strong>branch history quick pick menu</strong> of the current branch for exploring its commit history</p>
+<ul>
+<li>Provides entries to <em>Show Commit Search</em> and <em>Open Branch on &lt;remote-service&gt;</em> (if available)</li>
+<li>Navigate back to the previous quick pick menu via <code>alt+left arrow</code>, if available</li>
+<li>Navigate pages via <code>alt+,</code> and <code>alt+.</code> to go backward and forward respectively</li>
+</ul>
+</li>
+<li><p>Adds a <em>Show Branch History</em> command (<code>gitlens.showQuickBranchHistory</code>) to show a paged <strong>branch history quick pick menu</strong> of the selected branch for exploring its commit history</p>
+<ul>
+<li>Provides the same features as <em>Show Current Branch History</em> above</li>
+</ul>
+</li>
+</ul>
+<h4 id=file-history>File History</h4>
+<p align=center>
+  <img src="https://raw.githubusercontent.com/eamodio/vscode-gitlens/master/images/docs/menu-file-history.png" alt="File History Quick Pick Menu">
+</p>
+<ul>
+<li>Adds a <em>Show File History</em> command (<code>gitlens.showQuickFileHistory</code>) to show a paged <strong>file history quick pick menu</strong> of the current file for exploring its commit history
+<ul>
+<li>Provides additional entries to <em>Show in View</em>, <em>Show Branch History</em>, and <em>Open File on &lt;remote-service&gt;</em> (if available)</li>
+<li>Navigate back to the previous quick pick menu via <code>alt+left arrow</code>, if available</li>
+<li>Navigate pages via <code>alt+,</code> and <code>alt+.</code> to go backward and forward respectively</li>
+</ul>
+</li>
+</ul>
+<h4 id=commit-details>Commit Details</h4>
+<p align=center>
+  <img src="https://raw.githubusercontent.com/eamodio/vscode-gitlens/master/images/docs/menu-commit-details.png" alt="Commit Details Quick Pick Menu">
+</p>
+<ul>
+<li>Adds a <em>Show Commit Details</em> command (<code>gitlens.showQuickCommitDetails</code>) to show a <strong>commit details quick pick menu</strong> of the most recent commit of the current file
+<ul>
+<li>Quickly see the set of files changed in the commit, complete with status indicators for adds, changes, renames, and deletes</li>
+<li>Provides additional entries to <em>Show in View</em>, <em>Open Commit on &lt;remote-service&gt;</em> (if available), <em>Open Files</em>, <em>Open Revisions</em>, <em>Open Directory Compare with Previous Revision</em>, <em>Open Directory Compare with Working Tree</em>, <em>Copy Commit ID to Clipboard</em>, <em>Copy Commit Message to Clipboard</em></li>
+<li>Navigate back to the previous quick pick menu via <code>alt+left arrow</code>, if available</li>
+<li>Use the <code>alt+right arrow</code> shortcut on an entry to execute it without closing the quick pick menu, if possible — commands that open windows outside of VS Code will still close the quick pick menu unless <a href="#misc-settings-" rel="noreferrer noopener" title="Jump to Misc settings"><code>&quot;gitlens.advanced.quickPick.closeOnFocusOut&quot;: false</code></a> is set</li>
+<li>Use the <code>alt+right arrow</code> shortcut on a file entry in the <code>Changed Files</code> section to preview the comparison of the current revision with the previous one</li>
+</ul>
+</li>
+</ul>
+<p align=center>
+  <img src="https://raw.githubusercontent.com/eamodio/vscode-gitlens/master/images/docs/menu-commit-file-details.png" alt="Commit File Details Quick Pick Menu">
+</p>
+<ul>
+<li>Adds a <em>Show Commit File Details</em> command (<code>gitlens.showQuickCommitFileDetails</code>) with a shortcut of <code>alt+c</code> to show a <strong>file commit details quick pick menu</strong> of the most recent commit of the current file
+<ul>
+<li>Provides entries to <em>Open Changes</em>, <em>Open Changes with Working File</em>, <em>Open File</em>, <em>Open Revision</em>, <em>Open File on &lt;remote-service&gt;</em> (if available), <em>Open Revision on &lt;remote-service&gt;</em> (if available), <em>Copy Commit ID to Clipboard</em>, <em>Copy Commit Message to Clipboard</em>, <em>Show Commit Details</em>, <em>Show File History</em>, and <em>Show Previous File History</em></li>
+<li>Navigate back to the previous quick pick menu via <code>alt+left arrow</code>, if available</li>
+<li>Use the <code>alt+right arrow</code> shortcut on an entry to execute it without closing the quick pick menu, if possible — commands that open windows outside of VS Code will still close the quick pick menu unless <a href="#misc-settings-" rel="noreferrer noopener" title="Jump to Misc settings"><code>&quot;gitlens.advanced.quickPick.closeOnFocusOut&quot;: false</code></a> is set</li>
+</ul>
+</li>
+</ul>
+<h4 id=repository-status>Repository Status</h4>
+<p align=center>
+  <img src="https://raw.githubusercontent.com/eamodio/vscode-gitlens/master/images/docs/menu-repo-status.png" alt="Repository Status Quick Pick Menu">
+</p>
+<ul>
+<li>Adds a <em>Show Repository Status</em> command (<code>gitlens.showQuickRepoStatus</code>) with a shortcut of <code>alt+s</code> to show a <strong>repository status quick pick menu</strong> for visualizing the current repository status
+<ul>
+<li>Quickly see upstream status (if an Git upstream is configured) — complete with ahead and behind information
+<ul>
+<li>If you are ahead of the upstream, an entry will be shown with the number of commits ahead. Choosing it will show a limited <strong>branch history quick pick menu</strong> containing just the commits ahead of the upstream</li>
+<li>If you are behind the upstream, an entry will be shown with the number of commits behind. Choosing it will show a limited <strong>branch history quick pick menu</strong> containing just the commits behind the upstream</li>
+</ul>
+</li>
+<li>Quickly see all working changes, both staged and unstaged, complete with status indicators for adds, changes, renames, and deletes</li>
+<li>Provides entries to <em>Show Stashes</em>, <em>Open Changed Files</em>, and <em>Close Unchanged Files</em></li>
+<li>Use the <code>alt+right arrow</code> shortcut on an entry to execute it without closing the quick pick menu, if possible — commands that open windows outside of VS Code will still close the quick pick menu unless <a href="#misc-settings-" rel="noreferrer noopener" title="Jump to Misc settings"><code>&quot;gitlens.advanced.quickPick.closeOnFocusOut&quot;: false</code></a> is set</li>
+<li>Use the <code>alt+right arrow</code> shortcut on a file entry in the <code>Staged Files</code> or <code>Unstaged Files</code> sections to preview the comparison of the working file with the previous revision</li>
+</ul>
+</li>
+</ul>
+<h4 id=stashes>Stashes</h4>
+<p align=center>
+  <img src="https://raw.githubusercontent.com/eamodio/vscode-gitlens/master/images/docs/menu-stash-list.png" alt="Stashes Quick Pick Menu">
+</p>
+<ul>
+<li><p>Adds a <em>Show Stashes</em> command (<code>gitlens.showQuickStashList</code>) to show a <strong>stashes quick pick menu</strong> for exploring your repository stash history</p>
+<ul>
+<li>Provides additional entries to <em>Stash All Changes</em></li>
+<li>Navigate back to the previous quick pick menu via <code>alt+left arrow</code>, if available</li>
+</ul>
+</li>
+<li><p>Adds a <em>Stash All Changes</em> command (<code>gitlens.stashSave</code>) to save any working tree changes to the stash — can optionally provide a stash message</p>
+<ul>
+<li>Also adds the command to the Source Control items context menu to stash an individual or group of files, works with multi-select too!</li>
+</ul>
+</li>
+</ul>
+<h4 id=stash-details>Stash Details</h4>
+<p align=center>
+  <img src="https://raw.githubusercontent.com/eamodio/vscode-gitlens/master/images/docs/menu-stash-details.png" alt="Stash Details Quick Pick Menu">
+</p>
+<ul>
+<li><p>Stashes show a <strong>stash details quick pick menu</strong> which is very similar to the <strong>commit details quick pick menu</strong> above</p>
+<ul>
+<li>Quickly see the set of files changed in the stash, complete with status indicators for adds, changes, renames, and deletes</li>
+<li>Provides additional entries to <em>Apply Stash</em> (requires confirmation), <em>Delete Stash</em> (requires confirmation), <em>Open Files</em>, <em>Open Revisions</em>, <em>Open Directory Compare with Previous Revision</em>, <em>Open Directory Compare with Working Tree</em>, <em>Copy Commit Message to Clipboard</em></li>
+<li>Navigate back to the previous quick pick menu via <code>alt+left arrow</code>, if available</li>
+<li>Use the <code>alt+right arrow</code> shortcut on an entry to execute it without closing the quick pick menu, if possible — commands that open windows outside of VS Code will still close the quick pick menu unless <a href="#misc-settings-" rel="noreferrer noopener" title="Jump to Misc settings"><code>&quot;gitlens.advanced.quickPick.closeOnFocusOut&quot;: false</code></a> is set</li>
+<li>Use the <code>alt+right arrow</code> shortcut on a file entry in the <code>Changed Files</code> section to preview the comparison of the current revision with the previous one</li>
+</ul>
+</li>
+<li><p>Adds an <em>Apply Stash</em> command (<code>gitlens.stashApply</code>) to chose a stash entry to apply to the working tree from a quick pick menu</p>
+</li>
+</ul>
+<hr>
+<h3 id=and-more>And More <a href="#and-more-" rel="noreferrer noopener" title="More features">#</a></h3>
+<h4 id=powerful-comparison-tools>Powerful Comparison Tools</h4>
+<ul>
+<li><p>Effortlessly navigate between comparisons via the <code>alt+,</code> and <code>alt+.</code> shortcut keys to go back and forth through a file's revisions</p>
+</li>
+<li><p>Provides easy access to the following comparison commands via the <code>Command Palette</code> as well as in context via the many provided quick pick menus</p>
+</li>
+<li><p>Adds a <em>Directory Compare Working Tree with...</em> command (<code>gitlens.diffDirectory</code>) to open the configured Git difftool to compare the working tree with the selected reference</p>
+</li>
+<li><p>Adds a <em>Compare HEAD with...</em> command (<code>gitlens.diffHeadWith</code>) to compare the index (HEAD) with the selected reference</p>
+</li>
+<li><p>Adds a <em>Compare Working Tree with...</em> command (<code>gitlens.diffWorkingWith</code>) to compare the working tree with the selected reference</p>
+</li>
+<li><p>Adds an <em>Open Changes with...</em> command (<code>gitlens.diffWithRef</code>) to compare the current file with the same file on the selected reference</p>
+</li>
+<li><p>Adds an <em>Open Changes with Next Revision</em> command (<code>gitlens.diffWithNext</code>) with a shortcut of <code>alt+.</code> to compare the current file/diff with the next commit revision</p>
+</li>
+<li><p>Adds an <em>Open Changes with Previous Revision</em> command (<code>gitlens.diffWithPrevious</code>) with a shortcut of <code>alt+,</code> to compare the current file/diff with the previous commit revision</p>
+</li>
+<li><p>Adds an <em>Open Line Changes with Previous Revision</em> command (<code>gitlens.diffLineWithPrevious</code>) with a shortcut of <code>shift+alt+,</code> to compare the current file/diff with the previous line commit revision</p>
+</li>
+<li><p>Adds an <em>Open Changes with Revision...</em> command (<code>gitlens.diffWithRevision</code>) to compare the current file with the selected revision of the same file</p>
+</li>
+<li><p>Adds an <em>Open Changes with Working File</em> command (<code>gitlens.diffWithWorking</code>) with a shortcut of <code>shift+alt+w</code> to compare the most recent commit revision of the current file/diff with the working tree</p>
+</li>
+<li><p>Adds an <em>Open Line Changes with Working File</em> command (<code>gitlens.diffLineWithWorking</code>) with a shortcut of <code>alt+w</code> to compare the commit revision of the current line with the working tree</p>
+</li>
+</ul>
+<h4 id=other-commands-not-a-complete-list>Other Commands (not a complete list)</h4>
+<ul>
+<li><p>Adds a <em>Copy Commit ID to Clipboard</em> command (<code>gitlens.copyShaToClipboard</code>) to copy the commit id (sha) of the current line to the clipboard or from the most recent commit to the current branch, if there is no current editor</p>
+</li>
+<li><p>Adds a <em>Copy Commit Message to Clipboard</em> command (<code>gitlens.copyMessageToClipboard</code>) to copy the commit message of the current line to the clipboard or from the most recent commit to the current branch, if there is no current editor</p>
+</li>
+<li><p>Adds a <em>Copy Remote Url to Clipboard</em> command (<code>gitlens.copyRemoteFileUrlToClipboard</code>) to copy the remote url of the current file and line to the clipboard</p>
+</li>
+<li><p>Adds an <em>Open Working File&quot;</em> command (<code>gitlens.openWorkingFile</code>) to open the working file for the current file revision</p>
+</li>
+<li><p>Adds an <em>Open Revision...</em> command (<code>gitlens.openFileRevision</code>) to open the selected revision for the current file</p>
+</li>
+<li><p>Adds an <em>Open Revision from...</em> command (<code>gitlens.openFileRevisionFrom</code>) to open the revision of the current file from the selected reference</p>
+</li>
+<li><p>Adds an <em>Open Changes (with difftool)</em> command (<code>gitlens.externalDiff</code>) to the source control group and source control resource context menus to open the changes of a file or set of files with the configured git difftool</p>
+</li>
+<li><p>Adds an <em>Open All Changes (with difftool)</em> command (<code>gitlens.externalDiffAll</code>) to open all working changes with the configured git difftool</p>
+<ul>
+<li>Also adds the command to the Source Control group context menu</li>
+</ul>
+</li>
+<li><p>Adds an <em>Directory Compare All Changes</em> command (<code>gitlens.diffDirectoryWithHead</code>) to the source control groups to open the configured Git difftool to compare the working tree with HEAD</p>
+</li>
+<li><p>Adds a <em>Open Changed Files</em> command (<code>gitlens.openChangedFiles</code>) to open any files with working tree changes</p>
+</li>
+<li><p>Adds a <em>Close Unchanged Files</em> command (<code>gitlens.closeUnchangedFiles</code>) to close any files without working tree changes</p>
+</li>
+</ul>
+<hr>
+<h2 id=gitlens-settings>GitLens Settings <a href="#gitlens-settings-" rel="noreferrer noopener" title="GitLens Settings">#</a></h2>
+<p>GitLens is highly customizable and provides many configuration settings to allow the personalization of almost all features.</p>
+<h3 id=current-line-blame-settings>Current Line Blame Settings <a href="#current-line-blame-settings-" rel="noreferrer noopener" title="Current Line Blame Settings">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gitlens.currentLine.dateFormat</code></td>
+<td>Specifies how to format absolute dates (e.g. using the <code>${date}</code> token) for the current line blame annotations. See the <a href="https://momentjs.com/docs/#/displaying/format/" target=_blank rel="noreferrer noopener">Moment.js docs</a> for valid formats</td>
+</tr>
+<tr>
+<td><code>gitlens.currentLine.enabled</code></td>
+<td>Specifies whether to provide a blame annotation for the current line, by default. Use the <em>Toggle Line Blame Annotations</em> command (<code>gitlens.toggleLineBlame</code>) to toggle the annotations on and off for the current window</td>
+</tr>
+<tr>
+<td><code>gitlens.currentLine.format</code></td>
+<td>Specifies the format of the current line blame annotation. See <a href="https://github.com/eamodio/vscode-gitlens/wiki/Custom-Formatting#commit-tokens" target=_blank rel="noreferrer noopener"><em>Commit Tokens</em></a> in the GitLens docs. Date formatting is controlled by the <code>gitlens.currentLine.dateFormat</code> setting</td>
+</tr>
+<tr>
+<td><code>gitlens.currentLine.scrollable</code></td>
+<td>Specifies whether the current line blame annotation can be scrolled into view when it is outside the viewport</td>
+</tr>
+</tbody>
+</table>
+<h3 id=git-code-lens-settings>Git Code Lens Settings <a href="#git-code-lens-settings-" rel="noreferrer noopener" title="Git Code Lens Settings">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gitlens.codeLens.authors.command</code></td>
+<td>Specifies the command to be executed when an <em>authors</em> code lens is clicked<br><br><code>gitlens.toggleFileBlame</code> - toggles file blame annotations<br><code>gitlens.diffWithPrevious</code> - compares the current committed file with the previous commit<br><code>gitlens.revealCommitInView</code> - reveals the commit in the Repositories view<br><code>gitlens.showCommitsInView</code> - shows the commits within the range in the Search Commits view<br><code>gitlens.showQuickCommitDetails</code> - shows a commit details quick pick<br><code>gitlens.showQuickCommitFileDetails</code> - shows a commit file details quick pick<br><code>gitlens.showQuickFileHistory</code> - shows a file history quick pick<br><code>gitlens.showQuickRepoHistory</code> - shows a branch history quick pick</td>
+</tr>
+<tr>
+<td><code>gitlens.codeLens.authors.enabled</code></td>
+<td>Specifies whether to provide an <em>authors</em> code lens, showing number of authors of the file or code block and the most prominent author (if there is more than one)</td>
+</tr>
+<tr>
+<td><code>gitlens.codeLens.enabled</code></td>
+<td>Specifies whether to provide any Git code lens, by default. Use the <em>Toggle Git Code Lens</em> command (<code>gitlens.toggleCodeLens</code>) to toggle the Git code lens on and off for the current window</td>
+</tr>
+<tr>
+<td><code>gitlens.codeLens.includeSingleLineSymbols</code></td>
+<td>Specifies whether to provide any Git code lens on symbols that span only a single line</td>
+</tr>
+<tr>
+<td><code>gitlens.codeLens.recentChange.command</code></td>
+<td>Specifies the command to be executed when a <em>recent change</em> code lens is clicked<br><br><code>gitlens.toggleFileBlame</code> - toggles file blame annotations<br><code>gitlens.diffWithPrevious</code> - compares the current committed file with the previous commit<br><code>gitlens.revealCommitInView</code> - reveals the commit in the Repositories view<br><code>gitlens.showCommitsInView</code> - shows the commit in the Search Commits view<br><code>gitlens.showQuickCommitDetails</code> - shows a commit details quick pick<br><code>gitlens.showQuickCommitFileDetails</code> - shows a commit file details quick pick<br><code>gitlens.showQuickFileHistory</code> - shows a file history quick pick<br><code>gitlens.showQuickRepoHistory</code> - shows a branch history quick pick</td>
+</tr>
+<tr>
+<td><code>gitlens.codeLens.recentChange.enabled</code></td>
+<td>Specifies whether to provide a <em>recent change</em> code lens, showing the author and date of the most recent commit for the file or code block</td>
+</tr>
+<tr>
+<td><code>gitlens.codeLens.scopes</code></td>
+<td>Specifies where Git code lens will be shown in the document<br><br><code>document</code> - adds code lens at the top of the document<br><code>containers</code> - adds code lens at the start of container-like symbols (modules, classes, interfaces, etc)<br><code>blocks</code> - adds code lens at the start of block-like symbols (functions, methods, etc) lines</td>
+</tr>
+<tr>
+<td><code>gitlens.codeLens.scopesByLanguage</code></td>
+<td>Specifies where Git code lens will be shown in the document for the specified languages</td>
+</tr>
+<tr>
+<td><code>gitlens.codeLens.symbolScopes</code></td>
+<td>Specifies a set of document symbols where Git code lens will or will not be shown in the document. Prefix with <code>!</code> to avoid providing a Git code lens for the symbol. Must be a member of <a href="https://code.visualstudio.com/docs/extensionAPI/vscode-api#_a-namesymbolkindaspan-classcodeitem-id660symbolkindspan" target=_blank rel="noreferrer noopener"><code>SymbolKind</code></a></td>
+</tr>
+</tbody>
+</table>
+<h3 id=status-bar-settings>Status Bar Settings <a href="#status-bar-settings-" rel="noreferrer noopener" title="Status Bar Settings">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gitlens.statusBar.alignment</code></td>
+<td>Specifies the blame alignment in the status bar<br><br><code>left</code> - aligns to the left<br><code>right</code> - aligns to the right</td>
+</tr>
+<tr>
+<td><code>gitlens.statusBar.command</code></td>
+<td>Specifies the command to be executed when the blame status bar item is clicked<br><br><code>gitlens.toggleFileBlame</code> - toggles file blame annotations<br><code>gitlens.diffWithPrevious</code> - compares the current line commit with the previous<br><code>gitlens.diffWithWorking</code> - compares the current line commit with the working tree<br><code>gitlens.toggleCodeLens</code> - toggles Git code lens<br><code>gitlens.showQuickCommitDetails</code> - shows a commit details quick pick<br><code>gitlens.showQuickCommitFileDetails</code> - shows a commit file details quick pick<br><code>gitlens.showQuickFileHistory</code> - shows a file history quick pick<br><code>gitlens.showQuickRepoHistory</code> - shows a branch history quick pick</td>
+</tr>
+<tr>
+<td><code>gitlens.statusBar.dateFormat</code></td>
+<td>Specifies how to format absolute dates (e.g. using the <code>${date}</code> token) in the blame information in the status bar. See the <a href="https://momentjs.com/docs/#/displaying/format/" target=_blank rel="noreferrer noopener">Moment.js docs</a> for valid formats</td>
+</tr>
+<tr>
+<td><code>gitlens.statusBar.enabled</code></td>
+<td>Specifies whether to provide blame information in the status bar</td>
+</tr>
+<tr>
+<td><code>gitlens.statusBar.format</code></td>
+<td>Specifies the format of the blame information in the status bar. See <a href="https://github.com/eamodio/vscode-gitlens/wiki/Custom-Formatting#commit-tokens" target=_blank rel="noreferrer noopener"><em>Commit Tokens</em></a> in the GitLens docs. Date formatting is controlled by the <code>gitlens.statusBar.dateFormat</code> setting</td>
+</tr>
+<tr>
+<td><code>gitlens.statusBar.reduceFlicker</code></td>
+<td>Specifies whether to avoid clearing the previous blame information when changing lines to reduce status bar &quot;flashing&quot;</td>
+</tr>
+</tbody>
+</table>
+<h3 id=hover-settings>Hover Settings <a href="#hover-settings-" rel="noreferrer noopener" title="Hover Settings">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gitlens.hovers.annotations.changes</code></td>
+<td>Specifies whether to provide a <em>changes (diff)</em> hover for all lines when showing blame annotations</td>
+</tr>
+<tr>
+<td><code>gitlens.hovers.annotations.details</code></td>
+<td>Specifies whether to provide a <em>commit details</em> hover for all lines when showing blame annotations</td>
+</tr>
+<tr>
+<td><code>gitlens.hovers.annotations.enabled</code></td>
+<td>Specifies whether to provide any hovers when showing blame annotations</td>
+</tr>
+<tr>
+<td><code>gitlens.hovers.annotations.over</code></td>
+<td>Specifies when to trigger hovers when showing blame annotations<br><br><code>annotation</code> - only shown when hovering over the line annotation<br><code>line</code> - shown when hovering anywhere over the line</td>
+</tr>
+<tr>
+<td><code>gitlens.hovers.avatars</code></td>
+<td>Specifies whether to show avatar images in hovers</td>
+</tr>
+<tr>
+<td><code>gitlens.hovers.changesDiff</code></td>
+<td>Specifies whether to show just the changes to the line or the set of related changes in the <em>changes (diff)</em> hover<br><br><code>line</code> - Shows only the changes to the line<br><br><code>hunk</code> - Shows the set of related changes</td>
+</tr>
+<tr>
+<td><code>gitlens.hovers.currentLine.changes</code></td>
+<td>Specifies whether to provide a <em>changes (diff)</em> hover for the current line</td>
+</tr>
+<tr>
+<td><code>gitlens.hovers.currentLine.details</code></td>
+<td>Specifies whether to provide a <em>commit details</em> hover for the current line</td>
+</tr>
+<tr>
+<td><code>gitlens.hovers.currentLine.enabled</code></td>
+<td>Specifies whether to provide any hovers for the current line</td>
+</tr>
+<tr>
+<td><code>gitlens.hovers.currentLine.over</code></td>
+<td>Specifies when to trigger hovers for the current line<br><br><code>annotation</code> - only shown when hovering over the line annotation<br><code>line</code> - shown when hovering anywhere over the line</td>
+</tr>
+<tr>
+<td><code>gitlens.hovers.enabled</code></td>
+<td>Specifies whether to provide any hovers</td>
+</tr>
+<tr>
+<td><code>gitlens.hovers.detailsMarkdownFormat</code></td>
+<td>Specifies the format (in markdown) of the <em>commit details</em> hover. See <a href="https://github.com/eamodio/vscode-gitlens/wiki/Custom-Formatting#commit-tokens" target=_blank rel="noreferrer noopener"><em>Commit Tokens</em></a> in the GitLens docs</td>
+</tr>
+</tbody>
+</table>
+<h3 id=view-settings>View Settings <a href="#view-settings-" rel="noreferrer noopener" title="View Settings">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gitlens.views.commitFileFormat</code></td>
+<td>Specifies the format of a committed file in the views. See <a href="https://github.com/eamodio/vscode-gitlens/wiki/Custom-Formatting#file-tokens" target=_blank rel="noreferrer noopener"><em>File Tokens</em></a> in the GitLens docs</td>
+</tr>
+<tr>
+<td><code>gitlens.views.commitFileDescriptionFormat</code></td>
+<td>Specifies the description format of a committed file in the views. See <a href="https://github.com/eamodio/vscode-gitlens/wiki/Custom-Formatting#file-tokens" target=_blank rel="noreferrer noopener"><em>File Tokens</em></a> in the GitLens docs</td>
+</tr>
+<tr>
+<td><code>gitlens.views.commitFormat</code></td>
+<td>Specifies the format of committed changes in the views. See <a href="https://github.com/eamodio/vscode-gitlens/wiki/Custom-Formatting#commit-tokens" target=_blank rel="noreferrer noopener"><em>Commit Tokens</em></a> in the GitLens docs</td>
+</tr>
+<tr>
+<td><code>gitlens.views.commitDescriptionFormat</code></td>
+<td>Specifies the description format of committed changes in the views. See <a href="https://github.com/eamodio/vscode-gitlens/wiki/Custom-Formatting#commit-tokens" target=_blank rel="noreferrer noopener"><em>Commit Tokens</em></a> in the GitLens docs</td>
+</tr>
+<tr>
+<td><code>gitlens.views.defaultItemLimit</code></td>
+<td>Specifies the default number of items to show in a view list. Use 0 to specify no limit</td>
+</tr>
+<tr>
+<td><code>gitlens.views.pageItemLimit</code></td>
+<td>Specifies the number of items to show in a each page when paginating a view list. Use 0 to specify no limit</td>
+</tr>
+<tr>
+<td><code>gitlens.views.showRelativeDateMarkers</code></td>
+<td>Specifies whether to show relative date markers (<em>Less than a week ago</em>, <em>Over a week ago</em>, <em>Over a month ago</em>, etc) on revision (commit) histories in the views</td>
+</tr>
+<tr>
+<td><code>gitlens.views.stashFileFormat</code></td>
+<td>Specifies the format of a stashed file in the views. See <a href="https://github.com/eamodio/vscode-gitlens/wiki/Custom-Formatting#file-tokens" target=_blank rel="noreferrer noopener"><em>File Tokens</em></a> in the GitLens docs</td>
+</tr>
+<tr>
+<td><code>gitlens.views.stashFileDescriptionFormat</code></td>
+<td>Specifies the description format of a stashed file in the views. See <a href="https://github.com/eamodio/vscode-gitlens/wiki/Custom-Formatting#file-tokens" target=_blank rel="noreferrer noopener"><em>File Tokens</em></a> in the GitLens docs</td>
+</tr>
+<tr>
+<td><code>gitlens.views.stashFormat</code></td>
+<td>Specifies the format of stashes in the views. See <a href="https://github.com/eamodio/vscode-gitlens/wiki/Custom-Formatting#commit-tokens" target=_blank rel="noreferrer noopener"><em>Commit Tokens</em></a> in the GitLens docs</td>
+</tr>
+<tr>
+<td><code>gitlens.views.stashDescriptionFormat</code></td>
+<td>Specifies the description format of stashes in the views. See <a href="https://github.com/eamodio/vscode-gitlens/wiki/Custom-Formatting#commit-tokens" target=_blank rel="noreferrer noopener"><em>Commit Tokens</em></a> in the GitLens docs</td>
+</tr>
+<tr>
+<td><code>gitlens.views.statusFileFormat</code></td>
+<td>Specifies the format of the status of a working or committed file in the views. See <a href="https://github.com/eamodio/vscode-gitlens/wiki/Custom-Formatting#file-tokens" target=_blank rel="noreferrer noopener"><em>File Tokens</em></a> in the GitLens docs</td>
+</tr>
+<tr>
+<td><code>gitlens.views.statusFileDescriptionFormat</code></td>
+<td>Specifies the description format of the status of a working or committed file in the views. See <a href="https://github.com/eamodio/vscode-gitlens/wiki/Custom-Formatting#file-tokens" target=_blank rel="noreferrer noopener"><em>File Tokens</em></a> in the GitLens docs</td>
+</tr>
+</tbody>
+</table>
+<h3 id=repositories-view-settings>Repositories View Settings <a href="#repositories-view-settings-" rel="noreferrer noopener" title="Repositories View Settings">#</a></h3>
+<p>See also <a href="#view-settings-" rel="noreferrer noopener" title="Jump to the View settings">View Settings</a></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gitlens.views.repositories.avatars</code></td>
+<td>Specifies whether to show avatar images instead of commit (or status) icons in the <em>Repositories</em> view</td>
+</tr>
+<tr>
+<td><code>gitlens.views.repositories.autoRefresh</code></td>
+<td>Specifies whether to automatically refresh the <em>Repositories</em> view when the repository or the file system changes</td>
+</tr>
+<tr>
+<td><code>gitlens.views.repositories.autoReveal</code></td>
+<td>Specifies whether to automatically reveal repositories in the <em>Repositories</em> view when opening files</td>
+</tr>
+<tr>
+<td><code>gitlens.views.repositories.branches.layout</code></td>
+<td>Specifies how the <em>Repositories</em> view will display branches<br><br><code>list</code> - displays branches as a list<br><code>tree</code> - displays branches as a tree when branch names contain slashes <code>/</code></td>
+</tr>
+<tr>
+<td><code>gitlens.views.repositories.compact</code></td>
+<td>Specifies whether to show the <em>Repositories</em> view in a compact display density</td>
+</tr>
+<tr>
+<td><code>gitlens.views.repositories.enabled</code></td>
+<td>Specifies whether to show the <em>Repositories</em> view</td>
+</tr>
+<tr>
+<td><code>gitlens.views.repositories.files.compact</code></td>
+<td>Specifies whether to compact (flatten) unnecessary file nesting in the <em>Repositories</em> view. Only applies when <code>gitlens.views.repositories.files.layout</code> is set to <code>tree</code> or <code>auto</code></td>
+</tr>
+<tr>
+<td><code>gitlens.views.repositories.files.layout</code></td>
+<td>Specifies how the <em>Repositories</em> view will display files<br><br><code>auto</code> - automatically switches between displaying files as a <code>tree</code> or <code>list</code> based on the <code>gitlens.views.repositories.files.threshold</code> value and the number of files at each nesting level<br><code>list</code> - displays files as a list<br><code>tree</code> - displays files as a tree</td>
+</tr>
+<tr>
+<td><code>gitlens.views.repositories.files.threshold</code></td>
+<td>Specifies when to switch between displaying files as a <code>tree</code> or <code>list</code> based on the number of files in a nesting level in the <em>Repositories</em> view. Only applies when <code>gitlens.views.repositories.files.layout</code> is set to <code>auto</code></td>
+</tr>
+<tr>
+<td><code>gitlens.views.repositories.includeWorkingTree</code></td>
+<td>Specifies whether to include working tree file status for each repository in the <em>Repositories</em> view</td>
+</tr>
+<tr>
+<td><code>gitlens.views.repositories.location</code></td>
+<td>Specifies where to show the <em>Repositories</em> view<br><br><code>gitlens</code> - adds to the GitLens side bar<br><code>explorer</code> - adds to the Explorer side bar<br><code>scm</code> - adds to the Source Control side bar</td>
+</tr>
+<tr>
+<td><code>gitlens.views.repositories.showBranchComparison</code></td>
+<td>Specifies whether to show a comparison of a user-selected reference (branch, tag. etc) to the current branch or the working tree in the <em>Repositories</em> view</td>
+</tr>
+<tr>
+<td><code>gitlens.views.repositories.showTrackingBranch</code></td>
+<td>Specifies whether to show the tracking branch when displaying local branches in the <em>Repositories</em> view</td>
+</tr>
+</tbody>
+</table>
+<h3 id=file-history-view-settings>File History View Settings <a href="#file-history-view-settings-" rel="noreferrer noopener" title="File History View Settings">#</a></h3>
+<p>See also <a href="#view-settings-" rel="noreferrer noopener" title="Jump to the View settings">View Settings</a></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gitlens.views.fileHistory.avatars</code></td>
+<td>Specifies whether to show avatar images instead of status icons in the <em>File History</em> view</td>
+</tr>
+<tr>
+<td><code>gitlens.views.fileHistory.enabled</code></td>
+<td>Specifies whether to show the <em>File History</em> view</td>
+</tr>
+<tr>
+<td><code>gitlens.views.fileHistory.location</code></td>
+<td>Specifies where to show the <em>File History</em> view<br><br><code>gitlens</code> - adds to the GitLens side bar<br><code>explorer</code> - adds to the Explorer side bar<br><code>scm</code> - adds to the Source Control side bar</td>
+</tr>
+</tbody>
+</table>
+<h3 id=line-history-view-settings>Line History View Settings <a href="#line-history-view-settings-" rel="noreferrer noopener" title="Line History View Settings">#</a></h3>
+<p>See also <a href="#view-settings-" rel="noreferrer noopener" title="Jump to the View settings">View Settings</a></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gitlens.views.lineHistory.avatars</code></td>
+<td>Specifies whether to show avatar images instead of status icons in the <em>Line History</em> view</td>
+</tr>
+<tr>
+<td><code>gitlens.views.lineHistory.enabled</code></td>
+<td>Specifies whether to show the <em>Line History</em> view</td>
+</tr>
+<tr>
+<td><code>gitlens.views.lineHistory.location</code></td>
+<td>Specifies where to show the <em>Line History</em> view<br><br><code>gitlens</code> - adds to the GitLens side bar<br><code>explorer</code> - adds to the Explorer side bar<br><code>scm</code> - adds to the Source Control side bar</td>
+</tr>
+</tbody>
+</table>
+<h3 id=search-view-settings>Search View Settings <a href="#search-view-settings-" rel="noreferrer noopener" title="Search View Settings">#</a></h3>
+<p>See also <a href="#view-settings-" rel="noreferrer noopener" title="Jump to the View settings">View Settings</a></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gitlens.views.search.avatars</code></td>
+<td>Specifies whether to show avatar images instead of commit (or status) icons in the <em>Search Commits</em> view</td>
+</tr>
+<tr>
+<td><code>gitlens.views.search.files.compact</code></td>
+<td>Specifies whether to compact (flatten) unnecessary file nesting in the <em>Search Commits</em> view<br>Only applies when <code>gitlens.views.compare.files.layout</code> is set to <code>tree</code> or <code>auto</code></td>
+</tr>
+<tr>
+<td><code>gitlens.views.search.enabled</code></td>
+<td>Specifies whether to show the <em>Search Commits</em> view</td>
+</tr>
+<tr>
+<td><code>gitlens.views.search.files.layout</code></td>
+<td>Specifies how the <em>Search Commits</em> view will display files<br><code>auto</code> - automatically switches between displaying files as a <code>tree</code> or <code>list</code> based on the <code>gitlens.views.compare.files.threshold</code> value and the number of files at each nesting level<br><code>list</code> - displays files as a list<br><code>tree</code> - displays files as a tree</td>
+</tr>
+<tr>
+<td><code>gitlens.views.compare.files.threshold</code></td>
+<td>Specifies when to switch between displaying files as a <code>tree</code> or <code>list</code> based on the number of files in a nesting level in the <em>Search Commits</em> view<br>Only applies when <code>gitlens.views.compare.files.layout</code> is set to <code>auto</code></td>
+</tr>
+<tr>
+<td><code>gitlens.views.search.location</code></td>
+<td>Specifies where to show the <em>Search Commits</em> view<br><code>gitlens</code> - adds to the GitLens side bar<br><code>explorer</code> - adds to the Explorer side bar<br><code>scm</code> - adds to the Source Control side bar</td>
+</tr>
+</tbody>
+</table>
+<h3 id=compare-view-settings>Compare View Settings <a href="#compare-view-settings-" rel="noreferrer noopener" title="Compare View Settings">#</a></h3>
+<p>See also <a href="#view-settings-" rel="noreferrer noopener" title="Jump to the View settings">View Settings</a></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gitlens.views.compare.avatars</code></td>
+<td>Specifies whether to show avatar images instead of commit (or status) icons in the <em>Compare</em> view</td>
+</tr>
+<tr>
+<td><code>gitlens.views.compare.files.compact</code></td>
+<td>Specifies whether to compact (flatten) unnecessary file nesting in the <em>Compare</em> view. Only applies when <code>gitlens.views.compare.files.layout</code> is set to <code>tree</code> or <code>auto</code></td>
+</tr>
+<tr>
+<td><code>gitlens.views.compare.enabled</code></td>
+<td>Specifies whether to show the <em>Compare</em> view</td>
+</tr>
+<tr>
+<td><code>gitlens.views.compare.files.layout</code></td>
+<td>Specifies how the <em>Compare</em> view will display files<br><br><code>auto</code> - automatically switches between displaying files as a <code>tree</code> or <code>list</code> based on the <code>gitlens.views.compare.files.threshold</code> value and the number of files at each nesting level<br><code>list</code> - displays files as a list<br><code>tree</code> - displays files as a tree</td>
+</tr>
+<tr>
+<td><code>gitlens.views.compare.files.threshold</code></td>
+<td>Specifies when to switch between displaying files as a <code>tree</code> or <code>list</code> based on the number of files in a nesting level in the <em>Compare</em> view. Only applies when <code>gitlens.views.compare.files.layout</code> is set to <code>auto</code></td>
+</tr>
+<tr>
+<td><code>gitlens.views.compare.location</code></td>
+<td>Specifies where to show the <em>Compare</em> view<br><br><code>gitlens</code> - adds to the GitLens side bar<br><code>explorer</code> - adds to the Explorer side bar<br><code>scm</code> - adds to the Source Control side bar</td>
+</tr>
+</tbody>
+</table>
+<h3 id=gutter-blame-settings>Gutter Blame Settings <a href="#gutter-blame-settings-" rel="noreferrer noopener" title="Gutter Blame Settings">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gitlens.blame.avatars</code></td>
+<td>Specifies whether to show avatar images in the gutter blame annotations</td>
+</tr>
+<tr>
+<td><code>gitlens.blame.compact</code></td>
+<td>Specifies whether to compact (deduplicate) matching adjacent gutter blame annotations</td>
+</tr>
+<tr>
+<td><code>gitlens.blame.dateFormat</code></td>
+<td>Specifies how to format absolute dates (e.g. using the <code>${date}</code> token) in gutter blame annotations. See the <a href="https://momentjs.com/docs/#/displaying/format/" target=_blank rel="noreferrer noopener">Moment.js docs</a> for valid formats</td>
+</tr>
+<tr>
+<td><code>gitlens.blame.format</code></td>
+<td>Specifies the format of the gutter blame annotations. See <a href="https://github.com/eamodio/vscode-gitlens/wiki/Custom-Formatting#commit-tokens" target=_blank rel="noreferrer noopener"><em>Commit Tokens</em></a> in the GitLens docs. Date formatting is controlled by the <code>gitlens.blame.dateFormat</code> setting</td>
+</tr>
+<tr>
+<td><code>gitlens.blame.heatmap.enabled</code></td>
+<td>Specifies whether to provide a heatmap indicator in the gutter blame annotations</td>
+</tr>
+<tr>
+<td><code>gitlens.blame.heatmap.location</code></td>
+<td>Specifies where the heatmap indicators will be shown in the gutter blame annotations<br><br><code>left</code> - adds a heatmap indicator on the left edge of the gutter blame annotations<br><code>right</code> - adds a heatmap indicator on the right edge of the gutter blame annotations</td>
+</tr>
+<tr>
+<td><code>gitlens.blame.highlight.enabled</code></td>
+<td>Specifies whether to highlight lines associated with the current line</td>
+</tr>
+<tr>
+<td><code>gitlens.blame.highlight.locations</code></td>
+<td>Specifies where the associated line highlights will be shown<br><br><code>gutter</code> - adds a gutter glyph<br><code>line</code> - adds a full-line highlight background color<br><code>overview</code> - adds a decoration to the overview ruler (scroll bar)</td>
+</tr>
+<tr>
+<td><code>gitlens.blame.ignoreWhitespace</code></td>
+<td>Specifies whether to ignore whitespace when comparing revisions during blame operations</td>
+</tr>
+<tr>
+<td><code>gitlens.blame.separateLines</code></td>
+<td>Specifies whether gutter blame annotations will have line separators</td>
+</tr>
+<tr>
+<td><code>gitlens.blame.toggleMode</code></td>
+<td>Specifies how the gutter blame annotations will be toggled<br><br><code>file</code> - toggles each file individually<br><code>window</code> - toggles the window, i.e. all files at once</td>
+</tr>
+</tbody>
+</table>
+<h3 id=gutter-heatmap-settings>Gutter Heatmap Settings <a href="#gutter-heatmap-settings-" rel="noreferrer noopener" title="Gutter Heatmap Settings">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gitlens.heatmap.ageThreshold</code></td>
+<td>Specifies the age of the most recent change (in days) after which the gutter heatmap annotations will be cold rather than hot (i.e. will use <code>gitlens.heatmap.coldColor</code> instead of <code>gitlens.heatmap.hotColor</code>)</td>
+</tr>
+<tr>
+<td><code>gitlens.heatmap.coldColor</code></td>
+<td>Specifies the base color of the gutter heatmap annotations when the most recent change is older (cold) than the <code>gitlens.heatmap.ageThreshold</code> value</td>
+</tr>
+<tr>
+<td><code>gitlens.heatmap.hotColor</code></td>
+<td>Specifies the base color of the gutter heatmap annotations when the most recent change is newer (hot) than the <code>gitlens.heatmap.ageThreshold</code> value</td>
+</tr>
+<tr>
+<td><code>gitlens.heatmap.toggleMode</code></td>
+<td>Specifies how the gutter heatmap annotations will be toggled<br><br><code>file</code> - toggles each file individually<br><code>window</code> - toggles the window, i.e. all files at once</td>
+</tr>
+</tbody>
+</table>
+<h3 id=recent-changes-settings>Recent Changes Settings <a href="#recent-changes-settings-" rel="noreferrer noopener" title="Recent Changes Settings">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gitlens.recentChanges.highlight.locations</code></td>
+<td>Specifies where the highlights of the recently changed lines will be shown<br><br><code>gutter</code> - adds a gutter glyph<br><code>line</code> - adds a full-line highlight background color<br><code>overview</code> - adds a decoration to the overview ruler (scroll bar)</td>
+</tr>
+<tr>
+<td><code>gitlens.recentChanges.toggleMode</code></td>
+<td>Specifies how the recently changed lines annotations will be toggled<br><br><code>file</code> - toggles each file individually<br><code>window</code> - toggles the window, i.e. all files at once</td>
+</tr>
+</tbody>
+</table>
+<h3 id=git-commands-menu-settings>Git Commands Menu Settings <a href="#git-commands-menu-settings-" rel="noreferrer noopener" title="Git Commands Menu Settings">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gitlens.gitCommands.closeOnFocusOut</code></td>
+<td>Specifies whether to dismiss the Git Commands menu when focus is lost (if not, press <code>ESC</code> to dismiss)</td>
+</tr>
+<tr>
+<td><code>gitlens.gitCommands.search.matchAll</code></td>
+<td>Specifies whether to match all or any commit message search patterns</td>
+</tr>
+<tr>
+<td><code>gitlens.gitCommands.search.matchCase</code></td>
+<td>Specifies whether to match commit search patterns with or without regard to casing</td>
+</tr>
+<tr>
+<td><code>gitlens.gitCommands.search.matchRegex</code></td>
+<td>Specifies whether to match commit search patterns using regular expressions</td>
+</tr>
+<tr>
+<td><code>gitlens.gitCommands.search.showResultsInView</code></td>
+<td>Specifies whether to show the commit search results in the <em>Search Commits</em> view or directly within the quick pick menu</td>
+</tr>
+<tr>
+<td><code>gitlens.gitCommands.skipConfirmations</code></td>
+<td>Specifies which (and when) Git commands will skip the confirmation step, using the format: <code>git-command-name:(menu|command)</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id=date-time-settings>Date &amp; Time Settings <a href="#date--time-settings-" rel="noreferrer noopener" title="Date &amp; Time Settings">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gitlens.defaultDateFormat</code></td>
+<td>Specifies how absolute dates will be formatted by default. See the <a href="https://momentjs.com/docs/#/displaying/format/" target=_blank rel="noreferrer noopener">Moment.js docs</a> for valid formats</td>
+</tr>
+<tr>
+<td><code>gitlens.defaultDateShortFormat</code></td>
+<td>Specifies how short absolute dates will be formatted by default. See the <a href="https://momentjs.com/docs/#/displaying/format/" target=_blank rel="noreferrer noopener">Moment.js docs</a> for valid formats</td>
+</tr>
+<tr>
+<td><code>gitlens.defaultDateStyle</code></td>
+<td>Specifies how dates will be displayed by default</td>
+</tr>
+<tr>
+<td><code>gitlens.defaultDateSource</code></td>
+<td>Specifies whether commit dates should use the authored or committed date</td>
+</tr>
+</tbody>
+</table>
+<h3 id=menu-toolbar-settings>Menu &amp; Toolbar Settings <a href="#menu--toolbar-settings-" rel="noreferrer noopener" title="Menu &amp; Toolbar Settings">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gitlens.menus</code></td>
+<td>Specifies which commands will be added to which menus</td>
+</tr>
+</tbody>
+</table>
+<h3 id=keyboard-shortcut-settings>Keyboard Shortcut Settings <a href="#keyboard-shortcut-settings-" rel="noreferrer noopener" title="Keyboard Shortcut Settings">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gitlens.keymap</code></td>
+<td>Specifies the keymap to use for GitLens shortcut keys<br><br><code>alternate</code> - adds an alternate set of shortcut keys that start with <code>Alt</code> (⌥ on macOS)<br><code>chorded</code> - adds a chorded set of shortcut keys that start with <code>Ctrl+Shift+G</code> (<code>⌥⌘G</code> on macOS)<br><code>none</code> - no shortcut keys will be added</td>
+</tr>
+</tbody>
+</table>
+<h3 id=modes-settings>Modes Settings <a href="#modes-settings-" rel="noreferrer noopener" title="Modes Settings">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gitlens.mode.active</code></td>
+<td>Specifies the active GitLens mode, if any</td>
+</tr>
+<tr>
+<td><code>gitlens.mode.statusBar.enabled</code></td>
+<td>Specifies whether to provide the active GitLens mode in the status bar</td>
+</tr>
+<tr>
+<td><code>gitlens.mode.statusBar.alignment</code></td>
+<td>Specifies the active GitLens mode alignment in the status bar<br><br><code>left</code> - aligns to the left<br><code>right</code> - aligns to the right</td>
+</tr>
+<tr>
+<td><code>gitlens.modes</code></td>
+<td>Specifies the user-defined GitLens modes<br><br>Example — adds heatmap annotations to the built-in <em>Reviewing</em> mode<br><code>&quot;gitlens.modes&quot;: { &quot;review&quot;: { &quot;annotations&quot;: &quot;heatmap&quot; } }</code><br><br>Example — adds a new <em>Annotating</em> mode with blame annotations<br><code>&quot;gitlens.modes&quot;: {</code><br>&nbsp;&nbsp;&nbsp;&nbsp;<code>&quot;annotate&quot;: {</code><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>&quot;name&quot;: &quot;Annotating&quot;,</code><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>&quot;statusBarItemName&quot;: &quot;Annotating&quot;,</code><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>&quot;description&quot;: &quot;for root cause analysis&quot;,</code><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>&quot;annotations&quot;: &quot;blame&quot;,</code><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>&quot;codeLens&quot;: false,</code><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>&quot;currentLine&quot;: false,</code><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>&quot;hovers&quot;: true</code><br>&nbsp;&nbsp;&nbsp;&nbsp;<code>}</code><br><code>}</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id=autolink-settings>Autolink Settings</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gitlens.autolinks</code></td>
+<td>Specifies autolinks to external resources in commit messages. Use <code>&lt;num&gt;</code> as the variable for the reference number<br><br>Example to autolink Jira issues: (e.g. <code>JIRA-123 ⟶ https://jira.company.com/issue?query=123</code>)<br><code>&quot;gitlens.autolinks&quot;: [{ &quot;prefix&quot;: &quot;JIRA-&quot;, &quot;url&quot;: &quot;https://jira.company.com/issue?query=&lt;num&gt;&quot; }]</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id=custom-remotes-settings>Custom Remotes Settings</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gitlens.remotes</code></td>
+<td>Specifies user-defined remote (code-hosting) services or custom domains for built-in remote services<br><br>Example:<br><code>&quot;gitlens.remotes&quot;: [{ &quot;domain&quot;: &quot;git.corporate-url.com&quot;, &quot;type&quot;: &quot;GitHub&quot; }]</code><br><br>Example:<br><code>&quot;gitlens.remotes&quot;: [{</code><br>&nbsp;&nbsp;&nbsp;&nbsp;<code>&quot;domain&quot;: &quot;git.corporate-url.com&quot;,</code><br>&nbsp;&nbsp;&nbsp;&nbsp;<code>&quot;type&quot;: &quot;Custom&quot;,</code><br>&nbsp;&nbsp;&nbsp;&nbsp;<code>&quot;name&quot;: &quot;My Company&quot;,</code><br>&nbsp;&nbsp;&nbsp;&nbsp;<code>&quot;protocol&quot;: &quot;https&quot;,</code><br>&nbsp;&nbsp;&nbsp;&nbsp;<code>&quot;urls&quot;: {</code><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>&quot;repository&quot;: &quot;https://git.corporate-url.com/${repo}&quot;,</code><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>&quot;branches&quot;: &quot;https://git.corporate-url.com/${repo}/branches&quot;,</code><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>&quot;branch&quot;: &quot;https://git.corporate-url.com/${repo}/commits/${branch}&quot;,</code><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>&quot;commit&quot;: &quot;https://git.corporate-url.com/${repo}/commit/${id}&quot;,</code><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>&quot;file&quot;: &quot;https://git.corporate-url.com/${repo}?path=${file}${line}&quot;,</code><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>&quot;fileInBranch&quot;: &quot;https://git.corporate-url.com/${repo}/blob/${branch}/${file}${line}&quot;,</code><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>&quot;fileInCommit&quot;: &quot;https://git.corporate-url.com/${repo}/blob/${id}/${file}${line}&quot;,</code><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>&quot;fileLine&quot;: &quot;#L${line}&quot;,</code><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>&quot;fileRange&quot;: &quot;#L${start}-L${end}&quot;</code><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>}</code><br>&nbsp;&nbsp;&nbsp;&nbsp;<code>}]</code><br><br>Example:<br><code>&quot;gitlens.remotes&quot;: [{</code><br>&nbsp;&nbsp;&nbsp;&nbsp;<code>&quot;domain&quot;: &quot;git.corporate-url.com&quot;,</code><br>&nbsp;&nbsp;&nbsp;&nbsp;<code>&quot;type&quot;: &quot;Custom&quot;,</code><br>&nbsp;&nbsp;&nbsp;&nbsp;<code>&quot;name&quot;: &quot;My Company&quot;,</code><br>&nbsp;&nbsp;&nbsp;&nbsp;<code>&quot;protocol&quot;: &quot;https&quot;,</code><br>&nbsp;&nbsp;&nbsp;&nbsp;<code>&quot;urls&quot;: {</code><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>&quot;repository&quot;: &quot;https://git.corporate-url.com/projects/${repoBase}/repos/${repoPath}&quot;,</code><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>&quot;branches&quot;: &quot;https://git.corporate-url.com/projects/${repoBase}/repos/${repoPath}/branches&quot;,</code><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>&quot;branch&quot;: &quot;https://git.corporate-url.com/projects/${repoBase}/repos/${repoPath}/commits/${branch}&quot;,</code><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>&quot;commit&quot;: &quot;https://git.corporate-url.com/projects/${repoBase}/repos/${repoPath}/commit/${id}&quot;,</code><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>&quot;file&quot;: &quot;https://git.corporate-url.com/projects/${repoBase}/repos/${repoPath}?path=${file}${line}&quot;,</code><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>&quot;fileInBranch&quot;: &quot;https://git.corporate-url.com/projects/${repoBase}/repos/${repoPath}/blob/${branch}/${file}${line}&quot;,</code><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>&quot;fileInCommit&quot;: &quot;https://git.corporate-url.com/projects/${repoBase}/repos/${repoPath}/blob/${id}/${file}${line}&quot;,</code><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>&quot;fileLine&quot;: &quot;#L${line}&quot;,</code><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>&quot;fileRange&quot;: &quot;#L${start}-L${end}&quot;</code><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>}</code><br>&nbsp;&nbsp;&nbsp;&nbsp;<code>}]</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id=misc-settings>Misc Settings <a href="#misc-settings-" rel="noreferrer noopener" title="Misc Settings">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gitlens.defaultGravatarsStyle</code></td>
+<td>Specifies the style of the gravatar default (fallback) images<br><br><code>identicon</code> - a geometric pattern<br><code>mm</code> - a simple, cartoon-style silhouetted outline of a person (does not vary by email hash)<br><code>monsterid</code> - a monster with different colors, faces, etc<br><code>retro</code> - 8-bit arcade-style pixelated faces<br><code>robohash</code> - a robot with different colors, faces, etc<br><code>wavatar</code> - a face with differing features and backgrounds</td>
+</tr>
+<tr>
+<td><code>gitlens.insiders</code></td>
+<td>Specifies whether to enable experimental features</td>
+</tr>
+<tr>
+<td><code>gitlens.liveshare.allowGuestAccess</code></td>
+<td>Specifies whether to allow guest access to GitLens features when using Visual Studio Live Share</td>
+</tr>
+<tr>
+<td><code>gitlens.outputLevel</code></td>
+<td>Specifies how much (if any) output will be sent to the GitLens output channel</td>
+</tr>
+<tr>
+<td><code>gitlens.showWhatsNewAfterUpgrades</code></td>
+<td>Specifies whether to show What's New after upgrading to new feature releases</td>
+</tr>
+<tr>
+<td><code>gitlens.advanced.abbreviatedShaLength</code></td>
+<td>Specifies the length of abbreviated commit ids (shas)</td>
+</tr>
+<tr>
+<td><code>gitlens.advanced.blame.customArguments</code></td>
+<td>Specifies additional arguments to pass to the <code>git blame</code> command</td>
+</tr>
+<tr>
+<td><code>gitlens.advanced.blame.delayAfterEdit</code></td>
+<td>Specifies the time (in milliseconds) to wait before re-blaming an unsaved document after an edit. Use 0 to specify an infinite wait</td>
+</tr>
+<tr>
+<td><code>gitlens.advanced.blame.sizeThresholdAfterEdit</code></td>
+<td>Specifies the maximum document size (in lines) allowed to be re-blamed after an edit while still unsaved. Use 0 to specify no maximum</td>
+</tr>
+<tr>
+<td><code>gitlens.advanced.caching.enabled</code></td>
+<td>Specifies whether git output will be cached — changing the default is not recommended</td>
+</tr>
+<tr>
+<td><code>gitlens.advanced.fileHistoryFollowsRenames</code></td>
+<td>Specifies whether file histories will follow renames -- will affect how merge commits are shown in histories</td>
+</tr>
+<tr>
+<td><code>gitlens.advanced.maxListItems</code></td>
+<td>Specifies the maximum number of items to show in a list. Use 0 to specify no maximum</td>
+</tr>
+<tr>
+<td><code>gitlens.advanced.maxSearchItems</code></td>
+<td>Specifies the maximum number of items to show in a search. Use 0 to specify no maximum</td>
+</tr>
+<tr>
+<td><code>gitlens.advanced.messages</code></td>
+<td>Specifies which messages should be suppressed</td>
+</tr>
+<tr>
+<td><code>gitlens.advanced.quickPick.closeOnFocusOut</code></td>
+<td>Specifies whether to dismiss quick pick menus when focus is lost (if not, press <code>ESC</code> to dismiss)</td>
+</tr>
+<tr>
+<td><code>gitlens.advanced.repositorySearchDepth</code></td>
+<td>Specifies how many folders deep to search for repositories</td>
+</tr>
+<tr>
+<td><code>gitlens.advanced.similarityThreshold</code></td>
+<td>Specifies the amount (percent) of similarity a deleted and added file pair must have to be considered a rename</td>
+</tr>
+<tr>
+<td><code>gitlens.advanced.telemetry.enabled</code></td>
+<td>Specifies whether to enable GitLens telemetry (even if enabled still abides by the overall <code>telemetry.enableTelemetry</code> setting</td>
+</tr>
+<tr>
+<td><code>gitlens.advanced.useSymmetricDifferenceNotation</code></td>
+<td>Specifies whether to use the symmetric difference (three-dot) notation or the range (two-dot) notation for comparisons. See the <a href="https://git-scm.com/docs/gitrevisions#_dotted_range_notations" target=_blank rel="noreferrer noopener">Git docs</a></td>
+</tr>
+<tr>
+<td><code>gitlens.strings.codeLens.unsavedChanges.recentChangeAndAuthors</code></td>
+<td>Specifies the string to be shown in place of both the <em>recent change</em> and <em>authors</em> code lens when there are unsaved changes</td>
+</tr>
+<tr>
+<td><code>gitlens.strings.codeLens.unsavedChanges.recentChangeOnly</code></td>
+<td>Specifies the string to be shown in place of the <em>recent change</em> code lens when there are unsaved changes</td>
+</tr>
+<tr>
+<td><code>gitlens.strings.codeLens.unsavedChanges.authorsOnly</code></td>
+<td>Specifies the string to be shown in place of the <em>authors</em> code lens when there are unsaved changes</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id=themable-colors>Themable Colors <a href="#themable-colors-" rel="noreferrer noopener" title="Themable Colors">#</a></h2>
+<p>GitLens defines a set of themable colors which can be provided by vscode themes or directly by the user using <a href="https://code.visualstudio.com/docs/getstarted/themes#_customize-a-color-theme" target=_blank rel="noreferrer noopener"><code>workbench.colorCustomizations</code></a>.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gitlens.gutterBackgroundColor</code></td>
+<td>Specifies the background color of the gutter blame annotations</td>
+</tr>
+<tr>
+<td><code>gitlens.gutterForegroundColor</code></td>
+<td>Specifies the foreground color of the gutter blame annotations</td>
+</tr>
+<tr>
+<td><code>gitlens.gutterUncommittedForegroundColor</code></td>
+<td>Specifies the foreground color of an uncommitted line in the gutter blame annotations</td>
+</tr>
+<tr>
+<td><code>gitlens.trailingLineBackgroundColor</code></td>
+<td>Specifies the background color of the trailing blame annotation</td>
+</tr>
+<tr>
+<td><code>gitlens.trailingLineForegroundColor</code></td>
+<td>Specifies the foreground color of the trailing blame annotation</td>
+</tr>
+<tr>
+<td><code>gitlens.lineHighlightBackgroundColor</code></td>
+<td>Specifies the background color of the associated line highlights in blame annotations</td>
+</tr>
+<tr>
+<td><code>gitlens.lineHighlightOverviewRulerColor</code></td>
+<td>Specifies the overview ruler color of the associated line highlights in blame annotations</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id=insiders>Insiders</h2>
+<p>Add <a href="#misc-settings-" rel="noreferrer noopener" title="Jump to Misc settings"><code>&quot;gitlens.insiders&quot;: true</code></a> to your settings to join the insiders channel and get early access to upcoming features. Be aware that because this provides early access expect there to be issues.</p>
+<hr>
+<h2 id=contributors>Contributors &#128591;❤</h2>
+<p>A big thanks to the people that have contributed to this project:</p>
+<ul>
+<li>Loris Bettazza (<a href="https://github.com/Pustur" target=_blank rel="noreferrer noopener">@Pustur</a>) — <a href="https://github.com/eamodio/vscode-gitlens/commits?author=Pustur" target=_blank rel="noreferrer noopener">contributions</a></li>
+<li>bolte-17 (<a href="https://github.com/bolte-17" target=_blank rel="noreferrer noopener">@bolte-17</a>) — <a href="https://github.com/eamodio/vscode-gitlens/commits?author=bolte-17" target=_blank rel="noreferrer noopener">contributions</a></li>
+<li>Zach Boyle (<a href="https://github.com/zaboyle" target=_blank rel="noreferrer noopener">@zaboyle</a>) — <a href="https://github.com/eamodio/vscode-gitlens/commits?author=zaboyle" target=_blank rel="noreferrer noopener">contributions</a></li>
+<li>Tony Brix (<a href="https://github.com/UziTech" target=_blank rel="noreferrer noopener">@UziTech</a>) — <a href="https://github.com/eamodio/vscode-gitlens/commits?author=UziTech" target=_blank rel="noreferrer noopener">contributions</a></li>
+<li>Amanda Cameron (<a href="https://github.com/AmandaCameron" target=_blank rel="noreferrer noopener">@AmandaCameron</a>) — <a href="https://github.com/eamodio/vscode-gitlens/commits?author=AmandaCameron" target=_blank rel="noreferrer noopener">contributions</a></li>
+<li>Brett Cannon (<a href="https://github.com/brettcannon" target=_blank rel="noreferrer noopener">@brettcannon</a>) — <a href="https://github.com/eamodio/vscode-gitlens/commits?author=brettcannon" target=_blank rel="noreferrer noopener">contributions</a></li>
+<li>Ash Clarke (<a href="https://github.com/ashclarke" target=_blank rel="noreferrer noopener">@ashclarke</a>) — <a href="https://github.com/eamodio/vscode-gitlens/commits?author=ashclarke" target=_blank rel="noreferrer noopener">contributions</a></li>
+<li>Matt Cooper (<a href="https://github.com/vtbassmatt" target=_blank rel="noreferrer noopener">@vtbassmatt</a>) — <a href="https://github.com/eamodio/vscode-gitlens/commits?author=vtbassmatt" target=_blank rel="noreferrer noopener">contributions</a></li>
+<li>Segev Finer (<a href="https://github.com/segevfiner" target=_blank rel="noreferrer noopener">@segevfiner</a>) — <a href="https://github.com/eamodio/vscode-gitlens/commits?author=segevfiner" target=_blank rel="noreferrer noopener">contributions</a></li>
+<li>Cory Forsyth (<a href="https://github.com/bantic" target=_blank rel="noreferrer noopener">@bantic</a>) — <a href="https://github.com/eamodio/vscode-gitlens/commits?author=bantic" target=_blank rel="noreferrer noopener">contributions</a></li>
+<li>John Gee (<a href="https://github.com/shadowspawn" target=_blank rel="noreferrer noopener">@shadowspawn</a>) — <a href="https://github.com/eamodio/vscode-gitlens/commits?author=shadowspawn" target=_blank rel="noreferrer noopener">contributions</a></li>
+<li>Geoffrey (<a href="https://github.com/g3offrey" target=_blank rel="noreferrer noopener">@g3offrey</a>) — <a href="https://github.com/eamodio/vscode-gitlens/commits?author=g3offrey" target=_blank rel="noreferrer noopener">contributions</a></li>
+<li>grozan (<a href="https://github.com/grozan" target=_blank rel="noreferrer noopener">@grozan</a>) — <a href="https://github.com/eamodio/vscode-gitlens/commits?author=grozan" target=_blank rel="noreferrer noopener">contributions</a></li>
+<li>Yukai Huang (<a href="https://github.com/Yukaii" target=_blank rel="noreferrer noopener">@Yukaii</a>) — <a href="https://github.com/eamodio/vscode-gitlens/commits?author=Yukaii" target=_blank rel="noreferrer noopener">contributions</a></li>
+<li>Roy Ivy III (<a href="https://github.com/rivy" target=_blank rel="noreferrer noopener">@rivy</a>) — <a href="https://github.com/eamodio/vscode-gitlens/commits?author=rivy" target=_blank rel="noreferrer noopener">contributions</a></li>
+<li>Helmut Januschka (<a href="https://github.com/hjanuschka" target=_blank rel="noreferrer noopener">@hjanuschka</a>) — <a href="https://github.com/eamodio/vscode-gitlens/commits?author=hjanuschka" target=_blank rel="noreferrer noopener">contributions</a></li>
+<li>Chris Kaczor (<a href="https://github.com/ckaczor" target=_blank rel="noreferrer noopener">@ckaczor</a>) — <a href="https://github.com/eamodio/vscode-gitlens/commits?author=ckaczor" target=_blank rel="noreferrer noopener">contributions</a></li>
+<li>Allan Karlson (<a href="https://github.com/bees4ever" target=_blank rel="noreferrer noopener">@bees4ever</a>) — <a href="https://github.com/eamodio/vscode-gitlens/commits?author=bees4ever" target=_blank rel="noreferrer noopener">contributions</a></li>
+<li>Mathew King (<a href="https://github.com/MathewKing" target=_blank rel="noreferrer noopener">@MathewKing</a>) — <a href="https://github.com/eamodio/vscode-gitlens/commits?author=MathewKing" target=_blank rel="noreferrer noopener">contributions</a></li>
+<li>Andrei Korigodski (<a href="https://github.com/korigod" target=_blank rel="noreferrer noopener">@korigod</a>) — <a href="https://github.com/eamodio/vscode-gitlens/commits?author=korigod" target=_blank rel="noreferrer noopener">contributions</a></li>
+<li>Kwok (<a href="https://github.com/mankwok" target=_blank rel="noreferrer noopener">@mankwok</a>) — <a href="https://github.com/eamodio/vscode-gitlens/commits?author=mankwok" target=_blank rel="noreferrer noopener">contributions</a></li>
+<li>Marc Lasson (<a href="https://github.com/mlasson" target=_blank rel="noreferrer noopener">@mlasson</a>) — <a href="https://github.com/eamodio/vscode-gitlens/commits?author=mlasson" target=_blank rel="noreferrer noopener">contributions</a></li>
+<li>John Letey (<a href="https://github.com/johnletey" target=_blank rel="noreferrer noopener">@johnletey</a>) — <a href="https://github.com/eamodio/vscode-gitlens/commits?author=johnletey" target=_blank rel="noreferrer noopener">contributions</a></li>
+<li>Peng Lyu (<a href="https://github.com/rebornix" target=_blank rel="noreferrer noopener">@rebornix</a>) — <a href="https://github.com/eamodio/vscode-gitlens/commits?author=rebornix" target=_blank rel="noreferrer noopener">contributions</a></li>
+<li>Cédric Malard (<a href="https://github.com/cmalard" target=_blank rel="noreferrer noopener">@cmalard</a>) — <a href="https://github.com/eamodio/vscode-gitlens/commits?author=cmalard" target=_blank rel="noreferrer noopener">contributions</a></li>
+<li>Aurelio Ogliari (<a href="https://github.com/nobitagit" target=_blank rel="noreferrer noopener">@nobitagit</a>) — <a href="https://github.com/eamodio/vscode-gitlens/commits?author=nobitagit" target=_blank rel="noreferrer noopener">contributions</a></li>
+<li>Maxim Pekurin (<a href="https://github.com/pmaxim25" target=_blank rel="noreferrer noopener">@pmaxim25</a>) — <a href="https://github.com/eamodio/vscode-gitlens/commits?author=pmaxim25" target=_blank rel="noreferrer noopener">contributions</a></li>
+<li>Arunprasad Rajkumar (<a href="https://github.com/arajkumar" target=_blank rel="noreferrer noopener">@arajkumar</a>) — <a href="https://github.com/eamodio/vscode-gitlens/commits?author=arajkumar" target=_blank rel="noreferrer noopener">contributions</a></li>
+<li>Johannes Rieken (<a href="https://github.com/jrieken" target=_blank rel="noreferrer noopener">@jrieken</a>) — <a href="https://github.com/eamodio/vscode-gitlens/commits?author=jrieken" target=_blank rel="noreferrer noopener">contributions</a></li>
+<li>ryenus (<a href="https://github.com/ryenus" target=_blank rel="noreferrer noopener">@ryenus</a>) — <a href="https://github.com/eamodio/vscode-gitlens/commits?author=ryenus" target=_blank rel="noreferrer noopener">contributions</a></li>
+<li>Zack Schuster (<a href="https://github.com/zackschuster" target=_blank rel="noreferrer noopener">@zackschuster</a>) — <a href="https://github.com/eamodio/vscode-gitlens/commits?author=zackschuster" target=_blank rel="noreferrer noopener">contributions</a></li>
+<li>sgtwilko (<a href="https://github.com/sgtwilko" target=_blank rel="noreferrer noopener">@sgtwilko</a>) — <a href="https://github.com/eamodio/vscode-gitlens/commits?author=sgtwilko" target=_blank rel="noreferrer noopener">contributions</a></li>
+<li>Ahmadali Shafiee (<a href="https://github.com/ahmadalli" target=_blank rel="noreferrer noopener">@ahmadalli</a>) — <a href="https://github.com/eamodio/vscode-gitlens/commits?author=ahmadalli" target=_blank rel="noreferrer noopener">contributions</a></li>
+<li>Miguel Solorio (<a href="https://github.com/misolori" target=_blank rel="noreferrer noopener">@misolori</a>) — <a href="https://github.com/eamodio/vscode-gitlens/commits?author=misolori" target=_blank rel="noreferrer noopener">contributions</a></li>
+<li>SpaceEEC (<a href="https://github.com/SpaceEEC" target=_blank rel="noreferrer noopener">@SpaceEEC</a>) — <a href="https://github.com/eamodio/vscode-gitlens/commits?author=SpaceEEC" target=_blank rel="noreferrer noopener">contributions</a></li>
+<li>Skybbles // L5474 (<a href="https://github.com/Luxray5474" target=_blank rel="noreferrer noopener">@Luxray5474</a>) — <a href="https://github.com/eamodio/vscode-gitlens/commits?author=Luxray5474" target=_blank rel="noreferrer noopener">contributions</a></li>
+<li>Alexey Vasyukov (<a href="https://github.com/notmedia" target=_blank rel="noreferrer noopener">@notmedia</a>) — <a href="https://github.com/eamodio/vscode-gitlens/commits?author=notmedia" target=_blank rel="noreferrer noopener">contributions</a></li>
+<li>x13machine (<a href="https://github.com/x13machine" target=_blank rel="noreferrer noopener">@x13machine</a>) — <a href="https://github.com/eamodio/vscode-gitlens/commits?author=x13machine" target=_blank rel="noreferrer noopener">contributions</a></li>
+<li>Yan Zhang (<a href="https://github.com/Eskibear" target=_blank rel="noreferrer noopener">@Eskibear</a>) — <a href="https://github.com/eamodio/vscode-gitlens/commits?author=Eskibear" target=_blank rel="noreferrer noopener">contributions</a></li>
+<li>Zyck (<a href="https://github.com/qzyse2017" target=_blank rel="noreferrer noopener">@qzyse2017</a>) — <a href="https://github.com/eamodio/vscode-gitlens/commits?author=qzyse2017" target=_blank rel="noreferrer noopener">contributions</a></li>
+</ul>
+<p>Also special thanks to the people that have provided support, testing, brainstorming, etc:</p>
+<ul>
+<li>Brian Canzanella (<a href="https://github.com/bcanzanella" target=_blank rel="noreferrer noopener">@bcanzanella</a>)</li>
+<li>Matt King (<a href="https://github.com/KattMingMing" target=_blank rel="noreferrer noopener">@KattMingMing</a>)</li>
+</ul>
+<p>And of course the awesome <a href="https://github.com/Microsoft/vscode/graphs/contributors" target=_blank rel="noreferrer noopener">vscode</a> team!</p>
+</div></div></td><td class="ux-itemdetails-right" role="complementary"><div class="screenshot-carousel-container"></div><div class="loader-container"><div class="loader"></div></div><div class="itemDetails-right"></div></td></tr></tbody></table></div></div></div></div></div></div></div></div></div></div><div id="gallery-footer"><footer><div id="ux-footer" class="ltr" role="contentinfo"><div id="baseFooter"><div id="Fragment_BaseFooterLinks"><div class="linkList"><ul class="links horizontal"><li><a href="https://www.visualstudio.com/support/support-overview-vs" data-mscc-ic="false">Contact us</a></li><li><a href="https://careers.microsoft.com/" data-mscc-ic="false">Jobs</a></li><li><a href="https://go.microsoft.com/fwlink/?LinkID=264782" data-mscc-ic="false">Privacy</a></li><li><a href="https://aka.ms/vsmarketplace-ToU" data-mscc-ic="false">Terms of use</a></li><li><a href="https://www.microsoft.com/en-us/legal/intellectualproperty/Trademarks/EN-US.aspx" data-mscc-ic="false">Trademarks</a></li></ul></div></div><div id="rightBaseFooter">©<!-- --> 2019 Microsoft<span class="microsoftLogo" title="Microsoft"></span></div><div class="clear"></div></div></div></footer></div></div></div></div>
+    
+    <!-- Google Tag Manager -->
+    <noscript>
+        <iframe src="//www.googletagmanager.com/ns.html?id=GTM-WT9XBK"
+            height="0" width="0" style="display: none; visibility: hidden"></iframe>
+    </noscript>
+    <script type="text/javascript"  nonce="1oBUckegXBLjvYipvOGhCw==">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName('body')[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.defer=true;j.src=
+        '//www.googletagmanager.com/gtm.js?id='+i+dl;f.insertBefore(j,f.lastChild);
+        })(window,document,'script','dataLayer','GTM-WT9XBK');</script>
+    <!-- End Google Tag Manager -->
+
+    <div class="render-time">
+        <script class="server-side-render" defer="defer" type="application/json">7</script>
+    </div>
+    <div class="rhs-content">
+        <script class="jiContent" defer="defer" type="application/json">{"GitHubLink":"https://github.com/eamodio/vscode-gitlens.git","ReleaseDateString":"Mon, 05 Sep 2016 22:30:06 GMT","LastUpdatedDateString":"Wed, 10 Jun 2020 19:42:37 GMT","GalleryUrl":"/","Categories":["Other"],"Tags":["annotation","blame","git","gitlens","keybindings","log","multi-root ready"],"ExtensionProperties":{"Microsoft.VisualStudio.Services.Branding.Color":"#8647ae","Microsoft.VisualStudio.Services.Branding.Theme":"dark","Microsoft.VisualStudio.Services.Links.Getstarted":"https://github.com/eamodio/vscode-gitlens.git","Microsoft.VisualStudio.Services.Links.Support":"https://github.com/eamodio/vscode-gitlens/issues","Microsoft.VisualStudio.Services.Links.Learn":"https://github.com/eamodio/vscode-gitlens/blob/master/README.md","Microsoft.VisualStudio.Services.Links.Source":"https://github.com/eamodio/vscode-gitlens.git","Microsoft.VisualStudio.Services.Links.GitHub":"https://github.com/eamodio/vscode-gitlens.git","Microsoft.VisualStudio.Code.Engine":"^1.37.0","Microsoft.VisualStudio.Services.GitHubFlavoredMarkdown":"true","Microsoft.VisualStudio.Code.ExtensionDependencies":"","Microsoft.VisualStudio.Code.ExtensionPack":"","Microsoft.VisualStudio.Code.LocalizedLanguages":""},"Resources":{"LicenseText":"License","ChangelogText":"Changelog","PublisherName":"eamodio","ExtensionName":"gitlens","Version":"10.2.2"},"MoreInfo":{"VersionValue":"10.2.2","PublisherValue":"Eric Amodio","UniqueIdentifierValue":"eamodio.gitlens","TwitterShareContents":"Just%20discovered%20this%20on%20the%20%23VSMarketplace%3A%20https%3A%2F%2Fmarketplace.visualstudio.com%2Fitems%3FitemName%3Deamodio.gitlens","EmailShareContents":"Hi%2C%20Just%20discovered%20this%20extension%20on%20the%20%23VSMarketplace%20that%20may%20be%20of%20interest%20to%20you.%20Check%20it%20out%20%40%20https%3A%2F%2Fmarketplace.visualstudio.com%2Fitems%3FitemName%3Deamodio.gitlens%20%21","EmailShareSubject":"Check%20out%20-%20GitLens%20%E2%80%94%20Git%20supercharged%20for%20Visual%20Studio%20Code","IsPublic":true},"ResourcesPath":"https://cdn.vsassets.io/v/M170_20200611.2/_content/","AssetUri":"https://eamodio.gallerycdn.vsassets.io/extensions/eamodio/gitlens/10.2.2/1591818157905","VsixManifestAssetType":"Microsoft.VisualStudio.Services.VsixManifest","StaticResourceVersion":"M170_20200611.2","AfdIdentifier":"Ref A: 20C1C2E007864F82B869FD11B1E96237 Ref B: MAA02EDGE0317 Ref C: 2020-06-20T08:42:37Z","VsixId":null,"WorksWith":null,"ItemType":3,"IsMDPruned":false,"PrunedMDLength":0,"OverviewMDLength":142901,"IsRHSAsyncComponentsEnabled":true,"OfferDetails":null,"IsDetailsTabsEnabled":false}</script>
+    </div>
+    <div class="csp-user">
+        <script class="is-csp-user" defer="defer" type="application/json">null</script>
+    </div>
+    
+
+    <script type="text/javascript"  nonce="1oBUckegXBLjvYipvOGhCw==">
+        if (document) {
+            try {
+                if (window.performance && window.performance.timing) {
+                    window["marketplaceRenderTime"] = Date.now() - window.performance.timing.navigationStart;
+                }
+            }
+            catch(e){ }
+        }
+    </script>
+    <script type="text/javascript" nonce="1oBUckegXBLjvYipvOGhCw=="> var __vssPageContext = {"webContext":{"host":{"id":"2663b13f-50e3-a655-a159-22f6f4725fab","name":"TEAM FOUNDATION","uri":"https://marketplace.visualstudio.com/","relativeUri":"/","hostType":"deployment","scheme":"https","authority":"marketplace.visualstudio.com"}},"moduleLoaderConfig":{"baseUrl":"https://cdn.vsassets.io/v/M170_20200611.2/_scripts/TFS/min/","paths":{"ContentRendering/Resources":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/en-IN","Gallery/Scripts/Gallery/Resources":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/en-IN","VSSPreview/Resources":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/en-IN","Charts/Resources":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/en-IN","Engagement/Resources":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/en-IN","VSS/Resources":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/en-IN","highcharts":"https://cdn.vsassets.io/3rdParty/_scripts/highcharts.v7.2.1","highcharts/highcharts-more":"https://cdn.vsassets.io/3rdParty/_scripts/highcharts-more.v7.2.1","highcharts/modules/accessibility":"https://cdn.vsassets.io/3rdParty/_scripts/highcharts-accessibility.v7.2.1","highcharts/modules/funnel":"https://cdn.vsassets.io/3rdParty/_scripts/highcharts-funnel.v7.2.1","highcharts/modules/heatmap":"https://cdn.vsassets.io/3rdParty/_scripts/highcharts-heatmap.v7.2.1"},"map":{"*":{"office-ui-fabric-react/lib":"OfficeFabric"}},"contributionPaths":{"VSS":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/VSS","pathType":"default"},"VSS/Resources":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/en-IN","pathType":"resource"},"q":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/q","pathType":"default"},"knockout":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/knockout","pathType":"default"},"mousetrap":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/mousetrap","pathType":"default"},"mustache":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/mustache","pathType":"default"},"react":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/react.15.3","pathType":"default"},"react-dom":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/react-dom.15.3","pathType":"default"},"react-transition-group":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/react-transition-group.15.3","pathType":"default"},"jQueryUI":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/jQueryUI","pathType":"default"},"jquery":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/jquery","pathType":"default"},"OfficeFabric":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/OfficeFabric","pathType":"default"},"tslib":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/tslib","pathType":"default"},"@uifabric":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/@uifabric","pathType":"default"},"VSSUI":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/VSSUI","pathType":"default"},"ContentRendering":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/ContentRendering","pathType":"default"},"ContentRendering/Resources":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/en-IN","pathType":"resource"},"Charts":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/Charts","pathType":"default"},"Charts/Resources":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/en-IN","pathType":"resource"},"highcharts":{"value":"https://cdn.vsassets.io/3rdParty/_scripts/highcharts.v7.2.1","pathType":"thirdParty"},"highcharts/highcharts-more":{"value":"https://cdn.vsassets.io/3rdParty/_scripts/highcharts-more.v7.2.1","pathType":"thirdParty"},"highcharts/modules/accessibility":{"value":"https://cdn.vsassets.io/3rdParty/_scripts/highcharts-accessibility.v7.2.1","pathType":"thirdParty"},"highcharts/modules/funnel":{"value":"https://cdn.vsassets.io/3rdParty/_scripts/highcharts-funnel.v7.2.1","pathType":"thirdParty"},"highcharts/modules/heatmap":{"value":"https://cdn.vsassets.io/3rdParty/_scripts/highcharts-heatmap.v7.2.1","pathType":"thirdParty"}},"shim":{"jquery":{"deps":[],"exports":"jQuery"}},"waitSeconds":30},"coreReferences":{"stylesheets":[{"url":"/_static/tfs/M170_20200611.2/_cssbundles/Default/vss-bundle-ext-core-css-vQ8Us1s7UaJe7EYaHu4abPhUIoy4VkQeq0UCGlmbyyiE=","highContrastUrl":null,"isCoreStylesheet":true}],"scripts":[{"identifier":"JQuery","url":"https://cdn.vsassets.io/3rdParty/_scripts/jquery-2.2.4.min.js","fallbackUrl":null,"fallbackCondition":null,"isCoreModule":true},{"identifier":"JQueryXDomain","url":"https://cdn.vsassets.io/3rdParty/_scripts/jquery.xdomainrequest.min.js","fallbackUrl":null,"fallbackCondition":null,"isCoreModule":true},{"identifier":"Promise","url":"https://cdn.vsassets.io/v/M170_20200611.2/_scripts/TFS/min/promise.js","fallbackUrl":null,"fallbackCondition":null,"isCoreModule":true},{"identifier":"GlobalScripts","url":"https://cdn.vsassets.io/v/M170_20200611.2/_scripts/TFS/min/global-scripts.js","fallbackUrl":null,"fallbackCondition":null,"isCoreModule":true},{"identifier":"LoaderFixes","url":"https://cdn.vsassets.io/v/M170_20200611.2/_scripts/TFS/pre-loader-shim.min.js","fallbackUrl":null,"fallbackCondition":null,"isCoreModule":false},{"identifier":"AMDLoader","url":"https://cdn.vsassets.io/3rdParty/_scripts/require.min.js","fallbackUrl":null,"fallbackCondition":null,"isCoreModule":true},{"identifier":"LoaderFixes","url":"https://cdn.vsassets.io/v/M170_20200611.2/_scripts/TFS/post-loader-shim.min.js","fallbackUrl":null,"fallbackCondition":null,"isCoreModule":false}],"coreScriptsBundle":{"identifier":"CoreBundle","url":"/_public/_Bundling/Content?bundle=vss-bundle-basejs-v9GpWWBnsWqhM23ijhK2HfAqLowTXGUqZLDRsBCZbkfY=","fallbackUrl":null,"fallbackCondition":null,"isCoreModule":true},"extensionCoreReferences":{"identifier":"CoreBundle","url":"https://cdn.vsassets.io/bundles/vss-bundle-ext-core-vXmFrbZVv9in776dlqjrJLCGMci5PQIF14Ug3E2n2Ku0=","fallbackUrl":null,"fallbackCondition":null,"isCoreModule":true}},"webAccessConfiguration":{"isHosted":true,"paths":{"rootPath":"/","staticContentRootPath":"/","staticContentVersion":"M170_20200611.2","resourcesPath":"https://cdn.vsassets.io/v/M170_20200611.2/_content/","staticRootTfs":"https://cdn.vsassets.io/v/M170_20200611.2/","cdnFallbackStaticRootTfs":"/_static/tfs/M170_20200611.2/","staticRoot3rdParty":"https://cdn.vsassets.io/3rdParty/"},"api":{"webApiVersion":"1","areaPrefix":"_","controllerPrefix":"_"},"mailSettings":{"enabled":false},"registryItems":{}},"microsoftAjaxConfig":{"cultureInfo":{"name":"en-IN","numberFormat":{"CurrencyDecimalDigits":2,"CurrencyDecimalSeparator":".","IsReadOnly":true,"CurrencyGroupSizes":[3,2],"NumberGroupSizes":[3,2],"PercentGroupSizes":[3,2],"CurrencyGroupSeparator":",","CurrencySymbol":"₹","NaNSymbol":"NaN","CurrencyNegativePattern":12,"NumberNegativePattern":1,"PercentPositivePattern":1,"PercentNegativePattern":1,"NegativeInfinitySymbol":"-∞","NegativeSign":"-","NumberDecimalDigits":2,"NumberDecimalSeparator":".","NumberGroupSeparator":",","CurrencyPositivePattern":2,"PositiveInfinitySymbol":"∞","PositiveSign":"+","PercentDecimalDigits":2,"PercentDecimalSeparator":".","PercentGroupSeparator":",","PercentSymbol":"%","PerMilleSymbol":"‰","NativeDigits":["0","1","2","3","4","5","6","7","8","9"],"DigitSubstitution":1},"dateTimeFormat":{"AMDesignator":"AM","Calendar":{"MinSupportedDateTime":"0001-01-01T00:00:00","MaxSupportedDateTime":"9999-12-31T23:59:59.9999999","AlgorithmType":1,"CalendarType":1,"Eras":[1],"TwoDigitYearMax":2029,"IsReadOnly":true},"DateSeparator":"-","FirstDayOfWeek":1,"CalendarWeekRule":0,"FullDateTimePattern":"dd MMMM yyyy HH:mm:ss","LongDatePattern":"dd MMMM yyyy","LongTimePattern":"HH:mm:ss","MonthDayPattern":"d MMMM","PMDesignator":"PM","RFC1123Pattern":"ddd, dd MMM yyyy HH':'mm':'ss 'GMT'","ShortDatePattern":"dd-MM-yyyy","ShortTimePattern":"HH:mm","SortableDateTimePattern":"yyyy'-'MM'-'dd'T'HH':'mm':'ss","TimeSeparator":":","UniversalSortableDateTimePattern":"yyyy'-'MM'-'dd HH':'mm':'ss'Z'","YearMonthPattern":"MMMM, yyyy","AbbreviatedDayNames":["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],"ShortestDayNames":["Su","Mo","Tu","We","Th","Fr","Sa"],"DayNames":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"AbbreviatedMonthNames":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec",""],"MonthNames":["January","February","March","April","May","June","July","August","September","October","November","December",""],"IsReadOnly":true,"NativeCalendarName":"Gregorian Calendar","AbbreviatedMonthGenitiveNames":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec",""],"MonthGenitiveNames":["January","February","March","April","May","June","July","August","September","October","November","December",""]},"numberShortForm":{"QuantitySymbols":["K","M","B"],"NumberGroupSize":1000,"ThousandSymbol":"K"},"eras":null}},"timeZonesConfiguration":{},"featureAvailability":{"featureStates":{"VisualStudio.Services.Contribution.EnableOnPremUnsecureBrowsers":false,"VisualStudio.Service.WebPlatform.ClientErrorReporting":true,"Microsoft.VisualStudio.Services.Gallery.Client.UseCdnAssetUri":false,"VisualStudio.Services.WebAccess.SubresourceIntegrity":false,"VisualStudio.Services.IdentityPicker.ReactProfileCard":true}},"appInsightsConfiguration":{"enabled":false,"instrumentationKey":"00000000-0000-0000-0000-000000000000","insightsScriptUrl":null},"diagnostics":{"sessionId":"978b9cc3-2e6e-4299-820f-a239c8ffb448","activityId":"978b9cc3-2e6e-4299-820f-a239c8ffb448","bundlingEnabled":true,"cdnAvailable":true,"cdnEnabled":true,"webPlatformVersion":"M170","serviceVersion":"Dev18.M170.1 (build: AzureDevOps_M170_20200611.2)"},"navigation":{"topMostLevel":"deployment","area":"","currentController":"Gallery","currentAction":"Details","commandName":"Gallery.Details","routeId":"LegacyWebAccessRoute","routeValues":{"controller":"Gallery","action":"Details","serviceHost":"2663b13f-50e3-a655-a159-22f6f4725fab (TEAM FOUNDATION)"}},"globalization":{"explicitTheme":"","theme":"Default","culture":"en-IN","timezoneOffset":0,"timeZoneId":"UTC"},"serviceInstanceId":"00000029-0000-8888-8000-000000000000","hubsContext":{},"serviceLocations":{"locations":{"951917ac-a960-4999-8464-e3f0aa25b381":{"Application":"https://app.vssps.visualstudio.com/","Deployment":"https://app.vssps.visualstudio.com/"}}}};</script> <script defer="true" data-bundlelength="125076" data-bundlename="basejs" nonce="1oBUckegXBLjvYipvOGhCw=="  src="https://cdn.vsassets.io/bundles/vss-bundle-basejs-v9GpWWBnsWqhM23ijhK2HfAqLowTXGUqZLDRsBCZbkfY="  type="text/javascript"></script>
+    <script defer="true" data-bundlelength="205378" data-bundlename="common" data-includedscripts="VSS/Bundling" nonce="1oBUckegXBLjvYipvOGhCw=="  src="https://cdn.vsassets.io/bundles/vss-bundle-common-v_Ss9wqVqy_aJagjjTroIfzbnjzMUeKzN0KlnLkpPbLw="  type="text/javascript"></script><script defer="true" data-bundlelength="2079989" data-bundlename="view" data-includedscripts="Gallery/Client/Pages/VSSItemDetailsSSR/VSSItemDetailsSSRAsync" nonce="1oBUckegXBLjvYipvOGhCw=="  src="https://cdn.vsassets.io/bundles/vss-bundle-view-vPRaNhU2r7iB5hbSt7BbiFyjMg5wLp-UMz6nkwupY_ck="  type="text/javascript"></script>
+    <script defer=true  nonce="1oBUckegXBLjvYipvOGhCw==" src="/_static/tfs/M170_20200611.2/_scripts/TFS/min/Gallery/Client/Pages/VSSItemDetailsSSR/SSRModuleWrappers.js"></script>
+</body>
+
+</html>

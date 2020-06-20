@@ -1,0 +1,1347 @@
+
+
+<html lang="en-us">
+
+<head>
+     <meta name="description" content="Extension&#32;for&#32;Visual&#32;Studio&#32;Code&#32;-&#32;Debug&#32;your&#32;JavaScript&#32;code&#32;in&#32;the&#32;Chrome&#32;browser,&#32;or&#32;any&#32;other&#32;target&#32;that&#32;supports&#32;the&#32;Chrome&#32;Debugger&#32;protocol." /><meta name="keywords" content="debuggers,javascript,multi-root&#32;ready" /><meta property="og:title" content="Debugger&#32;for&#32;Chrome&#32;-&#32;Visual&#32;Studio&#32;Marketplace" /><meta property="og:type" content="website" /><meta property="og:url" content="https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome" /><meta property="og:image" content="https://msjsdiag.gallerycdn.vsassets.io/extensions/msjsdiag/debugger-for-chrome/4.12.8/1590075673827/Microsoft.VisualStudio.Services.Icons.Default" /><meta property="og:description" content="Extension&#32;for&#32;Visual&#32;Studio&#32;Code&#32;-&#32;Debug&#32;your&#32;JavaScript&#32;code&#32;in&#32;the&#32;Chrome&#32;browser,&#32;or&#32;any&#32;other&#32;target&#32;that&#32;supports&#32;the&#32;Chrome&#32;Debugger&#32;protocol." /><meta property="twitter:card" content="summary" /><meta property="twitter:site" content="@Code" /><link rel="canonical" href="https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome" />
+    <style>
+        html {
+            overflow-y: scroll;
+        }
+        body {
+            font-family: wf_segoe-ui, Helvetica Neue, Helvetica, Arial, Verdana;
+        	color: rgba( 0, 0, 0, 1);
+        	font-size: 12px;
+        	background-color: rgba(255, 255, 255, 1);
+        	margin: 0;
+        	padding: 0;
+        }
+
+/* L0 header styles start*/
+        .uxservices-header {
+            height: 34px;
+            background-color:black;
+        }
+
+        a.skip-main {
+            left: -999px;
+            position: absolute;
+            top: auto;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            z-index: -999;
+        }
+
+        a.skip-main:focus, a.skip-main:active {
+            color: #0078D4;
+            background-color: #FFFFFF;
+            position: absolute;
+            left: auto;
+            top: auto;
+            width: 122px;
+            height: 33px;
+            overflow: auto;
+            padding-left: 12px;
+            padding-right: 12px;
+            padding-top: 7px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 500;
+            font-family: 'Segoe UI';
+            line-height: 20px;
+            z-index: 999;
+        }
+
+        a.skip-main:hover {
+            color: #005BA1;
+            background-color: #F2F2F2;
+        }
+
+        .uxservices-header div.upperBandContent {
+            background-color:black;
+            color: white;
+            line-height: 17px;
+            width:100%;
+            margin:0 auto;
+            box-sizing:border-box;
+            max-width: 1160px;
+            padding: 0px;
+        }
+
+        .uxservices-header div.upperBandContent .left {
+            padding: 5px 0 0 0;
+        }
+
+        .uxservices-header div.upperBandContent .left .vs-logo-header {
+            height: 31px;
+            padding-top: 5px;
+        }
+
+        .uxservices-header div.upperBandContent .left .marketplacetext-header {
+            vertical-align: 9px;
+            padding-top: 5px;
+        }
+
+        .uxservices-header div.upperBandContent .right {
+            display: inline-block;
+            position: relative;
+            background-color: black;
+            font-size: 11px;
+            padding-top: 10px;
+        }
+
+        .uxservices-header div.upperBandContent .right .signIn {
+            font-weight: 600;
+            float: left;
+        }
+
+        .uxservices-header .marketPlaceLogoLink {
+            white-space: pre;
+            font-size: 16px;
+            line-height: 16px;
+            vertical-align: -4px;
+            display: inline-block;
+            color: white;
+        }
+
+        .uxservices-header .marketPlaceLogoLink.vs-brand-icon {
+            width: 30px;
+            height: 30px;
+            background: url(https://cdn.vsassets.io/v/M170_20200611.2/_content/Header/ImageSprite.png) no-repeat -250px 0 !important;
+        }
+
+        .uxservices-header .right a {
+            font-family: wf_segoe-ui, -apple-system, ".SFNSText-Regular", "San Francisco", "Roboto", "Helvetica Neue", "Lucida Grande", sans-serif;
+            font-size: inherit;
+        }
+
+        .uxservices-header div.upperBandContent .scarabLink {
+            margin-right: 0.23em;
+        }
+
+        #Fragment_SearchBox {
+            display: inline-block;
+            margin-left: 25px;
+            height: 13px;
+        }
+
+        #Fragment_SearchBox .header-search-button {
+            height: 20px;
+            width: 20px;
+            background: url(https://cdn.vsassets.io/v/M170_20200611.2/_content/Header/ImageSprite.png) no-repeat -195px 0 !important;
+            cursor: pointer;
+            border: none;
+            margin-left: 3px;
+            padding: 0px;
+        }
+
+        #Fragment_SearchBox .header-search-button:focus {
+            outline-color: rgb(77, 144, 254);
+            outline-style: auto;
+            outline-width: 5px;
+        }
+
+        #Fragment_SearchBox .header-search-textbox {
+            vertical-align: top;
+            background-color: #6a6a6a;
+            color: #ffffff;
+            padding-left: 2px;
+        }
+
+        
+/* l0 header ends*/
+
+        .tab {
+            overflow: hidden;
+            border-bottom: 1px solid #ccc;
+            background-color: transparent;
+            margin-bottom: 25px;
+        }
+
+/* Style the buttons that are used to open the tab content */
+        .tab button {
+            background-color: transparent;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 0px 16px;
+            font-size: 16px;
+            height: 40px;
+            border-width: 1px;
+            border-style: solid;
+            border-color: transparent
+        }
+
+/* Change background color of buttons on hover */
+        .tab button:hover {
+            color: #106ebe;
+        }
+
+        .tab button.selected {
+            color: #106ebe;
+            border-bottom: 2px solid #106ebe;
+        }
+
+        .tab button:focus, .tab button.selected:focus {
+            border-color: #000000;
+        }
+
+/* Style the tab content */
+        .tabcontent {
+            padding: 6px 12px;
+        }
+
+        .bowtie-icon,
+        i.bowtie-icon {
+        	font-family: "Bowtie";
+        	font-size: 14px;
+        	speak: none;
+        	display: inline-block;
+        	font-style: normal;
+        	font-weight: normal;
+        	font-variant: normal;
+        	text-transform: none;
+        	text-align: center;
+        	text-decoration: none;
+        	line-height: 16px;
+        	-webkit-font-smoothing: antialiased;
+        	-moz-osx-font-smoothing: grayscale;
+        }
+
+        .bowtie-icon:disabled,
+        i.bowtie-icon:disabled {
+        	opacity: 0.5;
+        }
+
+        .bowtie-brand-visualstudio::before {
+	        content: "\E91D";
+        }
+
+        .bowtie-install::before {
+        	content: "\E92C";
+        }
+
+        .bowtie-search::before {
+        	content: "\E986";
+        }
+
+        .bowtie-navigate-external::before {
+        	content: "\E9D0";
+        }
+
+        .bowtie-status-info::before {
+        	content: "\EA08";
+        }
+
+        .bowtie-status-info {
+        	color: rgba(0, 120, 212, 1);
+        	color: var(--communication-background, rgba(0, 120, 212, 1));
+        }
+
+        * {
+        	box-sizing: border-box;
+        	-webkit-box-sizing: border-box;
+        	-moz-box-sizing: border-box;
+        }
+
+        a:not(.ms-Button) {
+        	color: rgba(0, 120, 212, 1);
+        	color: var(--communication-foreground, rgba(0, 120, 212, 1));
+        	text-decoration: none;
+        	cursor: pointer;
+        }
+
+        a:not(.ms-Button):hover {
+        	color: rgba(0, 120, 212, 1);
+        	color: var(--communication-foreground, rgba(0, 120, 212, 1));
+        	text-decoration: underline;
+        }
+
+        a:not(.ms-Button):visited {
+        	color: rgba(0, 120, 212, 1);
+        	color: var(--communication-foreground, rgba(0, 120, 212, 1));
+        }
+
+        a:not(.ms-Button):active {
+        	color: rgba(0, 120, 212, 1);
+        	color: var(--communication-foreground, rgba(0, 120, 212, 1));
+        }
+
+        button {
+        	font-family: "Segoe UI VSS (Regular)", "Segoe UI", "-apple-system", BlinkMacSystemFont, Roboto, "Helvetica Neue", Helvetica, Ubuntu, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        	height: 30px;
+        	border: 1px solid;
+        	border-color: rgba( 200, 200, 200, 1);
+        	border-color: rgba( var(--palette-neutral-20, 200, 200, 200), 1);
+        	background-color: rgba( 248, 248, 248, 1);
+        	background-color: rgba( var(--palette-neutral-2, 248, 248, 248), 1);
+        	color: rgba( 51, 51, 51, 1);
+        	color: rgba( var(--palette-neutral-80, 51, 51, 51), 1);
+        	cursor: pointer;
+        	outline: 0;
+        	padding: 2px 12px 2px 12px;
+        }
+
+        button:hover:not(.ms-Button):not(.bolt-button):not(.link-as-button),
+        button:focus:not(.ms-Button):not(.bolt-button):not(.link-as-button) {
+        	border-color: rgba( 166, 166, 166, 1);
+        	border-color: rgba( var(--palette-neutral-30, 166, 166, 166), 1);
+            border-style: dotted;
+        }
+
+        .pricingTab-loader-container, .qnaTab-loader-container, .rnrTab-loader-container {
+            text-align: center;
+        }
+
+        .pricingTab-loader-container .loader, .qnaTab-loader-container .loader, .rnrTab-loader-container .loader {
+            display: inline-block;
+        }
+
+/* Styles for bread crumb */
+        .bread-crumb-container {
+        	font-size: 13px;
+        	color: #FFFFFF;
+        	height: 45px;
+        	line-height: 45px;
+        }
+
+        .bread-crumb-container .member {
+        	text-decoration: none;
+        }
+
+        .bread-crumb-container .separator {
+        	padding: 0 5px;
+        }
+
+        .bread-crumb-container a:visited {
+        	color: #FFFFFF;
+        }
+
+        .bread-crumb-container a {
+        	color: #FFFFFF;
+        }
+
+        .bread-crumb-container a:hover {
+        	color: #FFFFFF;
+        }
+
+        .item-details-control-root .breadcrumb {
+        	background-color: #232323;
+        	color: #FFFFFF;
+        	height: 45px;
+        	line-height: 45px;
+        	font-size: 13px;
+        	min-width: 1250px;
+        }
+
+        .item-details-control-root .breadcrumb .vsCodeDownloadLinkContainer {
+            float: right;
+            color: inherit;
+        }
+
+/* end of bread crumb styles */
+
+/* Styles for item banner */
+        .ux-section-banner {
+        	padding: 16px 0px;
+        	background-color: #eff1f3;
+        	min-width: 1250px;
+        }
+
+        .item-details-control-root .ux-section-banner {
+        	padding: 32px 0px;
+        	background-color: #eff1f3;
+        }
+
+        .gallery-centered-content {
+        	width: 1160px;
+        	margin-left: auto;
+        	margin-right: auto;
+        	padding-left: 10px;
+        	padding-right: 10px;
+        }
+
+        table {
+        	border-collapse: collapse;
+        	border-spacing: 0;
+        	margin: 0;
+        	padding: 0;
+        	border: 0;
+        }
+
+        .item-details-control-root .item-img {
+        	text-align: center;
+        	vertical-align: top;
+        	width: 132px;
+        }
+
+        .item-details-control-root .item-img img {
+        	max-width: 128px;
+        	position: relative;
+        	visibility: hidden;
+        }
+
+        .item-details-control-root .item-header .item-header-content {
+        	font-size: 14px;
+        	margin-left: 32px;
+        }
+
+        .item-details-control-root .ux-item-name {
+        	font-size: 26px;
+        	font-weight: 600;
+        	display: inline-block;
+        	padding-right: 8px;
+        }
+
+        .item-details-control-root .ux-item-second-row-wrapper {
+        	margin-top: 4px;
+        }
+
+        .item-details-control-root .ux-item-second-row-wrapper>div {
+        	display: inline-block;
+        }
+
+        .item-details-control-root .ux-item-second-row-wrapper>div:nth-child(1) {
+        	margin-right: 10px;
+        }
+
+        .item-details-control-root .ux-item-second-row-wrapper>.ux-item-rating {
+        	margin-left: 10px;
+        	margin-right: 10px;
+        }
+
+        .item-details-control-root .ux-item-second-row-wrapper>.item-price-category {
+        	margin-left: 10px;
+        	margin-right: 10px;
+        }
+
+        .item-details-control-root .item-header h1,
+        .item-details-control-root .item-header h2 {
+        	margin: 0px;
+        	padding: 0px;
+        	display: inline-block;
+        	font-size: 0em;
+        	font-weight: normal;
+        }
+
+        .item-details-control-root .item-header .dark {
+        	color: #FFFFFF;
+        }
+
+        .item-details-control-root .ux-item-rating {
+        	font-size: 14px;
+        }
+        .item-details-control-root .ux-item-publisher {
+        	font-size: 18px;
+        }
+
+        .item-details-control-root .ux-item-publisher-link {
+        	font-size: 18px;
+        	font-weight: 600;
+        }
+
+        .item-details-control-root .ux-item-shortdesc {
+        	margin: 20px 0;
+        	width: 608px;
+        	line-height: 1.5;
+        	overflow: hidden;
+        }
+
+        .item-details-control-root .dark .item-banner-focussable-child-item:focus {
+        	outline: 1px dotted white;
+        }
+
+        .item-details-control-root .item-header .item-header-content.light .installHelpInfo a {
+            color: #000000;
+            text-decoration: underline;
+            border-color: #000000;
+        }
+
+        .item-details-control-root .item-header .item-header-content.dark .installHelpInfo a {
+        	color: #FFFFFF;
+        	text-decoration: underline;
+        }
+
+/* not unpublished */
+        
+            .one-click-install-container {
+                display: flex;
+            }
+
+            .installHelpInfo {
+                margin-left: 10px;
+            }
+
+            .installHelpInfo>a {
+                vertical-align: sub;
+            }
+
+            .textContainer-41 {
+                flex-grow: 1;
+            }
+
+            .flexContainer-40 {
+                display: flex;
+                height: 100%;
+                flex-wrap: nowrap;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .label-43 {
+                margin-top: 0px;
+                margin-right: 4px;
+                margin-bottom: 0px;
+                margin-left: 4px;
+                line-height: 100%;
+                font-weight: 600;
+            }
+        
+            .item-details-control-root .ux-button.install {
+                position: relative;
+                font-family: "Segoe UI", "Segoe UI Web (West European)", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+                -webkit-font-smoothing: antialiased;
+                font-size: 14px;
+                font-weight: 400;
+                box-sizing: border-box;
+                display: inline-block;
+                text-align: center;
+                cursor: pointer;
+                vertical-align: top;
+                padding-top: 0px;
+                padding-right: 16px;
+                padding-bottom: 0px;
+                padding-left: 16px;
+                min-width: 80px;
+                height: 32px;
+                background-color: rgb(244, 244, 244);
+                color: rgb(51, 51, 51);
+                user-select: none;
+                outline: transparent;
+                border-width: 1px;
+                border-style: solid;
+                border-color: transparent;
+                border-image: initial;
+                text-decoration: none;
+                border-radius: 0px;
+            }
+
+            .item-details-control-root .item-header-content .install-button-container .ux-button.install.buttonDisabled {
+                background-color: #AAAAAA;
+                color: #EEEEEE;
+                opacity: 1;
+                border: 1px solid #E6E6E6;
+            }
+
+            .item-details-control-root .item-header-content .install-button-container .ux-button.install.buttonDisabled:hover {
+                cursor: default;
+                opacity: 1;
+            }
+
+            .item-details-control-root .dark .ux-button.install {
+                background-color: #107c10;
+                color: #FFFFFF;
+                min-width: 120px;
+                border: 1px solid #FFFFFF;
+            }
+
+            .item-details-control-root .dark .ux-button.install:hover {
+                background-color: #AAAAAA;
+                opacity: 0.6;
+            }
+
+            .item-details-control-root .light .ux-button.install {
+                background-color: #107c10;
+                color: #FFFFFF;
+                min-width: 120px;
+                border: 1px solid #666666;
+            }
+
+            .item-details-control-root .light .ux-button.install:hover,
+            .item-details-control-root .light .ux-button.install:focus {
+                background-color: #074507;
+            }
+
+            .item-details-control-root .dark .ux-button.install:focus,
+            .item-details-control-root .light .ux-button.install:focus {
+                border: 1px dotted;
+            }
+
+        
+/* End of item banner styles. */
+
+/* Styles for item details overview */
+        .item-details-control-root .ux-section-details {
+        	margin: 24px 0 34px 0px;
+        	font-size: 13px;
+        }
+
+        .item-details-control-root .ux-section-details .itemdetails-section-header {
+        	font-size: 16px;
+        	font-weight: bold;
+        	color: #555;
+        	padding-bottom: 16px;
+        }
+
+        .item-details-control-root .ux-section-details .ux-section-details-table {
+        	width: 100%;
+        	table-layout: fixed;
+        }
+
+        .item-details-control-root .ux-itemdetails-left {
+        	vertical-align: top;
+        	font-size: 14px;
+        	padding-right: 20px;
+        }
+
+        .item-details-control-root .ux-itemdetails-right {
+            width: 34.45%;
+            vertical-align: top;
+            padding: 0 0 0 20px;
+        }
+
+        .item-details-control-root .itemDetails-right {
+            display: none;
+        }
+
+        .item-details-control-root .markdown {
+        	color: #333;
+        	line-height: 1.6;
+        	position: relative;
+        }
+
+        .item-details-control-root .markdown > *:first-child {
+        	margin-top: 0!important;
+        }
+
+        .item-details-control-root .markdown .link-header:target:before {
+        	content: "";
+        	display: block;
+        	height: 250px;
+        	margin: -250px 0 0;
+        }
+
+        .link-as-button {
+        	height: initial;
+        }
+
+        .link-as-button:hover {
+        	text-decoration: underline;
+        }
+
+        /* End of item details overview styles. */
+
+        /* Styles for footer */
+        #ux-footer {
+        	line-height: 1.2em;
+        }
+
+        #ux-footer:after {
+        	content: "";
+        	display: table;
+        	clear: both;
+        }
+
+        #ux-footer a {
+        	color: #595958;
+        }
+
+        #ux-footer a:hover {
+        	color: #3399ff;
+        }
+
+        #ux-footer ul.links {
+        	padding: 0;
+        	line-height: 1.2em;
+        }
+
+        #ux-footer .linkList>ul>li {
+        	list-style-type: none;
+        	background: none;
+        	padding: 4px 0;
+        	margin: 0;
+        }
+
+        #ux-footer #baseFooter {
+        	width: 1160px;
+        	padding: 15px 10px;
+        	margin: 0 auto;
+        }
+
+        #ux-footer #baseFooter:after {
+        	content: "";
+        	display: table;
+        	clear: both;
+        }
+
+        #ux-footer #baseFooter li {
+        	display: inline-block;
+        	list-style-type: none;
+        	margin: 0 15px 0 0;
+        }
+
+        #ux-footer #baseFooter #Fragment_BaseFooterLinks {
+        	text-align: right;
+        }
+
+        #ux-footer #baseFooter #rightBaseFooter {
+        	float: right;
+        	width: 18%;
+        	font-family: wf_segoe-ui, Tahoma, Helvetica, Sans-Serif;
+        	color: #595958;
+        	font-weight: bold;
+        }
+
+        #ux-footer span.microsoftLogo {
+        	display: inline-block;
+        	margin-left: 16px;
+        }
+
+        .microsoftLogo {
+        	background: url(https://cdn.vsassets.io/v/M170_20200611.2/_content/Header/ImageSprite.png) no-repeat -93px 0!important;
+        }
+
+        .microsoftLogo {
+        	width: 70px;
+        	height: 14px;
+        	overflow: hidden;
+        }
+
+        /* End of footer styles. */
+
+        /* Styles for markdown */
+        .markdown img {
+        	max-width: 100%;
+        }
+
+        .markdown h1,
+        .markdown h2 {
+        	line-height: 1.4;
+        	margin-top: 1em;
+        	margin-bottom: 16px;
+        }
+
+        .markdown h1 {
+        	font-size: 1.5em;
+        	line-height: 1.2em;
+        	border-bottom: 1px solid #eee;
+        	margin-top: 2em;
+        	padding-bottom: 10px;
+        }
+
+        .markdown h2 {
+        	font-size: 1.375em;
+        	line-height: 1.2em;
+        	border-bottom: 1px solid #eee;
+        	margin-top: 2em;
+        	padding-bottom: 10px;
+        }
+
+        .markdown h3 {
+        	font-size: 1.25em;
+        }
+
+        .markdown h4 {
+        	font-size: 1.125em;
+        }
+
+        .markdown h5 {
+        	font-size: 1.0em;
+        }
+
+        .markdown blockquote {
+            padding: 0 15px;
+            color: #777;
+            border-left: 4px solid #ddd;
+            margin: 0;
+        }
+
+        .markdown pre {
+            padding: 16px;
+            overflow: auto;
+            font-size: 85%;
+            line-height: 1.45;
+            background-color: #f7f7f7;
+            border-radius: 3px;
+            word-wrap: normal;
+            font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+        }
+
+        .markdown code, .markdown tt {
+        	padding: 0;
+        	background-color: rgba(0, 0, 0, 0.04);
+        	margin: 0;
+        	padding-top: 0.2em;
+        	padding-bottom: 0.2em;
+        	border-radius: 3px;
+        	font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+        }
+
+        .markdown pre > code {
+            background-color: inherit;
+        }
+
+        .markdown table {
+        	display: block;
+        	width: 100%;
+        	overflow: auto;
+        	word-break: normal;
+        	word-break: keep-all;
+        }
+
+        .markdown table th {
+        	font-weight: bold;
+        }
+
+        .markdown table th,
+        .markdown table td {
+        	padding: 6px 13px;
+        	border: 1px solid #ddd;
+        }
+
+        .markdown table tr {
+        	background-color: #fff;
+        	border-top: 1px solid #ccc;
+        }
+
+        .markdown table tr:nth-child(2n) {
+        	background-color: #f8f8f8;
+        }
+
+        /* End of markdown styles. */
+
+        .main-content.item-details-main-content {
+        	min-height: 950px;
+        }
+
+        .item-details-main-content {
+        	background-color: #FFFFFF;
+        }
+
+        .ms-Fabric {
+        	-moz-osx-font-smoothing: grayscale;
+        	-webkit-font-smoothing: antialiased;
+        	color: #333333;
+        	font-family: "Segoe UI Web (West European)", "Segoe UI", -apple-system, BlinkMacSystemFont, "Roboto", "Helvetica Neue", sans-serif;
+        	font-size: 14px;
+        }
+
+        .ms-Fabric button {
+        	font-family: inherit;
+        }
+
+        .ux-section-details-tabs {
+            margin-top: -20px;
+        }
+
+         @font-face {
+        	font-family: wf_segoe-ui;
+        	src: url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.eot");
+        	src: local("Segoe UI Light"), local("Segoe Light"), local("Segoe WP Light"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.eot?#iefix") format("embedded-opentype"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.woff2") format("woff2"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.woff") format("woff"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.ttf") format("truetype");
+        	font-weight: 200;
+        	font-style: normal;
+        	-webkit-font-smoothing: antialiased;
+        }
+
+        @font-face {
+        	font-family: wf_segoe-ui;
+        	src: url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/semilight/latest.eot");
+        	src: local("Segoe UI Semilight"), local("Segoe Semilight"), local("Segoe WP Semilight"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/semilight/latest.eot?#iefix") format("embedded-opentype"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/semilight/latest.woff2") format("woff2"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/semilight/latest.woff") format("woff"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/semilight/latest.ttf") format("truetype");
+        	font-weight: 300;
+        	font-style: normal;
+        }
+
+        @font-face {
+        	font-family: wf_segoe-ui;
+        	src: url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/normal/latest.eot");
+        	src: local("Segoe UI"), local("Segoe"), local("Segoe WP"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/normal/latest.eot?#iefix") format("embedded-opentype"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/normal/latest.woff2") format("woff2"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/normal/latest.woff") format("woff"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/normal/latest.ttf") format("truetype");
+        	font-weight: normal;
+        	font-style: normal;
+        }
+
+        @font-face {
+        	font-family: wf_segoe-ui;
+        	src: url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/Semibold/latest.eot");
+        	src: local("Segoe UI Semibold"), local("Segoe Semibold"), local("Segoe WP Semibold"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/Semibold/latest.eot?#iefix") format("embedded-opentype"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/Semibold/latest.woff2") format("woff2"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/Semibold/latest.woff") format("woff"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/Semibold/latest.ttf") format("truetype");
+        	font-weight: 500;
+        	font-style: normal;
+        }
+
+        @font-face {
+        	font-family: wf_segoe-ui;
+        	src: url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/Semibold/latest.eot");
+        	src: local("Segoe UI Semibold"), local("Segoe Semibold"), local("Segoe WP Semibold"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/Semibold/latest.eot?#iefix") format("embedded-opentype"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/Semibold/latest.woff2") format("woff2"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/Semibold/latest.woff") format("woff"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/Semibold/latest.ttf") format("truetype");
+        	font-weight: 600;
+        	font-style: normal;
+        }
+
+        @font-face {
+        	font-family: wf_segoe-ui;
+        	src: url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/bold/latest.eot");
+        	src: local("Segoe UI Bold"), local("Segoe Bold"), local("Segoe WP Bold"), local("Segoe UI"), local("Segoe"), local("Segoe WP"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/bold/latest.eot?#iefix") format("embedded-opentype"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/bold/latest.woff") format("woff"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/bold/latest.woff2") format("woff2"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/bold/latest.ttf") format("truetype");
+        	font-weight: bold;
+        	font-style: normal;
+        }
+
+        @font-face {
+        	font-family: wf_segoe-ui_light;
+        	src: url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.eot");
+        	src: local("Segoe UI Light"), local("Segoe Light"), local("Segoe WP Light"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.eot?#iefix") format("embedded-opentype"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.woff2") format("woff2"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.woff") format("woff"), url("//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.ttf") format("truetype");
+        	font-weight: normal;
+        	font-style: normal;
+        }
+
+        @font-face {
+        	font-family: 'bowtie';
+        	font-style: normal;
+        	font-weight: normal;
+        	src: url(https://cdn.vsassets.io/v/M170_20200611.2/_content/Fonts/Icons/bowtie.eot);
+        	src: url(https://cdn.vsassets.io/v/M170_20200611.2/_content/Fonts/Icons/bowtie.eot?iefix) format("embedded-opentype"), url(https://cdn.vsassets.io/v/M170_20200611.2/_content/Fonts/Icons/bowtie.woff) format("woff"), url(https://cdn.vsassets.io/v/M170_20200611.2/_content/Fonts/Icons/bowtie.svg#bowtie) format("svg");
+        }
+
+        /* top pub. style begin */
+        
+
+        /* top pub. style end */
+
+        /*rating review style begin*/
+        .item-details-control-root .ux-item-review-rating .ux-item-rating-control .rating-control .star {
+            min-width: 16px;
+            min-height: 16px;
+            height: 12px;
+            width: 12px;
+            padding-top: 0px;
+            margin: 0px 2px;
+        }
+
+        .item-details-control-root .ux-item-second-row-wrapper .ux-item-review-rating-wrapper {
+            text-decoration: none;
+            color: inherit;
+            padding-top: 1px;
+            padding-bottom: 3px;
+        }
+
+        .item-details-control-root .ux-item-second-row-wrapper .ux-item-review-rating-wrapper .ux-item-review-rating{
+            display: inline-flex;
+        }
+
+        .item-details-control-root .ux-item-second-row-wrapper .ux-item-review-rating-wrapper .ux-item-review-rating .ux-item-rating-control {
+            margin-left: 10px;
+            top: 2px;
+            position: relative;
+        }
+
+        .item-details-control-root .ux-item-second-row-wrapper .ux-item-review-rating-wrapper .ux-item-review-rating .ux-item-rating-count {
+            margin-left: 5px;
+            font-size: 16px;
+            margin-top: -1px;
+            margin-right: 8px;
+        }
+
+        /*rating review style end*/
+        /*Spinner*/
+        .loader-container {
+            text-align: -webkit-center;
+            text-align: -mozkit-center;
+        }
+
+        .loader {
+            border: 3px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: solid #808080;
+            width: 30px;
+            height: 30px;
+            -webkit-animation: spin 2s linear infinite;
+            animation: spin 2s linear infinite;
+        }
+
+        @-webkit-keyframes spin {
+            0% { -webkit-transform: rotate(0deg); }
+            100% { -webkit-transform: rotate(360deg); }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        </style>
+
+        <script type="text/javascript"  nonce="FDiFDGIJOCqZqmgXUTtA9w==">
+            function sue(em, s, l, c, eo){var w=window,p="ue";w[p]=w[p]||[];w[p].push({"em":em,"s":s,"l":l,"c":c,"eo":eo});return false;}
+            window.onerror = sue;
+
+        isServerSideRendering = function () {
+            try {
+                return !(document !== undefined);
+            }
+            catch (e) {
+                return true;
+            }
+         };
+
+        redirectToNonSSR = function(area) {
+            var fqn = document.getElementById("FQN").value;
+            var galleryUrl = document.getElementById("galleryUrl").value;
+            window.location.assign(window.location.origin + galleryUrl +"items?itemName=" + fqn + "&ssr=false" + area);
+        }
+        
+        hideAndShowTabs = function(tabToShow) {
+            var currentTab = document.getElementsByClassName("selected-tab");
+            currentTab[0].style.display = "none";
+            currentTab[0].classList.remove("selected-tab");
+
+            var selectedTab =  document.getElementById(tabToShow);
+            selectedTab.classList.add("selected-tab");
+            selectedTab.style.display = "block";
+        }
+
+        if (!isServerSideRendering()) {
+            document.addEventListener('DOMContentLoaded', function() {
+                
+                        document.getElementById("qna").addEventListener("click", function(e) {
+                            redirectToNonSSR("#qna");   
+                        });
+                    
+                        document.getElementById("rnr").addEventListener("click", function(e) {
+                            redirectToNonSSR("#review-details");
+                        });
+                        document.getElementById("review-details").addEventListener("click", function(e) {
+                        redirectToNonSSR("#review-details");
+                        });
+                    
+                    // vscode copy command handlings
+                    let copyCommandInput = document.getElementById("vscode-command-input");
+                    if(copyCommandInput) {
+                        copyCommandInput.addEventListener("click", function(e) {
+                            e.target.select();
+                        });
+                        document.getElementById("copy-to-clipboard-button").addEventListener("click", function(e) {
+                            document.getElementById("vscode-command-input").select();
+                            var successful = document.execCommand('copy');
+                            if(successful) {
+                                var element = document.getElementById("copied-animation");
+                                element.style.display = "block";
+                            }
+                        });
+                    }
+                
+
+                // add handler for search
+                document.getElementById("Fragment_SearchBox").addEventListener("submit", function(e) {
+                    e.preventDefault();
+                    var queryText = document.getElementById("header-search-textbox").value;
+                    var galleryUrl = document.getElementById("galleryUrl").value;
+                    var searchTarget = document.getElementById("searchTarget").value;
+                    window.location = window.location.origin + galleryUrl +"search?term=" + queryText + "&target=" + searchTarget;
+                });
+                let acqBtn = document.getElementsByClassName("install-button-container");
+                if (acqBtn && acqBtn[0]) {
+                    acqBtn[0].onclick = function(event) {var w=window,p="ciEvents";w[p]=w[p]||[];w[p].push({"acquisition": true, "event": event});};
+                }
+
+                
+
+           });
+        }
+    </script>
+    <title>
+        Debugger for Chrome - Visual Studio Marketplace
+    </title>
+
+</head>
+<a href="#start-of-content" class="skip-main">Skip to content</a>
+<body class="platform gallery gallery-page-item-details">
+    <div class="uxservices-header" role="banner">
+        <div class="upperBandContent">
+            <a href="/" title="|   Marketplace" class="left" >
+                <img class="vs-logo-header" aria-label="Visual Studio logo" src="https://cdn.vsassets.io/v/M170_20200611.2/_content/Header/vs-logo.png"/>
+                <div id="marketPlaceLogoLink" class="marketPlaceLogoLink marketplacetext-header" aria-label="Marketplace logo">|   Marketplace</div>
+            </a>
+            <div class="right" style="float: right;">
+                
+                    <div class="signIn">
+                        
+                            <a href="https://app.vssps.visualstudio.com/_signin?realm=marketplace.visualstudio.com&amp;reply_to=https%3A%2F%2Fmarketplace.visualstudio.com%2Fitems%3FitemName%3Dmsjsdiag.debugger-for-chrome&amp;redirect=1&amp;context=eyJodCI6MywiaGlkIjoiMjY2M2IxM2YtNTBlMy1hNjU1LWExNTktMjJmNmY0NzI1ZmFiIiwicXMiOnt9LCJyciI6IiIsInZoIjoiIiwiY3YiOiIiLCJjcyI6IiJ90&amp;workflowId=marketplace&amp;wt.mc_id=o~msft~marketplace~signIn#ctx=eyJTaWduSW5Db29raWVEb21haW5zIjpbImh0dHBzOi8vbG9naW4ud2luZG93cy5uZXQiLCJodHRwczovL2xvZ2luLm1pY3Jvc29mdG9ubGluZS5jb20iXX01" class="scarabLink" style="margin-left:23px;padding-top:1px;color:#fff;font-weight:400;">
+                                Sign in
+                            </a>
+                        
+                    </div>
+                
+                <form id="Fragment_SearchBox" class="header-search" aria-label="search" role="search" data-fragmentname="SearchBox">
+                    <input id="header-search-textbox" class="header-search-textbox" aria-label="search" max-length="200" type="text" autocomplete="off">
+                    <button id="header-search-button" class="header-search-button" aria-label="search" type="submit"></button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="skiptarget" id="start-of-content"></div>
+    <div id="react_0HM0DV5P6PCU4"><div data-reactroot=""><div class="item-details-control-root"><div class="breadcrumb"><div class="gallery-centered-content"><span class="bread-crumb-container"><a class="member" href="/vscode">Visual Studio Code</a><span class="separator">&gt;</span><a class="member" href="/search?sortBy=Installs&amp;category=Debuggers&amp;target=VSCode">Debuggers</a><span class="separator">&gt;</span><span class="member">Debugger for Chrome</span></span><span class="vsCodeDownloadLinkContainer"><span>New to Visual Studio Code?</span> <a class="vsCodeDownloadLink" href="https://go.microsoft.com/fwlink?linkid=846418&amp;pub=msjsdiag&amp;ext=debugger-for-chrome&amp;utm_source=vsmp&amp;utm_campaign=mpdetails" target="_blank" rel="noreferrer noopener" aria-label="Get Visual Studio Code Now">Get it now.</a></span></div></div><div class="main-content item-details-main-content" id="vss_1"><div class="item-details-control-root"><div class="ux-item-details"><div class="ux-section-banner" id="section-banner"><div class="ux-section-core gallery-centered-content"><table role="presentation"><tbody><tr><td class="item-img" id="vss_2"><img class="image-display" alt="" src="https://msjsdiag.gallerycdn.vsassets.io/extensions/msjsdiag/debugger-for-chrome/4.12.8/1590075673827/Microsoft.VisualStudio.Services.Icons.Default" style="top:0.5px;visibility:visible"/></td><td class="item-header"><div class="item-header-content light"><h1><span class="ux-item-name">Debugger for Chrome</span></h1><div class="ux-item-second-row-wrapper"><div class="ux-item-publisher"><h2 role="presentation"><a class="ux-item-publisher-link item-banner-focussable-child-item" href="publishers/Microsoft" aria-label="More from Microsoft publisher" style="color:#000000">Microsoft</a></h2></div><span class="divider"> | </span><div class="ux-item-rating"><div class="bowtie-icon bowtie-install"></div><span class="installs-text" title="The number of unique installations, not including updates."> 5,861,728 installs</span></div><a id="review-details" href="#review-details" class="ux-item-review-rating-wrapper" aria-label="Average rating: 4.2 out of 5. Navigate to user reviews."><span class="ux-item-review-rating" title="Average rating: 4.2 out of 5"><span class="divider"> | </span><span class="ux-item-rating-control"><span class="rating-control"><img class="star full-star" alt="" aria-label="1 star" src="https://cdn.vsassets.io/v/M170_20200611.2/_content/FullStar.svg"/><img class="star full-star" alt="" aria-label="2 star" src="https://cdn.vsassets.io/v/M170_20200611.2/_content/FullStar.svg"/><img class="star full-star" alt="" aria-label="3 star" src="https://cdn.vsassets.io/v/M170_20200611.2/_content/FullStar.svg"/><img class="star full-star" alt="" aria-label="4 star" src="https://cdn.vsassets.io/v/M170_20200611.2/_content/FullStar.svg"/><img class="star empty-star" alt="" src="https://cdn.vsassets.io/v/M170_20200611.2/_content/EmptyStarDark.svg"/></span></span><span class="ux-item-rating-count"> (<span>132</span>)</span></span></a><span class="divider"> | </span><span class="item-price-category">Free</span></div><div class="ux-item-shortdesc">Debug your JavaScript code in the Chrome browser, or any other target that supports the Chrome Debugger protocol.</div><div class="ux-item-action"><div class="installButtonContainer"><div class="one-click-install-container"><div><div class="ms-Fabric"><span class="ux-oneclick-install-button-container"><a href="vscode:extension/msjsdiag.debugger-for-chrome" class="ms-Button ux-button install ms-Button--default root-39"><div class="ms-Button-flexContainer flexContainer-40"><div class="ms-Button-textContainer textContainer-41"><div class="ms-Button-label label-43" id="id__0">Install</div></div></div></a></span></div></div><span class="installHelpInfo"><a href="https://aka.ms/vscode_extn_install" target="_blank" rel="noreferrer noopener" class="light">Trouble Installing?<i class="bowtie-icon bowtie-navigate-external"></i></a></span></div></div><div style="display:none"><input type="text" id="FQN" readonly="" value="msjsdiag.debugger-for-chrome"/><input type="text" id="galleryUrl" readonly="" value="/"/><input type="text" id="searchTarget" readonly="" value="VSCode"/></div></div></div></td></tr></tbody></table></div></div><div class="gallery-centered-content"><div class="ux-section-details"><div class="ms-Fabric ux-section-details-tabs"><div class="gallery-centered-content"><div class="tab"><button id="overview" class="selected">Overview</button><button id="qna">Q &amp; A</button><button id="rnr">Rating &amp; Review</button></div><div class="tabcontent"><div id="overviewTab" class="overview selected-tab"><div class="details-tab itemdetails"><table class="ux-section-details-table" role="presentation"><tbody><tr><td class="ux-itemdetails-left"><div class="itemDetails"><div class="markdown"><h1 align=center>
+  <br>
+    <img src="https://github.com/Microsoft/vscode-chrome-debug/blob/master/images/icon.png?raw=true" alt=logo width=200>
+  <br>
+  VS Code - Debugger for Chrome
+  <br>
+  <br>
+</h1>
+<h4 align=center>Debug your JavaScript code running in Google Chrome from VS Code.</h4>
+<p align=center>
+  <a href="https://vscode.visualstudio.com/1e32b5a6-a974-467b-9d5f-f47e49589c5e/_build/definition?definitionId=9"><img src="https://vscode.visualstudio.com/_apis/public/build/definitions/1e32b5a6-a974-467b-9d5f-f47e49589c5e/9/badge" alt=vsts></a>
+  <a href="https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome"><img src="https://vsmarketplacebadge.apphb.com/version/msjsdiag.debugger-for-chrome.svg?label=Debugger%20for%20Chrome" alt="Marketplace bagde"></a>
+    <a href="https://gitter.im/Microsoft/vscode-chrome-debug?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge&amp;utm_content=badge"><img src="https://badges.gitter.im/Microsoft/vscode-chrome-debug.svg" alt=Release></a>
+</p>
+<p>A VS Code extension to debug your JavaScript code in the Google Chrome browser, or other targets that support the <a href="https://chromedevtools.github.io/debugger-protocol-viewer/" target=_blank rel="noreferrer noopener">Chrome DevTools Protocol</a>.</p>
+<p><img src="https://github.com/Microsoft/vscode-chrome-debug/blob/master/images/demo.gif?raw=true" alt=Demo></p>
+<p><strong>Supported features</strong></p>
+<ul>
+<li>Setting breakpoints, including in source files when source maps are enabled</li>
+<li>Stepping, including with the buttons on the Chrome page</li>
+<li>The Locals pane</li>
+<li>Debugging eval scripts, script tags, and scripts that are added dynamically</li>
+<li>Watches</li>
+<li>Console</li>
+</ul>
+<p><strong>Unsupported scenarios</strong></p>
+<ul>
+<li>Debugging web workers</li>
+<li>Debugging Chrome extensions</li>
+<li>Any features that aren't script debugging</li>
+</ul>
+<h2 id=getting-started>Getting Started</h2>
+<ol>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome" target=_blank rel="noreferrer noopener">Install the extension</a></li>
+<li>Open the folder containing the project you want to work on.</li>
+</ol>
+<h2 id=using-the-debugger>Using the debugger</h2>
+<p>When your launch config is set up, you can debug your project. Pick a launch config from the dropdown on the Debug pane in Code. Press the play button or F5 to start.</p>
+<h3 id=configuration>Configuration</h3>
+<p>The extension operates in two modes - it can launch an instance of Chrome navigated to your app, or it can attach to a running instance of Chrome. Both modes requires you to be serving your web application from local web server, which is started from either a VS Code task or from your command-line. Using the <code>url</code> parameter you simply tell VS Code which URL to either open or launch in Chrome.</p>
+<p>Just like when using the Node debugger, you configure these modes with a <code>.vscode/launch.json</code> file in the root directory of your project. You can create this file manually, or Code will create one for you if you try to run your project, and it doesn't exist yet.</p>
+<blockquote>
+<p><strong>Tip</strong>: See recipes for debugging different frameworks here: <a href="https://github.com/Microsoft/vscode-recipes" target=_blank rel="noreferrer noopener">https://github.com/Microsoft/vscode-recipes</a></p>
+</blockquote>
+<h3 id=launch>Launch</h3>
+<p>Two example <code>launch.json</code> configs with <code>&quot;request&quot;: &quot;launch&quot;</code>. You must specify either <code>file</code> or <code>url</code> to launch Chrome against a local file or a url. If you use a url, set <code>webRoot</code> to the directory that files are served from. This can be either an absolute path or a path using <code>${workspaceFolder}</code> (the folder open in Code). <code>webRoot</code> is used to resolve urls (like &quot;http://localhost/app.js&quot;) to a file on disk (like <code>/Users/me/project/app.js</code>), so be careful that it's set correctly.</p>
+<pre><code class=language-json>{
+    &quot;version&quot;: &quot;0.1.0&quot;,
+    &quot;configurations&quot;: [
+        {
+            &quot;name&quot;: &quot;Launch localhost&quot;,
+            &quot;type&quot;: &quot;chrome&quot;,
+            &quot;request&quot;: &quot;launch&quot;,
+            &quot;url&quot;: &quot;http://localhost/mypage.html&quot;,
+            &quot;webRoot&quot;: &quot;${workspaceFolder}/wwwroot&quot;
+        },
+        {
+            &quot;name&quot;: &quot;Launch index.html&quot;,
+            &quot;type&quot;: &quot;chrome&quot;,
+            &quot;request&quot;: &quot;launch&quot;,
+            &quot;file&quot;: &quot;${workspaceFolder}/index.html&quot;
+        },
+    ]
+}
+</code></pre>
+<p>If you want to use a different installation of Chrome, you can also set the <code>runtimeExecutable</code> field with a path to the Chrome app.</p>
+<h3 id=attach>Attach</h3>
+<p>With <code>&quot;request&quot;: &quot;attach&quot;</code>, you must launch Chrome with remote debugging enabled in order for the extension to attach to it. Here's how to do that:</p>
+<p><strong>Windows</strong></p>
+<ul>
+<li>Right click the Chrome shortcut, and select properties</li>
+<li>In the &quot;target&quot; field, append <code>--remote-debugging-port=9222</code></li>
+<li>Or in a command prompt, execute <code>&lt;path to chrome&gt;/chrome.exe --remote-debugging-port=9222</code></li>
+</ul>
+<p><strong>macOS</strong></p>
+<ul>
+<li>In a terminal, execute <code>/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222</code></li>
+</ul>
+<p><strong>Linux</strong></p>
+<ul>
+<li>In a terminal, launch <code>google-chrome --remote-debugging-port=9222</code></li>
+</ul>
+<p>If you have another instance of Chrome running and don't want to restart it, you can run the new instance under a separate user profile with the  <code>--user-data-dir</code> option. Example: <code>--user-data-dir=/tmp/chrome-debug</code>. This is the same as using the <code>userDataDir</code> option in a launch-type config.</p>
+<p>Launch Chrome and navigate to your page.</p>
+<p>An example <code>launch.json</code> file for an &quot;attach&quot; config.</p>
+<pre><code class=language-json>{
+    &quot;version&quot;: &quot;0.1.0&quot;,
+    &quot;configurations&quot;: [
+        {
+            &quot;name&quot;: &quot;Attach to url with files served from ./out&quot;,
+            &quot;type&quot;: &quot;chrome&quot;,
+            &quot;request&quot;: &quot;attach&quot;,
+            &quot;port&quot;: 9222,
+            &quot;url&quot;: &quot;&lt;url of the open browser tab to connect to&gt;&quot;,
+            &quot;webRoot&quot;: &quot;${workspaceFolder}/out&quot;
+        }
+    ]
+}
+</code></pre>
+<h3 id=chrome-user-profile-note-cannot-connect-to-the-target-connect-econnrefused>Chrome user profile note (<code>Cannot connect to the target: connect ECONNREFUSED</code>)</h3>
+<p>Normally, if Chrome is already running when you start debugging with a launch config, then the new instance won't start in remote debugging mode. So by default, the extension launches Chrome with a separate user profile in a temp folder. Use the <code>userDataDir</code> launch config field to override or disable this. If you are using the <code>runtimeExecutable</code> field, this isn't enabled by default, but you can forcibly enable it with <code>&quot;userDataDir&quot;: true</code>.</p>
+<p>If you are using an attach config, make sure you close other running instances of Chrome before launching a new one with <code>--remote-debugging-port</code>. Or, use a new profile with the <code>--user-data-dir</code> flag yourself.</p>
+<p>For other troubleshooting tips for this error, <a href="#cannot-connect-to-the-target%3a-connect-ECONNREFUSED-127.0.0.1%3a9222" rel="noreferrer noopener">see below</a>.</p>
+<h3 id=errors-from-chrome-errorchromewebdata>Errors from chrome-error://chromewebdata</h3>
+<p>If you see errors with a location like <code>chrome-error://chromewebdata/</code> in the error stack, these errors are not from the extension or from your app - they are usually a sign that Chrome was not able to load your app.</p>
+<p>When you see these errors, first check whether Chrome was able to load your app. Does Chrome say &quot;This site can't be reached&quot; or something similar? You must start your own server to run your app. Double-check that your server is running, and that the url and port are configured correctly.</p>
+<h3 id=other-targets>Other targets</h3>
+<p>You can also theoretically attach to other targets that support the same Chrome Debugging protocol, such as Electron or Cordova. These aren't officially supported, but should work with basically the same steps. You can use a launch config by setting <code>&quot;runtimeExecutable&quot;</code> to a program or script to launch, or an attach config to attach to a process that's already running. If Code can't find the target, you can always verify that it is actually available by navigating to <code>http://localhost:&lt;port&gt;/json</code> in a browser. If you get a response with a bunch of JSON, and can find your target page in that JSON, then the target should be available to this extension.</p>
+<h3 id=examples>Examples</h3>
+<p>See our wiki page for some configured example apps: <a href="https://github.com/Microsoft/vscode-chrome-debug/wiki/Examples" target=_blank rel="noreferrer noopener">Examples</a></p>
+<h3 id=other-optional-launch-config-fields>Other optional launch config fields</h3>
+<ul>
+<li><code>trace</code>: When true, the adapter logs its own diagnostic info to a file. The file path will be printed in the Debug Console. This is often useful info to include when filing an issue on GitHub. If you set it to &quot;verbose&quot;, it will also log to the console.</li>
+<li><code>runtimeExecutable</code>: Workspace relative or absolute path to the runtime executable to be used. If not specified, Chrome will be used from the default install location.</li>
+<li><code>runtimeArgs</code>: Optional arguments passed to the runtime executable.</li>
+<li><code>env</code>: Optional dictionary of environment key/value pairs.</li>
+<li><code>cwd</code>: Optional working directory for the runtime executable.</li>
+<li><code>userDataDir</code>: Normally, if Chrome is already running when you start debugging with a launch config, then the new instance won't start in remote debugging mode. So by default, the extension launches Chrome with a separate user profile in a temp folder. Use this option to set a different path to use, or set to false to launch with your default user profile.</li>
+<li><code>url</code>: On a 'launch' config, it will launch Chrome at this URL.</li>
+<li><code>urlFilter</code>: On an 'attach' config, or a 'launch' config with no 'url' set, search for a page with this url and attach to it. It can also contain wildcards, for example, <code>&quot;localhost:*/app&quot;</code> will match either <code>&quot;http://localhost:123/app&quot;</code> or <code>&quot;http://localhost:456/app&quot;</code>, but not <code>&quot;https://stackoverflow.com&quot;</code>.</li>
+<li><code>targetTypes</code>: On an 'attach' config, or a 'launch' config with no 'url' set, set a list of acceptable target types from the default <code>[&quot;page&quot;]</code>. For example, if you are attaching to an Electron app, you might want to set this to <code>[&quot;page&quot;, &quot;webview&quot;]</code>. A value of <code>null</code> disables filtering by target type.</li>
+<li><code>sourceMaps</code>: By default, the adapter will use sourcemaps and your original sources whenever possible. You can disable this by setting <code>sourceMaps</code> to false.</li>
+<li><code>pathMapping</code>: This property takes a mapping of URL paths to local paths, to give you more flexibility in how URLs are resolved to local files. <code>&quot;webRoot&quot;: &quot;${workspaceFolder}&quot;</code> is just shorthand for a pathMapping like <code>{ &quot;/&quot;: &quot;${workspaceFolder}&quot; }</code>.</li>
+<li><code>smartStep</code>: Automatically steps over code that doesn't map to source files. Especially useful for debugging with async/await.</li>
+<li><code>disableNetworkCache</code>: If true, the network cache will be disabled.</li>
+<li><code>showAsyncStacks</code>: If true, callstacks across async calls (like <code>setTimeout</code>, <code>fetch</code>, resolved Promises, etc) will be shown.</li>
+<li><code>breakOnLoad</code>: Experimental. If true, the debug adapter will attempt to set breakpoints in scripts before they are loaded, so it can hit breakpoints at the beginnings of those scripts. Has a perf impact.</li>
+<li><code>breakOnLoadStrategy</code>: The strategy used for <code>breakOnLoad</code>. Options are &quot;Instrument&quot; or &quot;Regex&quot;. Instrument &quot;[tells] Chrome to pause as each script is loaded, resolving sourcemaps and setting breakpoints&quot; Regex &quot;[s]ets breakpoints optimistically in files with the same name as the file in which the breakpoint is set.&quot;</li>
+</ul>
+<h2 id=skip-files-blackboxing-ignore-files>Skip files / Blackboxing / Ignore files</h2>
+<p>You can use the <code>skipFiles</code> property to ignore/blackbox specific files while debugging. For example, if you set <code>&quot;skipFiles&quot;: [&quot;jquery.js&quot;]</code>, then you will skip any file named 'jquery.js' when stepping through your code. You also won't break on exceptions thrown from 'jquery.js'. This works the same as &quot;blackboxing scripts&quot; in Chrome DevTools.</p>
+<p>The supported formats are:</p>
+<ul>
+<li>The name of a file (like <code>jquery.js</code>)</li>
+<li>The name of a folder, under which to skip all scripts (like <code>node_modules</code>)</li>
+<li>A path glob, to skip all scripts that match (like <code>node_modules/react/*.min.js</code>)</li>
+</ul>
+<h2 id=page-refreshing>Page refreshing</h2>
+<p>This debugger also enables you to refresh your target by simply hitting the restart button in the debugger UI. Additionally you can map the refresh action to your favorite keyboard shortcut by adding the following key mapping to <a href="https://code.visualstudio.com/docs/getstarted/keybindings" target=_blank rel="noreferrer noopener">Key Bindings</a>:</p>
+<pre><code class=language-json>{
+    &quot;key&quot;: &quot;ctrl+r&quot;,
+    &quot;command&quot;: &quot;workbench.action.debug.restart&quot;,
+    &quot;when&quot;: &quot;inDebugMode&quot;
+}
+</code></pre>
+<p>Read more here <a href="https://github.com/Microsoft/vscode-chrome-debug-core/issues/91#issuecomment-265027348" target=_blank rel="noreferrer noopener">https://github.com/Microsoft/vscode-chrome-debug-core/issues/91#issuecomment-265027348</a></p>
+<h2 id=sourcemaps>Sourcemaps</h2>
+<p>The debugger uses sourcemaps to let you debug with your original sources, but sometimes the sourcemaps aren't generated properly and overrides are needed. In the config we support <code>sourceMapPathOverrides</code>, a mapping of source paths from the sourcemap, to the locations of these sources on disk. Useful when the sourcemap isn't accurate or can't be fixed in the build process.</p>
+<p>The left hand side of the mapping is a pattern that can contain a wildcard, and will be tested against the <code>sourceRoot</code> + <code>sources</code> entry in the source map. If it matches, the source file will be resolved to the path on the right hand side, which should be an absolute path to the source file on disk.</p>
+<p>A few mappings are applied by default, corresponding to some common default configs for Webpack and Meteor:</p>
+<pre><code class=language-javascript>// Note: These are the mappings that are included by default out of the box, with examples of how they could be resolved in different scenarios. These are not mappings that would make sense together in one project.
+// webRoot = /Users/me/project
+&quot;sourceMapPathOverrides&quot;: {
+    &quot;webpack:///./~/*&quot;: &quot;${webRoot}/node_modules/*&quot;,       // Example: &quot;webpack:///./~/querystring/index.js&quot; -&gt; &quot;/Users/me/project/node_modules/querystring/index.js&quot;
+    &quot;webpack:///./*&quot;:   &quot;${webRoot}/*&quot;,                    // Example: &quot;webpack:///./src/app.js&quot; -&gt; &quot;/Users/me/project/src/app.js&quot;,
+    &quot;webpack:///*&quot;:     &quot;*&quot;,                               // Example: &quot;webpack:///project/app.ts&quot; -&gt; &quot;/project/app.ts&quot;
+    &quot;webpack:///src/*&quot;: &quot;${webRoot}/*&quot;,                    // Example: &quot;webpack:///src/app.js&quot; -&gt; &quot;/Users/me/project/app.js&quot;
+    &quot;meteor://&#128187;app/*&quot;: &quot;${webRoot}/*&quot;                    // Example: &quot;meteor://&#128187;app/main.ts&quot; -&gt; &quot;/Users/me/project/main.ts&quot;
+}
+</code></pre>
+<p>If you set <code>sourceMapPathOverrides</code> in your launch config, that will override these defaults. <code>${workspaceFolder}</code> and <code>${webRoot}</code> can be used here. If you aren't sure what the left side should be, you can use the <code>.scripts</code> command (details below). You can also use the <code>trace</code> option to see the contents of the sourcemap, or look at the paths of the sources in Chrome DevTools, or open your <code>.js.map</code> file and check the values manually.</p>
+<h3 id=ionicgulp-sourcemaps-note>Ionic/gulp-sourcemaps note</h3>
+<p>Ionic and gulp-sourcemaps output a sourceRoot of <code>&quot;/source/&quot;</code> by default. If you can't fix this via your build config, I suggest this setting:</p>
+<pre><code class=language-json>&quot;sourceMapPathOverrides&quot;: {
+    &quot;/source/*&quot;: &quot;${workspaceFolder}/*&quot;
+}
+</code></pre>
+<h2 id=usage-with-remote-vs-code-extensions>Usage with remote VS Code extensions</h2>
+<p>This extension can be used with the <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack" target=_blank rel="noreferrer noopener">VS Code Remote Extensions</a> to debug an app in a local Chrome window. Here's an example workflow using the <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh" target=_blank rel="noreferrer noopener">Remote - SSH</a> extension:</p>
+<ul>
+<li>Connect to the SSH remote where your project is located</li>
+<li>Launch the development server on the remote</li>
+<li>Run the &quot;Forward Port From Active Host&quot; command to forward the port the server is listening on. For example, if your development server is listening on port 3000, forward port 3000 to the local machine.</li>
+<li>Start your &quot;chrome&quot; launch config</li>
+<li>Chrome should start on the local machine, accessing your app via the forwarded port</li>
+<li>Debugging works as normally</li>
+</ul>
+<p>There are a couple caveats to this workflow:</p>
+<ul>
+<li>Since the extension can't currently access the remote disk, sourcemaps can't be read from disk. If sourcemaps are inlined, they will still be used. If possible, they will be downloaded through your webserver.</li>
+<li>In a local window, when resolving your script locations with webRoot/pathMapping, the extension does some searching for the correct script. Again, since the extension can't check the remote disk, the extension can't do this searching, so your webRoot/pathMapping must be exactly accurate to resolve the script location.</li>
+</ul>
+<p>If you have any other issues, please open an issue.</p>
+<h2 id=troubleshooting>Troubleshooting</h2>
+<h3 id=my-breakpoints-arent-hit.whats-wrong>My breakpoints aren't hit. What's wrong?</h3>
+<p>If your breakpoints aren't hit, it's most likely a sourcemapping issue or because you are having breakpoints in immediately executed code. If you for example have a breakpoint in a <code>render function</code> that runs on page load, sometimes our debugger might not be attached to Chrome before the code has been executed. This means that you will have to refresh the page in Chrome after we have attached from VS Code to hit your breakpoint.</p>
+<p>Alternatively, we have an experimental &quot;break-on-load&quot; configuration option which will make this timing issue more transparent. It landed in <a href="https://github.com/microsoft/vscode-chrome-debug-core/pull/241" target=_blank rel="noreferrer noopener">https://github.com/microsoft/vscode-chrome-debug-core/pull/241</a>.</p>
+<p>If you have a sourcemapping issue, please see <a href="https://github.com/Microsoft/vscode-chrome-debug#sourcemaps" target=_blank rel="noreferrer noopener">https://github.com/Microsoft/vscode-chrome-debug#sourcemaps</a></p>
+<h3 id=cannot-connect-to-the-target-connect-econnrefused-127.0.0.19222>Cannot connect to the target: connect ECONNREFUSED 127.0.0.1:9222</h3>
+<p>This message means that the extension can't attach to Chrome, because Chrome wasn't launched in debug mode. Here are some things to try:</p>
+<ul>
+<li>If using an <code>attach</code> type config, ensure that you launched Chrome using <code>--remote-debugging-port=9222</code>. And if there was already a running instance, close it first or see note about <code>--user-data-dir</code> above.</li>
+<li>Ensure that the <code>port</code> property matches the port on which Chrome is listening for remote debugging connections. This is <code>9222</code> by default. Ensure nothing else is using this port, including your web server. If something else on your computer responds at <code>http://localhost:9222</code>, then set a different port.</li>
+<li>If using a <code>launch</code> type config with the <code>userDataDir</code> option explicitly disabled, close other running instances of Chrome - if Chrome is already running, the extension may not be able to attach, when using launch mode. Chrome can even stay running in the background when all its windows are closed, which will interfere - check the taskbar or kill the process if necessary.</li>
+<li>If all else fails, try to navigate to <code>http://localhost:&lt;port&gt;/json</code> in a browser when you see this message - if there is no response, then something is wrong upstream of the extension. If there is a page of JSON returned, then ensure that the <code>port</code> in the launch config matches the port in that url.</li>
+</ul>
+<h3 id=general-things-to-try-if-youre-having-issues>General things to try if you're having issues:</h3>
+<ul>
+<li>Ensure <code>webRoot</code> is set correctly if needed</li>
+<li>Look at your sourcemap config carefully. A sourcemap has a path to the source files, and this extension uses that path to find the original source files on disk. Check the <code>sourceRoot</code> and <code>sources</code> properties in your sourcemap and make sure that they can be combined with the <code>webRoot</code> property in your launch config to build the correct path to the original source files.</li>
+<li>This extension ignores sources that are inlined in the sourcemap - you may have a setup that works in Chrome Dev Tools, but not this extension, because the paths are incorrect, but Chrome Dev Tools are reading the inlined source content.</li>
+<li>Check the console for warnings that this extension prints in some cases when it can't attach.</li>
+<li>Ensure the code in Chrome matches the code in Code. Chrome may cache an old version.</li>
+<li>If your breakpoints bind, but aren't hit, try refreshing the page. If you set a breakpoint in code that runs immediately when the page loads, you won't hit that breakpoint until you refresh the page.</li>
+<li>File a bug in this extension's <a href="https://github.com/Microsoft/vscode-chrome-debug" target=_blank rel="noreferrer noopener">GitHub repo</a>, including the debug adapter log file. Create the log file by setting the &quot;trace&quot; field in your launch config and reproducing the issue. It will print the path to the log file at the top of the Debug Console. You can drag this file into an issue comment to upload it to GitHub.</li>
+<li>If you're using Webpack, we recommend using the <code>&quot;devtool&quot;: &quot;source-map&quot;</code> option (in your <code>webpack.config.js</code> file) as the others produce lower-fidelity sourcemaps and you may have issues setting breakpoints. See the <a href="https://webpack.js.org/configuration/devtool/" target=_blank rel="noreferrer noopener">full list of devtool options for webpack</a> for more information.</li>
+</ul>
+<h3 id=the.scripts-command>The <code>.scripts</code> command</h3>
+<p>This feature is extremely useful for understanding how the extension maps files in your workspace to files running in Chrome. You can enter <code>.scripts</code> in the Debug Console to see a listing of all scripts loaded in the runtime, their sourcemap information, and how they are mapped to files on disk. The format is like this:</p>
+<pre><code>› &lt;The exact URL for a script, reported by Chrome&gt; (&lt;The local path that has been inferred for this script, using webRoot, if applicable&gt;)
+    - &lt;The exact source path from the sourcemap&gt; (&lt;The local path inferred for the source, using sourceMapPathOverrides, or webRoot, etc, if applicable&gt;)
+</code></pre>
+<p>Example:</p>
+<pre><code>.scripts
+› eval://43
+› http://localhost:8080/index.html (/Users/me/project/wwwroot/index.html)
+› http://localhost:8080/out/test1.js (/Users/me/project/wwwroot/out/test1.js)
+    - /src/test1a.ts (/Users/me/project/wwwroot/src/test1a.ts)
+    - /src/test1b.ts (/Users/me/project/wwwroot/src/test1b.ts)
+    - /src/test1c.ts (/Users/me/project/wwwroot/src/test1c.ts)
+› http://localhost:8080/out/test2.js (/Users/me/project/wwwroot/out/test2.js)
+    - /src/test2.ts (/Users/me/project/wwwroot/src/test2.ts)
+</code></pre>
+<p>If the paths of your source files show as not being resolved correctly here, you may have to change <code>sourceMapPathOverrides</code> or <code>webRoot</code> to help the debugger resolve them to real paths on disk.</p>
+<p>If you are wondering what a script is, for example, that 'eval' script, you can also use <code>.scripts</code> to get its contents: <code>.scripts eval://43</code>.</p>
+<hr>
+<p>This project has adopted the <a href="https://opensource.microsoft.com/codeofconduct/" target=_blank rel="noreferrer noopener">Microsoft Open Source Code of Conduct</a>. For more information see the <a href="https://opensource.microsoft.com/codeofconduct/faq/" target=_blank rel="noreferrer noopener">Code of Conduct FAQ</a> or contact <a href="https://github.com/Microsoft/vscode-chrome-debug/blob/master/mailto:opencode%40microsoft.com" target=_blank rel="noreferrer noopener">opencode@microsoft.com</a> with any additional questions or comments.</p>
+</div></div></td><td class="ux-itemdetails-right" role="complementary"><div class="screenshot-carousel-container"></div><div class="loader-container"><div class="loader"></div></div><div class="itemDetails-right"></div></td></tr></tbody></table></div></div></div></div></div></div></div></div></div></div><div id="gallery-footer"><footer><div id="ux-footer" class="ltr" role="contentinfo"><div id="baseFooter"><div id="Fragment_BaseFooterLinks"><div class="linkList"><ul class="links horizontal"><li><a href="https://www.visualstudio.com/support/support-overview-vs" data-mscc-ic="false">Contact us</a></li><li><a href="https://careers.microsoft.com/" data-mscc-ic="false">Jobs</a></li><li><a href="https://go.microsoft.com/fwlink/?LinkID=264782" data-mscc-ic="false">Privacy</a></li><li><a href="https://aka.ms/vsmarketplace-ToU" data-mscc-ic="false">Terms of use</a></li><li><a href="https://www.microsoft.com/en-us/legal/intellectualproperty/Trademarks/EN-US.aspx" data-mscc-ic="false">Trademarks</a></li></ul></div></div><div id="rightBaseFooter">©<!-- --> 2019 Microsoft<span class="microsoftLogo" title="Microsoft"></span></div><div class="clear"></div></div></div></footer></div></div></div></div>
+    
+    <!-- Google Tag Manager -->
+    <noscript>
+        <iframe src="//www.googletagmanager.com/ns.html?id=GTM-WT9XBK"
+            height="0" width="0" style="display: none; visibility: hidden"></iframe>
+    </noscript>
+    <script type="text/javascript"  nonce="FDiFDGIJOCqZqmgXUTtA9w==">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName('body')[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.defer=true;j.src=
+        '//www.googletagmanager.com/gtm.js?id='+i+dl;f.insertBefore(j,f.lastChild);
+        })(window,document,'script','dataLayer','GTM-WT9XBK');</script>
+    <!-- End Google Tag Manager -->
+
+    <div class="render-time">
+        <script class="server-side-render" defer="defer" type="application/json">3</script>
+    </div>
+    <div class="rhs-content">
+        <script class="jiContent" defer="defer" type="application/json">{"GitHubLink":"https://github.com/Microsoft/vscode-chrome-debug","ReleaseDateString":"Thu, 12 Nov 2015 01:09:31 GMT","LastUpdatedDateString":"Thu, 21 May 2020 15:41:13 GMT","GalleryUrl":"/","Categories":["Debuggers"],"Tags":["debuggers","javascript","multi-root ready"],"ExtensionProperties":{"Microsoft.VisualStudio.Services.Links.Getstarted":"https://github.com/Microsoft/vscode-chrome-debug","Microsoft.VisualStudio.Services.Links.Support":"https://github.com/microsoft/vscode-chrome-debug/issues","Microsoft.VisualStudio.Services.Links.Source":"https://github.com/Microsoft/vscode-chrome-debug","Microsoft.VisualStudio.Services.Links.GitHub":"https://github.com/Microsoft/vscode-chrome-debug","Microsoft.VisualStudio.Code.Engine":"^1.41.0","Microsoft.VisualStudio.Services.GitHubFlavoredMarkdown":"true","Microsoft.VisualStudio.Code.ExtensionDependencies":"","Microsoft.VisualStudio.Code.ExtensionPack":"","Microsoft.VisualStudio.Code.LocalizedLanguages":""},"Resources":{"LicenseText":"License","ChangelogText":"Changelog","PublisherName":"msjsdiag","ExtensionName":"debugger-for-chrome","Version":"4.12.8"},"MoreInfo":{"VersionValue":"4.12.8","PublisherValue":"Microsoft","UniqueIdentifierValue":"msjsdiag.debugger-for-chrome","TwitterShareContents":"Just%20discovered%20this%20on%20the%20%23VSMarketplace%3A%20https%3A%2F%2Fmarketplace.visualstudio.com%2Fitems%3FitemName%3Dmsjsdiag.debugger-for-chrome","EmailShareContents":"Hi%2C%20Just%20discovered%20this%20extension%20on%20the%20%23VSMarketplace%20that%20may%20be%20of%20interest%20to%20you.%20Check%20it%20out%20%40%20https%3A%2F%2Fmarketplace.visualstudio.com%2Fitems%3FitemName%3Dmsjsdiag.debugger-for-chrome%20%21","EmailShareSubject":"Check%20out%20-%20Debugger%20for%20Chrome%20for%20Visual%20Studio%20Code","IsPublic":true},"ResourcesPath":"https://cdn.vsassets.io/v/M170_20200611.2/_content/","AssetUri":"https://msjsdiag.gallerycdn.vsassets.io/extensions/msjsdiag/debugger-for-chrome/4.12.8/1590075673827","VsixManifestAssetType":"Microsoft.VisualStudio.Services.VsixManifest","StaticResourceVersion":"M170_20200611.2","AfdIdentifier":"Ref A: 46E9A882C7C542B2A236FFAA5D6FBC5A Ref B: MAA02EDGE0306 Ref C: 2020-06-20T08:42:04Z","VsixId":null,"WorksWith":null,"ItemType":3,"IsMDPruned":false,"PrunedMDLength":0,"OverviewMDLength":21643,"IsRHSAsyncComponentsEnabled":true,"OfferDetails":null,"IsDetailsTabsEnabled":false}</script>
+    </div>
+    <div class="csp-user">
+        <script class="is-csp-user" defer="defer" type="application/json">null</script>
+    </div>
+    
+
+    <script type="text/javascript"  nonce="FDiFDGIJOCqZqmgXUTtA9w==">
+        if (document) {
+            try {
+                if (window.performance && window.performance.timing) {
+                    window["marketplaceRenderTime"] = Date.now() - window.performance.timing.navigationStart;
+                }
+            }
+            catch(e){ }
+        }
+    </script>
+    <script type="text/javascript" nonce="FDiFDGIJOCqZqmgXUTtA9w=="> var __vssPageContext = {"webContext":{"host":{"id":"2663b13f-50e3-a655-a159-22f6f4725fab","name":"TEAM FOUNDATION","uri":"https://marketplace.visualstudio.com/","relativeUri":"/","hostType":"deployment","scheme":"https","authority":"marketplace.visualstudio.com"}},"moduleLoaderConfig":{"baseUrl":"https://cdn.vsassets.io/v/M170_20200611.2/_scripts/TFS/min/","paths":{"ContentRendering/Resources":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/en-IN","Gallery/Scripts/Gallery/Resources":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/en-IN","VSSPreview/Resources":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/en-IN","Charts/Resources":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/en-IN","Engagement/Resources":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/en-IN","VSS/Resources":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/en-IN","highcharts":"https://cdn.vsassets.io/3rdParty/_scripts/highcharts.v7.2.1","highcharts/highcharts-more":"https://cdn.vsassets.io/3rdParty/_scripts/highcharts-more.v7.2.1","highcharts/modules/accessibility":"https://cdn.vsassets.io/3rdParty/_scripts/highcharts-accessibility.v7.2.1","highcharts/modules/funnel":"https://cdn.vsassets.io/3rdParty/_scripts/highcharts-funnel.v7.2.1","highcharts/modules/heatmap":"https://cdn.vsassets.io/3rdParty/_scripts/highcharts-heatmap.v7.2.1"},"map":{"*":{"office-ui-fabric-react/lib":"OfficeFabric"}},"contributionPaths":{"VSS":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/VSS","pathType":"default"},"VSS/Resources":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/en-IN","pathType":"resource"},"q":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/q","pathType":"default"},"knockout":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/knockout","pathType":"default"},"mousetrap":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/mousetrap","pathType":"default"},"mustache":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/mustache","pathType":"default"},"react":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/react.15.3","pathType":"default"},"react-dom":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/react-dom.15.3","pathType":"default"},"react-transition-group":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/react-transition-group.15.3","pathType":"default"},"jQueryUI":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/jQueryUI","pathType":"default"},"jquery":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/jquery","pathType":"default"},"OfficeFabric":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/OfficeFabric","pathType":"default"},"tslib":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/tslib","pathType":"default"},"@uifabric":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/@uifabric","pathType":"default"},"VSSUI":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/VSSUI","pathType":"default"},"ContentRendering":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/ContentRendering","pathType":"default"},"ContentRendering/Resources":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/en-IN","pathType":"resource"},"Charts":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/Charts","pathType":"default"},"Charts/Resources":{"value":"/_static/tfs/M170_20200611.2/_scripts/TFS/min/en-IN","pathType":"resource"},"highcharts":{"value":"https://cdn.vsassets.io/3rdParty/_scripts/highcharts.v7.2.1","pathType":"thirdParty"},"highcharts/highcharts-more":{"value":"https://cdn.vsassets.io/3rdParty/_scripts/highcharts-more.v7.2.1","pathType":"thirdParty"},"highcharts/modules/accessibility":{"value":"https://cdn.vsassets.io/3rdParty/_scripts/highcharts-accessibility.v7.2.1","pathType":"thirdParty"},"highcharts/modules/funnel":{"value":"https://cdn.vsassets.io/3rdParty/_scripts/highcharts-funnel.v7.2.1","pathType":"thirdParty"},"highcharts/modules/heatmap":{"value":"https://cdn.vsassets.io/3rdParty/_scripts/highcharts-heatmap.v7.2.1","pathType":"thirdParty"}},"shim":{"jquery":{"deps":[],"exports":"jQuery"}},"waitSeconds":30},"coreReferences":{"stylesheets":[{"url":"/_static/tfs/M170_20200611.2/_cssbundles/Default/vss-bundle-ext-core-css-vQ8Us1s7UaJe7EYaHu4abPhUIoy4VkQeq0UCGlmbyyiE=","highContrastUrl":null,"isCoreStylesheet":true}],"scripts":[{"identifier":"JQuery","url":"https://cdn.vsassets.io/3rdParty/_scripts/jquery-2.2.4.min.js","fallbackUrl":null,"fallbackCondition":null,"isCoreModule":true},{"identifier":"JQueryXDomain","url":"https://cdn.vsassets.io/3rdParty/_scripts/jquery.xdomainrequest.min.js","fallbackUrl":null,"fallbackCondition":null,"isCoreModule":true},{"identifier":"Promise","url":"https://cdn.vsassets.io/v/M170_20200611.2/_scripts/TFS/min/promise.js","fallbackUrl":null,"fallbackCondition":null,"isCoreModule":true},{"identifier":"GlobalScripts","url":"https://cdn.vsassets.io/v/M170_20200611.2/_scripts/TFS/min/global-scripts.js","fallbackUrl":null,"fallbackCondition":null,"isCoreModule":true},{"identifier":"LoaderFixes","url":"https://cdn.vsassets.io/v/M170_20200611.2/_scripts/TFS/pre-loader-shim.min.js","fallbackUrl":null,"fallbackCondition":null,"isCoreModule":false},{"identifier":"AMDLoader","url":"https://cdn.vsassets.io/3rdParty/_scripts/require.min.js","fallbackUrl":null,"fallbackCondition":null,"isCoreModule":true},{"identifier":"LoaderFixes","url":"https://cdn.vsassets.io/v/M170_20200611.2/_scripts/TFS/post-loader-shim.min.js","fallbackUrl":null,"fallbackCondition":null,"isCoreModule":false}],"coreScriptsBundle":{"identifier":"CoreBundle","url":"/_public/_Bundling/Content?bundle=vss-bundle-basejs-v9GpWWBnsWqhM23ijhK2HfAqLowTXGUqZLDRsBCZbkfY=","fallbackUrl":null,"fallbackCondition":null,"isCoreModule":true},"extensionCoreReferences":{"identifier":"CoreBundle","url":"https://cdn.vsassets.io/bundles/vss-bundle-ext-core-vXmFrbZVv9in776dlqjrJLCGMci5PQIF14Ug3E2n2Ku0=","fallbackUrl":null,"fallbackCondition":null,"isCoreModule":true}},"webAccessConfiguration":{"isHosted":true,"paths":{"rootPath":"/","staticContentRootPath":"/","staticContentVersion":"M170_20200611.2","resourcesPath":"https://cdn.vsassets.io/v/M170_20200611.2/_content/","staticRootTfs":"https://cdn.vsassets.io/v/M170_20200611.2/","cdnFallbackStaticRootTfs":"/_static/tfs/M170_20200611.2/","staticRoot3rdParty":"https://cdn.vsassets.io/3rdParty/"},"api":{"webApiVersion":"1","areaPrefix":"_","controllerPrefix":"_"},"mailSettings":{"enabled":false},"registryItems":{}},"microsoftAjaxConfig":{"cultureInfo":{"name":"en-IN","numberFormat":{"CurrencyDecimalDigits":2,"CurrencyDecimalSeparator":".","IsReadOnly":true,"CurrencyGroupSizes":[3,2],"NumberGroupSizes":[3,2],"PercentGroupSizes":[3,2],"CurrencyGroupSeparator":",","CurrencySymbol":"₹","NaNSymbol":"NaN","CurrencyNegativePattern":12,"NumberNegativePattern":1,"PercentPositivePattern":1,"PercentNegativePattern":1,"NegativeInfinitySymbol":"-∞","NegativeSign":"-","NumberDecimalDigits":2,"NumberDecimalSeparator":".","NumberGroupSeparator":",","CurrencyPositivePattern":2,"PositiveInfinitySymbol":"∞","PositiveSign":"+","PercentDecimalDigits":2,"PercentDecimalSeparator":".","PercentGroupSeparator":",","PercentSymbol":"%","PerMilleSymbol":"‰","NativeDigits":["0","1","2","3","4","5","6","7","8","9"],"DigitSubstitution":1},"dateTimeFormat":{"AMDesignator":"AM","Calendar":{"MinSupportedDateTime":"0001-01-01T00:00:00","MaxSupportedDateTime":"9999-12-31T23:59:59.9999999","AlgorithmType":1,"CalendarType":1,"Eras":[1],"TwoDigitYearMax":2029,"IsReadOnly":true},"DateSeparator":"-","FirstDayOfWeek":1,"CalendarWeekRule":0,"FullDateTimePattern":"dd MMMM yyyy HH:mm:ss","LongDatePattern":"dd MMMM yyyy","LongTimePattern":"HH:mm:ss","MonthDayPattern":"d MMMM","PMDesignator":"PM","RFC1123Pattern":"ddd, dd MMM yyyy HH':'mm':'ss 'GMT'","ShortDatePattern":"dd-MM-yyyy","ShortTimePattern":"HH:mm","SortableDateTimePattern":"yyyy'-'MM'-'dd'T'HH':'mm':'ss","TimeSeparator":":","UniversalSortableDateTimePattern":"yyyy'-'MM'-'dd HH':'mm':'ss'Z'","YearMonthPattern":"MMMM, yyyy","AbbreviatedDayNames":["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],"ShortestDayNames":["Su","Mo","Tu","We","Th","Fr","Sa"],"DayNames":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"AbbreviatedMonthNames":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec",""],"MonthNames":["January","February","March","April","May","June","July","August","September","October","November","December",""],"IsReadOnly":true,"NativeCalendarName":"Gregorian Calendar","AbbreviatedMonthGenitiveNames":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec",""],"MonthGenitiveNames":["January","February","March","April","May","June","July","August","September","October","November","December",""]},"numberShortForm":{"QuantitySymbols":["K","M","B"],"NumberGroupSize":1000,"ThousandSymbol":"K"},"eras":null}},"timeZonesConfiguration":{},"featureAvailability":{"featureStates":{"VisualStudio.Services.Contribution.EnableOnPremUnsecureBrowsers":false,"VisualStudio.Service.WebPlatform.ClientErrorReporting":true,"Microsoft.VisualStudio.Services.Gallery.Client.UseCdnAssetUri":false,"VisualStudio.Services.WebAccess.SubresourceIntegrity":false,"VisualStudio.Services.IdentityPicker.ReactProfileCard":true}},"appInsightsConfiguration":{"enabled":false,"instrumentationKey":"00000000-0000-0000-0000-000000000000","insightsScriptUrl":null},"diagnostics":{"sessionId":"67c8c2a0-505c-4aec-a2a4-4964a2c66c89","activityId":"67c8c2a0-505c-4aec-a2a4-4964a2c66c89","bundlingEnabled":true,"cdnAvailable":true,"cdnEnabled":true,"webPlatformVersion":"M170","serviceVersion":"Dev18.M170.1 (build: AzureDevOps_M170_20200611.2)"},"navigation":{"topMostLevel":"deployment","area":"","currentController":"Gallery","currentAction":"Details","commandName":"Gallery.Details","routeId":"LegacyWebAccessRoute","routeValues":{"controller":"Gallery","action":"Details","serviceHost":"2663b13f-50e3-a655-a159-22f6f4725fab (TEAM FOUNDATION)"}},"globalization":{"explicitTheme":"","theme":"Default","culture":"en-IN","timezoneOffset":0,"timeZoneId":"UTC"},"serviceInstanceId":"00000029-0000-8888-8000-000000000000","hubsContext":{},"serviceLocations":{"locations":{"951917ac-a960-4999-8464-e3f0aa25b381":{"Application":"https://app.vssps.visualstudio.com/","Deployment":"https://app.vssps.visualstudio.com/"}}}};</script> <script defer="true" data-bundlelength="125076" data-bundlename="basejs" nonce="FDiFDGIJOCqZqmgXUTtA9w=="  src="https://cdn.vsassets.io/bundles/vss-bundle-basejs-v9GpWWBnsWqhM23ijhK2HfAqLowTXGUqZLDRsBCZbkfY="  type="text/javascript"></script>
+    <script defer="true" data-bundlelength="205378" data-bundlename="common" data-includedscripts="VSS/Bundling" nonce="FDiFDGIJOCqZqmgXUTtA9w=="  src="https://cdn.vsassets.io/bundles/vss-bundle-common-v_Ss9wqVqy_aJagjjTroIfzbnjzMUeKzN0KlnLkpPbLw="  type="text/javascript"></script><script defer="true" data-bundlelength="2079989" data-bundlename="view" data-includedscripts="Gallery/Client/Pages/VSSItemDetailsSSR/VSSItemDetailsSSRAsync" nonce="FDiFDGIJOCqZqmgXUTtA9w=="  src="https://cdn.vsassets.io/bundles/vss-bundle-view-vPRaNhU2r7iB5hbSt7BbiFyjMg5wLp-UMz6nkwupY_ck="  type="text/javascript"></script>
+    <script defer=true  nonce="FDiFDGIJOCqZqmgXUTtA9w==" src="/_static/tfs/M170_20200611.2/_scripts/TFS/min/Gallery/Client/Pages/VSSItemDetailsSSR/SSRModuleWrappers.js"></script>
+</body>
+
+</html>
